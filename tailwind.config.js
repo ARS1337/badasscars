@@ -16,6 +16,7 @@ module.exports = {
       emerald: colors.emerald,
       indigo: colors.indigo,
       yellow: colors.yellow,
+      lightGrey:'#E6EBEF'
     },
     fontFamily: {
       oswald: ["Oswald"],
@@ -24,7 +25,37 @@ module.exports = {
     letterSpacing: {
       spacing: "1rem",
     },
-    extend: {},
+    extend: {
+      animation: {
+        ping: "ping 3s infinite alternate",
+        rotate: "rotate 60s infinite linear",
+        ltr1: 'ltr1 3s 1 forwards ',
+        ltr2: 'ltr2 3s 1 forwards ',
+      },
+      keyframes: {
+        rotate: {
+          "0% 100%": { transform: "rotate(0deg) " },
+          "50%": { transform: "rotate(360deg)" },
+        },
+        ping:{
+          '0% 100%':{transform:'scale(0.9)',opacity:'100%'},
+          '50%':{transform:'scale(1.1)',opacity:'100%'},
+        },
+        ltr1:{
+          "0% ": { transform: "translateX(-100%) " },
+          "100%": { transform: "translateX(10%)" },
+          "50%": { transform: "translateX(10%)" },
+        },
+        ltr2:{
+          "0% ": { transform: "translateX(10%) " },
+          "100%": { transform: "translateX(200%)" },
+          "50%": { transform: "translateX(200%)" },
+        }
+      },
+      backgroundImage:{
+        cityscape:'url("..")'
+      }
+    },
   },
   plugins: [],
 };

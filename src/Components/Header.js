@@ -5,16 +5,16 @@ function Header(props) {
   return (
     <div className="flex align-middle justify-between  pt-4">
       <div className="flex align-middle justify-center " style={{ alignItems: "center" }}>
-        <select className=" bg-CorrectBlack px-8 text-white font-oswald shadow-lg p-2">
+        <select className=" bg-CorrectBlack px-8 text-white font-oswald shadow-lg p-2 z-50 hover:cursor-pointer">
           {configs?.listOfProducts.map((productName) => {
             return (
-              <option value="PRODUCTS" selected className="px-2 font-bold text-white font-oswald ">
+              <option value="PRODUCTS" selected className="px-2 font-bold text-white font-oswald z-50">
                 {productName}
               </option>
             );
           })}
         </select>
-        <button className="border-2 border-solid border-CorrectBlack p-1.5 ml-1 px-8 font-bold hover:cursor-pointer ">
+        <button className="border-2 border-solid border-CorrectBlack p-1.5 ml-1 px-8 font-bold hover:cursor-pointer z-50">
           CONTACT
         </button>
       </div>
@@ -26,7 +26,7 @@ function Header(props) {
       <div className="grid grid-cols-1 font-bold ">
         <div className="grid grid-cols-3">
           <div
-            className="flex align-middle justify-center"
+            className="flex align-middle justify-center hover:cursor-pointer z-50"
             style={{
               display: "flex",
               alignItems: "center",
@@ -36,7 +36,7 @@ function Header(props) {
             B2B
           </div>
           <div
-            className="flex align-middle justify-center"
+            className="flex align-middle justify-center hover:cursor-pointer z-50"
             style={{
               display: "flex",
               alignItems: "center",
@@ -46,7 +46,7 @@ function Header(props) {
             CLICK & CONNECT
           </div>
           <div
-            className=" grid grid-cols-2 "
+            className=" grid grid-cols-2 hover:cursor-pointer z-50"
             style={{
               display: "flex",
               alignItems: "center",

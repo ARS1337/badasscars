@@ -2,5 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-@import '../fonts/fonts.scss';
+@import "../fonts/fonts.scss";
 
+.flex_middle_center {
+  display: "flex";
+  align-items: "center";
+  justify-content: "center";
+}
+
+.button-right:active{
+ animation: ltr2 3s
+}
+.button-left:active{
+ //animation: ltr1 3s
+}

@@ -20,13 +20,20 @@ function SearchBarAndOtherComponents(props) {
   return (
     <div className=" flex align-middle justify-end  w-full pt-4">
       <div className="flex align-middle justify-between  w-4/6">
-        <div className="flex align-middle w-3/6">
+        <div className="flex align-middle w-3/6 ">
           <SearchBar />
         </div>
-        <div className="flex align-middle justify-between">
-          <div>WISH &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</div>
-          <div>0.0 kmh</div>
+
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }} className='hover:cursor-pointer z-50' >
+          <div className="pr-2 hover:cursor-pointer">WISH</div>
+          <div>
+            <img src="/assets/heart.png" alt="heart" className="h-4 w-4 hover:cursor-pointer" />
+          </div>
+          <div className="px-4 hover:cursor-pointer">|</div>
+          <div className="px-4 hover:cursor-pointer">0.0 KN</div>
+          <div className="px-4 hover:cursor-pointer" ><img src="/assets/bag.png" alt="heart" className="h-4 w-4 " /></div>
         </div>
+
       </div>
     </div>
   );
