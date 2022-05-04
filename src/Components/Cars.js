@@ -38,7 +38,7 @@ function Cars(props) {
           alignItems: "center",
         }}
       >
-        <div className=" flex align-middle justify-center flex-row  relative animate-ltr1 peer-active:  z-50">
+        <div className=" flex align-middle justify-center flex-row  relative animate-ltr1   z-50">
           <img src={carDetails?.img} alt={carDetails?.name} height={height} width={width} className="z-20  " />
           <div
             className=" absolute text-white rounded-full h-24 w-24 bg-[#292F33] z-40 border-8 border-[#EEFF00] top-[50%] left-[40%] font-oswald 
@@ -50,7 +50,7 @@ function Cars(props) {
           </div>
           <div className="absolute bg-gradient-to-r from-blue-500-to-grey top-full  bg-CorrectBlack opacity-10 shadow-sm rounded-[20000%] w-11/12 h-6"></div>
         </div>
-        <div className="pt-12">{carDetails?.header}</div>
+        <div className="pt-12">{carDetails?.header?.toUpperCase()}</div>
         <div className="text-2xl font-bold">{carDetails?.name}</div>
         <div className="flex flex-row justify-between w-2/5">
           <div onClick={() => handleArrowClick("left")} className="z-30 button-left">
