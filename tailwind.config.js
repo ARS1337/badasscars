@@ -16,7 +16,7 @@ module.exports = {
       emerald: colors.emerald,
       indigo: colors.indigo,
       yellow: colors.yellow,
-      lightGrey:'#E6EBEF'
+      lightGrey: "#E6EBEF",
     },
     fontFamily: {
       oswald: ["Oswald"],
@@ -24,37 +24,62 @@ module.exports = {
     },
     letterSpacing: {
       spacing: "1rem",
+      title:'0.3rem'
     },
     extend: {
       animation: {
         ping: "ping 3s infinite alternate",
         rotate: "rotate 60s infinite linear",
-        ltr1: 'ltr1 3s 1 forwards ',
-        ltr2: 'ltr2 3s 1 forwards ',
+        ltr1: "ltr1 3s 1 forwards ",
+        ltr2: "ltr2 3s 1 forwards ",
+        rtl1: "rtl1 3s 1 forwards ",
+        rtl2: "rtl2 3s 1 forwards ",
+        bounceCustom: "bounceCustom 1.5s 1, rotate 60s 1.5s infinite linear ",
+        moveBackgroundLinearToLeft:"moveBackgroundLinearToLeft 2s 1 forwards",
+        moveBackgroundLinearToRight:"moveBackgroundLinearToRight 2s 1 forwards"
       },
       keyframes: {
         rotate: {
-          "0% 100%": { transform: "rotate(0deg) " },
-          "50%": { transform: "rotate(360deg)" },
+          "100%": { transform: "rotate(360deg)" },
         },
-        ping:{
-          '0% 100%':{transform:'scale(0.9)',opacity:'100%'},
-          '50%':{transform:'scale(1.1)',opacity:'100%'},
-        },
-        ltr1:{
-          "0% ": { transform: "translateX(-100%) " },
+        ltr1: {
+          "0% ": { transform: "translateX(-200%) " },
           "100%": { transform: "translateX(0%)" },
           "50%": { transform: "translateX(0%)" },
         },
-        ltr2:{
+        ltr2: {
           "0% ": { transform: "translateX(0%) " },
           "100%": { transform: "translateX(200%)" },
           "50%": { transform: "translateX(200%)" },
-        }
+        },
+        rtl1: {
+          "0% ": { transform: "translateX(200%) " },
+          "100%": { transform: "translateX(0%)" },
+          "50%": { transform: "translateX(0%)" },
+        },
+        rtl2: {
+          "0% ": { transform: "translateX(0%) " },
+          "100%": { transform: "translateX(-200%)" },
+          "50%": { transform: "translateX(-200%)" },
+        },
+        bounceCustom: {
+          "0% ": { transform: "scale(1) " },
+          "25%": { transform: "scale(0.7) " },
+          "50%": { transform: "scale(1.4)" },
+          "100%": { transform: "scale(1)" },
+        },
+        moveBackgroundLinearToLeft:{
+          "0% ": { transform: "translateX(0%) " },
+          "100%": { transform: "translateX(-20%)" },
+        },
+        moveBackgroundLinearToRight:{
+          "0% ": { transform: "translateX(0%) " },
+          "100%": { transform: "translateX(20%)" },
+        },
       },
-      backgroundImage:{
-        cityscape:'url("..")'
-      }
+      backgroundImage: {
+        cityscape: 'url("..")',
+      },
     },
   },
   plugins: [],

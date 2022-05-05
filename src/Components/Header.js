@@ -3,12 +3,12 @@ import configs from "../config";
 
 function Header(props) {
   return (
-    <div className="flex align-middle justify-between  pt-4">
+    <div className="flex align-middle justify-between  pt-4 z-50">
       <div className="flex align-middle justify-center " style={{ alignItems: "center" }}>
         <select className=" bg-CorrectBlack px-8 text-white font-oswald shadow-lg p-2 z-50 hover:cursor-pointer">
-          {configs?.listOfProducts.map((productName) => {
+          {configs?.listOfProducts.map((productName,key) => {
             return (
-              <option value="PRODUCTS" selected className="px-2 font-bold text-white font-oswald z-50">
+              <option value="PRODUCTS" defaultValue className="px-2 font-bold text-white font-oswald z-50" key={key}>
                 {productName}
               </option>
             );

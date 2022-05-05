@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MdArrowLeft, MdArrowRight } from "react-icons/md";
 
 const Arrows = (props) => {
@@ -11,23 +11,21 @@ const Arrows = (props) => {
 };
 
 function Cars(props) {
-  const { carDetails, currentCar, setcurrentCar } = props;
+  const { carClassList, setNewClass, carDetails, currentCar, noOfCars, setcarClassList } = props;
+
   const height = (window.innerHeight * 20) / 100;
   const width = (window.innerWidth * 50) / 100;
 
   const handleArrowClick = (direction) => {
     if (direction == "left") {
       if (currentCar > 0) {
-        setcurrentCar(currentCar - 1);
+        setNewClass("animate-rtl2", "animate-rtl1", currentCar - 1, 1000, setcarClassList);
       }
-    } else {
-      // direction== right
+    } else if (direction == "right") {
       if (currentCar < 2) {
-        setcurrentCar(currentCar + 1);
+        setNewClass("animate-ltr2", "animate-ltr1", currentCar + 1, 1000, setcarClassList);
       }
     }
-
-    console.log("handleArrowClick ", direction);
   };
 
   if (carDetails) {
@@ -38,7 +36,7 @@ function Cars(props) {
           alignItems: "center",
         }}
       >
-        <div className=" flex align-middle justify-center flex-row  relative animate-ltr1   z-50">
+        <div className={carClassList}>
           <img src={carDetails?.img} alt={carDetails?.name} height={height} width={width} className="z-20  " />
           <div
             className=" absolute text-white rounded-full h-24 w-24 bg-[#292F33] z-40 border-8 border-[#EEFF00] top-[50%] left-[40%] font-oswald 
@@ -53,13 +51,16 @@ function Cars(props) {
         <div className="pt-12">{carDetails?.header?.toUpperCase()}</div>
         <div className="text-2xl font-bold">{carDetails?.name}</div>
         <div className="flex flex-row justify-between w-2/5">
-          <div onClick={() => handleArrowClick("left")} className="z-30 button-left">
+          <div onClick={() => handleArrowClick("left")} className={currentCar == 0 ? "z-30 invisible" : "visible"}>
             <Arrows direction="left" />
           </div>
           <div>
             <div className="pb-4">{carDetails?.type}</div>
           </div>
-          <div onClick={() => handleArrowClick("right")} className="z-30 button-right">
+          <div
+            onClick={() => handleArrowClick("right")}
+            className={currentCar + 1 == noOfCars ? "z-30 invisible" : "visible"}
+          >
             <Arrows direction="right" />
           </div>
         </div>

@@ -6,20 +6,10 @@ import { FaInstagram } from "react-icons/fa";
 function Footer(props) {
   const { currentCar } = props;
   const currentCarString = currentCar > 9 ? currentCar+1 : `0${currentCar+1}`;
-  console.log(
-    "currentCar",
-    currentCar,
-    " currentCar type ",
-    typeof currentCar,
-    " currentCar > 9 ",
-    currentCar > 9,
-    " currentCarString ",
-    currentCarString
-  );
 
   return (
     <div
-      className="px-8 font-oswald"
+      className="px-8 font-oswald fixed bottom-0 bg-CorrectYellow w-full"
       style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}
     >
       <div className=" flex align-bottom flex-row justify-around w-36">
