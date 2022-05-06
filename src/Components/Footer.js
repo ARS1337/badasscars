@@ -9,7 +9,7 @@ function Footer(props) {
 
   return (
     <div
-      className="px-8 font-oswald fixed bottom-0 bg-CorrectYellow w-full"
+      className="px-8 font-oswald fixed bottom-4  w-full"
       style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}
     >
       <div className=" flex align-bottom flex-row justify-around w-36">

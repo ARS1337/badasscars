@@ -7,16 +7,12 @@ import { BrowserRouter as Router, Route, Link, BrowserRouter, Routes } from "rea
 import SecondPage from "./Components/SecondPage";
 import ThirdPage from "./Components/ThirdPage";
 import MainPage from "./Components/MainPage";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
   <React.StrictMode>
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<MainPage />} />
-      <Route path="/SecondPage" element={<SecondPage />} />
-      <Route path="/ThirdPage" element={<ThirdPage />} />
-    </Routes>
-  </BrowserRouter>
+    <App/>
   </React.StrictMode>
 );
 

@@ -29,7 +29,7 @@ const configs = {
       id: 4,
       img: "/assets/car.png",
       header: "trilicensed car",
-      name: "CAR 3",
+      name: "CAR 4",
       type: "Battery-powered Ride-on Car",
       details: ["12V BATTERY", "3 SPEEDS", "ADJUSTABLE SEATS", "LED LIGHTS"],
     },

@@ -1,5 +1,6 @@
 import React from "react";
 import { FiSearch } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const SearchBar = () => {
   return (
@@ -24,16 +25,22 @@ function SearchBarAndOtherComponents(props) {
           <SearchBar />
         </div>
 
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }} className='hover:cursor-pointer z-50' >
-          <div className="pr-2 hover:cursor-pointer">WISH</div>
+        <div
+          style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}
+          className="hover:cursor-pointer z-50"
+        >
+          <div className="pr-2 hover:cursor-pointer">
+            <Link to="/ThirdPage">WISH</Link>
+          </div>
           <div>
             <img src="/assets/heart.png" alt="heart" className="h-4 w-4 hover:cursor-pointer" />
           </div>
           <div className="px-4 hover:cursor-pointer">|</div>
           <div className="px-4 hover:cursor-pointer">0.0 KN</div>
-          <div className="px-4 hover:cursor-pointer" ><img src="/assets/bag.png" alt="heart" className="h-4 w-4 " /></div>
+          <div className="px-4 hover:cursor-pointer">
+            <img src="/assets/bag.png" alt="heart" className="h-4 w-4 " />
+          </div>
         </div>
-
       </div>
     </div>
   );

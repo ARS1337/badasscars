@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import configs from "../config";
 
 function Header(props) {
@@ -6,7 +7,7 @@ function Header(props) {
     <div className="flex align-middle justify-between  pt-4 z-50">
       <div className="flex align-middle justify-center " style={{ alignItems: "center" }}>
         <select className=" bg-CorrectBlack px-8 text-white font-oswald shadow-lg p-2 z-50 hover:cursor-pointer">
-          {configs?.listOfProducts.map((productName,key) => {
+          {configs?.listOfProducts.map((productName, key) => {
             return (
               <option value="PRODUCTS" defaultValue className="px-2 font-bold text-white font-oswald z-50" key={key}>
                 {productName}
@@ -43,7 +44,7 @@ function Header(props) {
               justifyContent: "center",
             }}
           >
-            CLICK & CONNECT
+            <Link to="/SecondPage">CLICK & CONNECT</Link>
           </div>
           <div
             className=" grid grid-cols-2 hover:cursor-pointer z-50"

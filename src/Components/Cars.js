@@ -22,7 +22,7 @@ function Cars(props) {
         setNewClass("animate-rtl2", "animate-rtl1", currentCar - 1, 1000, setcarClassList);
       }
     } else if (direction == "right") {
-      if (currentCar < 2) {
+      if (currentCar < noOfCars) {
         setNewClass("animate-ltr2", "animate-ltr1", currentCar + 1, 1000, setcarClassList);
       }
     }
@@ -48,8 +48,8 @@ function Cars(props) {
           </div>
           <div className="absolute bg-gradient-to-r from-blue-500-to-grey top-full  bg-CorrectBlack opacity-10 shadow-sm rounded-[20000%] w-11/12 h-6"></div>
         </div>
-        <div className="pt-12">{carDetails?.header?.toUpperCase()}</div>
-        <div className="text-2xl font-bold">{carDetails?.name}</div>
+        <div className="pt-12 text-base font-bold">{carDetails?.header?.toUpperCase()}</div>
+        <div className="text-3xl font-bold">{carDetails?.name}</div>
         <div className="flex flex-row justify-between w-2/5">
           <div onClick={() => handleArrowClick("left")} className={currentCar == 0 ? "z-30 invisible" : "visible"}>
             <Arrows direction="left" />
@@ -64,7 +64,7 @@ function Cars(props) {
             <Arrows direction="right" />
           </div>
         </div>
-        <div>{carDetails?.details.join(" | ")}</div>
+        <div className="text-base font-semibold">{carDetails?.details.join(" | ")}</div>
       </div>
     );
   } else {

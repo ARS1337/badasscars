@@ -9,3 +9,10 @@
   align-items: "center";
   justify-content: "center";
 }
+
+.rotateText {
+  writing-mode: vertical-rl;
+  text-align: center;
+  transform:rotate(180deg);
+  height:100vh;
+}
