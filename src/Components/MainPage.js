@@ -19,6 +19,8 @@ function MainPage(props) {
   const [buyNowClassList, setbuyNowClassList] = useState(
     " animate-onlyBounce absolute text-white rounded-full h-24 w-24 bg-[#292F33] z-50 border-8 border-[#EEFF00] top-[50%] left-[40%] font-oswald           border-opacity-50 font-bold hover:opacity-50 hover:cursor-pointer  "
   );
+  const [prevPage,setprevPage] = useState('')
+
 
   const returnNewClassList = (currentClassList, newClassToAdd) => {
     let carClassListArray = currentClassList.split(" ");
@@ -57,6 +59,8 @@ function MainPage(props) {
 
   useEffect(() => {
     setNewClass("animate-ltr1", 0, currentCar, 0, setcarClassList);
+    setprevPage(window.currentPage)
+    window.currentPage = '/'
   }, []);
 
   return (

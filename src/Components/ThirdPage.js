@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Animations from "../utils/Animations";
 import Footer from "./Footer";
 import Header from "./Header";
@@ -68,6 +68,14 @@ function ThirdPage(props) {
     paymentAnimation,
     carListingNoAnimation,
   } = props;
+
+  const [prevPage, setprevPage] = useState("");
+
+  useEffect(() => {
+    console.log("second page loaded");
+    setprevPage(window.currentPage);
+    window.currentPage = "/ThirdPage";
+  }, []);
 
   return (
     <div>

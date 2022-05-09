@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import configs from "../config";
 import Animations from "../utils/Animations";
@@ -38,9 +38,18 @@ function SecondPage(props) {
     paymentAnimation,
     carListingNoAnimation,
   } = props;
+
+  const [prevPage,setprevPage] = useState('')
+
+  useEffect(() => {
+    console.log("second page loaded");
+    setprevPage(window.currentPage)
+    window.currentPage = "/SecondPage";
+  }, []);
+
   return (
     <div>
-        <StickyNotificationAtTop bottomToTopAnimation={bottomToTopAnimation}  />
+      <StickyNotificationAtTop bottomToTopAnimation={bottomToTopAnimation} />
       <div className="px-8 animate-bottomToTop">
         <Header scaleInAnimation={scaleInAnimation} />
         <SearchBarAndOtherComponents searchBarAnimation={searchBarAnimation} />

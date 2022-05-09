@@ -36,14 +36,14 @@ function SearchBarAndOtherComponents(props) {
           style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}
           className="hover:cursor-pointer z-50"
         >
-          <div className="pr-2 hover:cursor-pointer">
+          <div className="pr-2 hover:cursor-pointer font-bold">
             <Link to="/ThirdPage">WISH</Link>
           </div>
           <div>
             <img src="/assets/heart.png" alt="heart" className="h-4 w-4 hover:cursor-pointer" />
           </div>
           <div className="px-4 hover:cursor-pointer">|</div>
-          <div className="px-4 hover:cursor-pointer">0.0 KN</div>
+          <div className="px-4 hover:cursor-pointer  font-bold">0.0 KN</div>
           <div className="px-4 hover:cursor-pointer">
             <img src="/assets/bag.png" alt="heart" className="h-4 w-4 " />
           </div>
