@@ -1,5 +1,9 @@
 import React, { useContext, useEffect } from "react";
 import Animations from "../utils/Animations";
+import Footer from "./Footer";
+import Header from "./Header";
+import SearchBarAndOtherComponents from "./SearchBarAndOtherComponents";
+import StickyNotificationAtTop from "./StickyNotificationAtTop";
 
 const FirstContainer = () => {
   return (
@@ -36,8 +40,8 @@ const SecondContainer = () => {
               <label>BADASS CLUB</label>
             </div>
             <div className=" flex items-start justify-between flex-col text-left  h-full">
-              <div className="text-2xl font-bold  text-left">JOIN OUR BENEFITS</div>
-              <div className="text-xs text-left ">  
+              <div className="text-2xl font-bold  text-left">JOIN OUR BENEFITS CLUB.</div>
+              <div className="text-xs text-left ">
                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
                 labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et
                 ea rebum. Stet clita kasd gubergren, no sea takimata sanctus estemated.{" "}
@@ -49,36 +53,60 @@ const SecondContainer = () => {
       </div>
       <div className="flex flex-col items-center justify-start  h-full w-1/2 ">
         <div className=" font-extrabold text-9xl rotateText p-0 m-0  ">46.948</div>
-        <div className="pb-8 font-bold">Satisfied</div>
+        <div className="pb-8 font-bold">Satisfied Customers!</div>
       </div>
     </div>
   );
 };
 
 function ThirdPage(props) {
+  const {
+    scaleInAnimation,
+    searchBarAnimation,
+    bottomToTopAnimation,
+    currentCar,
+    paymentAnimation,
+    carListingNoAnimation,
+  } = props;
+
   return (
-    <div className=" flex items-center justify-center h-screen w-screen px-12 ">
-      <div className=" w-1/2 flex items-center justify-center pr-4 z-10">
-        <FirstContainer />
+    <div>
+      <StickyNotificationAtTop bottomToTopAnimation={bottomToTopAnimation} />
+      <div className="px-8 animate-bottomToTop">
+        <Header scaleInAnimation={scaleInAnimation} />
+        <SearchBarAndOtherComponents searchBarAnimation={searchBarAnimation} />
       </div>
-      <div className="  w-1/2 flex items-center justify-center pl-4 z-10">
-        <SecondContainer />
+      <div
+        className=" flex items-center justify-center h-full w-screen px-12 pt-16 animate-secondPageToTop"
+        style={{ height: "70vh", width: "100%" }}
+      >
+        <div className=" w-1/2 flex items-center justify-center pr-4 z-10">
+          <FirstContainer />
+        </div>
+        <div className="  w-1/2 flex items-center justify-center pl-4 z-10">
+          <SecondContainer />
+        </div>
+        <Animations
+          key={34}
+          height={350}
+          width={350}
+          positionTop={"25vh"}
+          positionLeft={"5%"}
+          animationClassList="animate-rotate animate-bounceCustom z-0"
+        />
+        <Animations
+          key={32}
+          height={180}
+          width={180}
+          positionTop={"0vh"}
+          positionLeft={"80vw"}
+          animationClassList="animate-rotate animate-bounceCustom z-0"
+        />
       </div>
-      <Animations
-        key={34}
-        height={350}
-        width={350}
-        positionTop={"45vh"}
-        positionLeft={"5%"}
-        animationClassList="animate-rotate animate-bounceCustom z-0"
-      />
-      <Animations
-        key={32}
-        height={180}
-        width={180}
-        positionTop={"10vh"}
-        positionLeft={"85vw"}
-        animationClassList="animate-rotate animate-bounceCustom z-0"
+      <Footer
+        currentCar={currentCar}
+        paymentAnimation={paymentAnimation}
+        carListingNoAnimation={carListingNoAnimation}
       />
     </div>
   );

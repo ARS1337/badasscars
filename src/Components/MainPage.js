@@ -7,16 +7,18 @@ import Cars from "./Cars";
 import configs from "../config";
 import Footer from "./Footer";
 import "../styles/App.css";
+import { useLocation } from "react-router-dom";
 
 function MainPage(props) {
-  const [currentCar, setcurrentCar] = useState(0);
+  const { currentCar, setcurrentCar, scaleInAnimation, searchBarAnimation, bottomToTopAnimation } = props;
   const [carClassList, setcarClassList] = useState(
-    "flex align-middle justify-center flex-row  relative animate-none z-50"
+    "flex align-middle justify-center flex-row  relative animate-none z-40"
   );
   const [animationClassList, setanimationClassList] = useState("animate-rotate animate-bounceCustom z-1");
   const [cityScapeClassList, setcityScapeClassList] = useState("absolute z-0 pt-32");
-  const [paymentAnimation, setpaymentAnimation] = useState("");
-  const [carListingNoAnimation, setcarListingNoAnimation] = useState("");
+  const [buyNowClassList, setbuyNowClassList] = useState(
+    " animate-onlyBounce absolute text-white rounded-full h-24 w-24 bg-[#292F33] z-50 border-8 border-[#EEFF00] top-[50%] left-[40%] font-oswald           border-opacity-50 font-bold hover:opacity-50 hover:cursor-pointer  "
+  );
 
   const returnNewClassList = (currentClassList, newClassToAdd) => {
     let carClassListArray = currentClassList.split(" ");
@@ -24,6 +26,11 @@ function MainPage(props) {
     let newClassListString = baseClassList.join(" ") + " " + newClassToAdd;
     return newClassListString;
   };
+  const location = useLocation();
+
+  useEffect(() => {
+    console.log("location ", location.pathname);
+  });
 
   const setNewClass = (currCarClass, newCarClass, newCarNo, wait = 1000, classSetter) => {
     setanimationClassList("animate-rotate animate-bounceCustom z-1");
@@ -36,11 +43,13 @@ function MainPage(props) {
     }
     let newClassListString = returnNewClassList(carClassList, currCarClass);
     classSetter(newClassListString);
+    setbuyNowClassList(buyNowClassList + "visible ");
     setcurrentCar(currentCar);
     if (newCarClass) {
       setTimeout(() => {
         let newClassListString = returnNewClassList(carClassList, newCarClass);
         classSetter(newClassListString);
+        setbuyNowClassList(buyNowClassList + "visible animate-onlyBounce z-50 ");
         setcurrentCar(newCarNo);
       }, [wait]);
     }
@@ -63,11 +72,12 @@ function MainPage(props) {
             key={currentCar + 10}
           />
           <StickyNotificationAtTop />
-          <div className="px-8 z-50 fixed top-12 w-full">
+
+          <div className="px-8 ">
             <Header />
             <SearchBarAndOtherComponents />
           </div>
-          <div className="flex align-middle justify-center h-screen w-screen">
+          <div className="flex align-middle justify-center  w-screen">
             <Cars
               carDetails={configs?.carList[currentCar]}
               key={currentCar + 8}
@@ -76,6 +86,8 @@ function MainPage(props) {
               setNewClass={setNewClass}
               noOfCars={configs?.carList?.length}
               setcarClassList={setcarClassList}
+              setbuyNowClassList={setbuyNowClassList}
+              buyNowClassList={buyNowClassList}
             />
             <Animations
               key={currentCar + 2}
@@ -101,16 +113,10 @@ function MainPage(props) {
               positionLeft={"12%"}
               animationClassList={animationClassList}
             />
-            <div className="absolute bottom-8  w-full ">
-              <Footer
-                currentCar={currentCar}
-                paymentAnimation={paymentAnimation}
-                carListingNoAnimation={carListingNoAnimation}
-              />
-            </div>
           </div>
         </div>
       </div>
+      <Footer currentCar={currentCar} />
     </div>
   );
 }

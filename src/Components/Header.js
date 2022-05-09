@@ -1,10 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import configs from "../config";
 
 function Header(props) {
+  const { scaleInAnimation, setcurrPage } = props;
+  const headerTitleClassList = "grid grid-cols-1 " + scaleInAnimation;
+  const navigate = useNavigate();
+  const handleNavigation = (path) => {
+    navigate(path);
+    setcurrPage(path);
+  };
   return (
-    <div className="flex align-middle justify-between  pt-4 z-50">
+    <div className="flex items-middle justify-between  pt-4 z-50">
       <div className="flex align-middle justify-center " style={{ alignItems: "center" }}>
         <select className=" bg-CorrectBlack px-8 text-white font-oswald shadow-lg p-2 z-50 hover:cursor-pointer">
           {configs?.listOfProducts.map((productName, key) => {
@@ -19,7 +26,7 @@ function Header(props) {
           CONTACT
         </button>
       </div>
-      <div className="grid grid-cols-1 ">
+      <div className={headerTitleClassList}>
         <h6 className="text-4xl font-bold flex align-middle justify-center">BADASS</h6>
         <h6 className="text-md font-bold tracking-spacing flex align-middle justify-center pl-3">SHOP</h6>
       </div>
@@ -34,7 +41,7 @@ function Header(props) {
               justifyContent: "center",
             }}
           >
-            B2B
+            <Link to="/">B2B</Link>
           </div>
           <div
             className="flex align-middle justify-center hover:cursor-pointer z-50"
@@ -44,6 +51,7 @@ function Header(props) {
               justifyContent: "center",
             }}
           >
+            {/* <a href="" onClick={handleNavigation('/SecondPage')}>CLICK & CONNECT</a> */}
             <Link to="/SecondPage">CLICK & CONNECT</Link>
           </div>
           <div

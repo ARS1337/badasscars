@@ -1,6 +1,6 @@
 import React from "react";
 import { FiSearch } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
   return (
@@ -18,10 +18,17 @@ const SearchBar = () => {
 };
 
 function SearchBarAndOtherComponents(props) {
+  const { bottomToTopAnimation, searchBarAnimation, setcurrPage } = props;
+  const searchBarClassList = "flex items-middle w-3/6 " + searchBarAnimation;
+  const navigate = useNavigate();
+  const handleNavigation = (path) => {
+    navigate(path);
+    setcurrPage(path);
+  };
   return (
-    <div className=" flex align-middle justify-end  w-full pt-4 z-50">
-      <div className="flex align-middle justify-between  w-4/6">
-        <div className="flex align-middle w-3/6 ">
+    <div className=" flex items-middle justify-end  w-full pt-4 z-50">
+      <div className="flex items-middle justify-between  w-4/6">
+        <div className={searchBarClassList}>
           <SearchBar />
         </div>
 

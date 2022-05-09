@@ -36,7 +36,14 @@ module.exports = {
         rtl2: "rtl2 3s 1 forwards ",
         bounceCustom: "bounceCustom 1.5s 1, rotate 60s 1.5s infinite linear ",
         moveBackgroundLinearToLeft:"moveBackgroundLinearToLeft 2s 1 forwards",
-        moveBackgroundLinearToRight:"moveBackgroundLinearToRight 2s 1 forwards"
+        moveBackgroundLinearToRight:"moveBackgroundLinearToRight 2s 1 forwards",
+        bottomToTop:"bottomToTop 2s 1 forwards",
+        scaleIn:'scaleIn 0.9s 1 forwards',
+        bottomToTopMore:"bottomToTopMore 1.5s 1 forwards",
+        bottomToTopFooter:'bottomToTopFooter 1.5s 1 forwards',
+        onlyBounce :'maxBounce 1.5s linear 0.5s  1 forwards',
+        onlyBounceReverse:'maxBounce 0.5s linear reverse 1 forwards',
+        secondPageToTop:'secondPageToTop 1s 1 forwards'
       },
       keyframes: {
         rotate: {
@@ -63,7 +70,7 @@ module.exports = {
           "50%": { transform: "translateX(-200%)" },
         },
         bounceCustom: {
-          "0% ": { transform: "scale(1) " },
+          "0% ": { transform: "scale(0.6) " },
           "25%": { transform: "scale(0.7) " },
           "50%": { transform: "scale(1.4)" },
           "100%": { transform: "scale(1)" },
@@ -76,6 +83,28 @@ module.exports = {
           "0% ": { transform: "translateX(0%) " },
           "100%": { transform: "translateX(20%)" },
         },
+        bottomToTop:{
+          "100%": { transform: "translateY(-10%)" },
+        },
+        bottomToTopMore:{
+          "100%": { transform: "translateY(-120%)" },
+        },
+        bottomToTopFooter:{
+          "100%": { transform: "translateY(-1450px)" },
+        },
+        scaleIn:{
+          "100%": { transform: "scale(0)" },
+        },
+        maxBounce:{
+          "0% ": { transform: "scale(0.0) " },
+          "25%": { transform: "scale(0.7) " },
+          "50%": { transform: "scale(1.2)" },
+          "100%": { transform: "scale(1)" },
+        },
+        secondPageToTop:{
+          "0%": { transform: "translateY(2000px)" },
+          "100%": { transform: "translateY(0%)" },
+        }
       },
       backgroundImage: {
         cityscape: 'url("..")',

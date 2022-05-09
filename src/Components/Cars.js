@@ -3,6 +3,7 @@ import { MdArrowLeft, MdArrowRight } from "react-icons/md";
 
 const Arrows = (props) => {
   const { direction } = props;
+
   return (
     <div className="h-9 w-9 pt-1 z-30 rounded-full  border border-CorrectBlack flex align-middle justify-center hover:opacity-60 hover:cursor-pointer">
       {direction == "left" ? <MdArrowLeft size={25} /> : <MdArrowRight size={25} />}
@@ -11,7 +12,7 @@ const Arrows = (props) => {
 };
 
 function Cars(props) {
-  const { carClassList, setNewClass, carDetails, currentCar, noOfCars, setcarClassList } = props;
+  const { carClassList, setNewClass, carDetails, currentCar, noOfCars, setcarClassList,setbuyNowClassList,buyNowClassList } = props;
 
   const height = (window.innerHeight * 20) / 100;
   const width = (window.innerWidth * 50) / 100;
@@ -20,10 +21,12 @@ function Cars(props) {
     if (direction == "left") {
       if (currentCar > 0) {
         setNewClass("animate-rtl2", "animate-rtl1", currentCar - 1, 1000, setcarClassList);
+        // setNewClass("animate-onlyBounceReverse", "animate-onlyBounce", currentCar - 1, 1000, setbuyNowClassList);
       }
     } else if (direction == "right") {
       if (currentCar < noOfCars) {
         setNewClass("animate-ltr2", "animate-ltr1", currentCar + 1, 1000, setcarClassList);
+        // setNewClass("animate-onlyBounceReverse", "animate-onlyBounce", currentCar + 1, 1000, setbuyNowClassList);
       }
     }
   };
@@ -39,8 +42,7 @@ function Cars(props) {
         <div className={carClassList}>
           <img src={carDetails?.img} alt={carDetails?.name} height={height} width={width} className="z-20  " />
           <div
-            className=" absolute text-white rounded-full h-24 w-24 bg-[#292F33] z-40 border-8 border-[#EEFF00] top-[50%] left-[40%] font-oswald 
-          border-opacity-50 font-bold hover:opacity-50 hover:cursor-pointer"
+            className={buyNowClassList}
           >
             <div className="flex align-middle justify-center  pt-7 ">
               <label className="">BUY NOW</label>
