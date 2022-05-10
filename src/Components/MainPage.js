@@ -7,7 +7,8 @@ import Cars from "./Cars";
 import configs from "../config";
 import Footer from "./Footer";
 import "../styles/App.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import debounce from "../utils/debounce";
 
 function MainPage(props) {
   const { currentCar, setcurrentCar, scaleInAnimation, searchBarAnimation, bottomToTopAnimation } = props;
@@ -19,8 +20,45 @@ function MainPage(props) {
   const [buyNowClassList, setbuyNowClassList] = useState(
     " animate-onlyBounce absolute text-white rounded-full h-24 w-24 bg-[#292F33] z-50 border-8 border-[#EEFF00] top-[50%] left-[40%] font-oswald           border-opacity-50 font-bold hover:opacity-50 hover:cursor-pointer  "
   );
-  const [prevPage,setprevPage] = useState('')
+  let lastScrollTop = 0;
 
+  const navigate = useNavigate();
+
+  let handleScroll = debounce(() => {
+    console.log("scrolled");
+    var st = window.pageYOffset || document.documentElement.scrollTop;
+    if (st > lastScrollTop) {
+      console.log("scroll down");
+      navigate('/SecondPage')
+    } else {
+      console.log("scroll up");
+      //dont navigate
+    }
+  });
+
+  // useEffect(() => {
+  //   window.scrollTo(0,0)
+  //   window.addEventListener("scroll", handleScroll);
+  //   console.log("listener added");
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //     console.log("listener removed");
+  //   };
+  // }, []);
+
+  const prevPage = window.currentPage;
+  console.log("MainPage loaded and prevpage was ", prevPage);
+  window.currentPage = "/MainPage";
+
+  useEffect(() => {
+    console.log("main page rendered");
+    return () => (window.currentPage = "/MainPage");
+  }, []);
+
+  useEffect(() => {
+    console.log("MainPage mounted");
+    return () => console.log("MainPage unmounting...");
+  }, []);
 
   const returnNewClassList = (currentClassList, newClassToAdd) => {
     let carClassListArray = currentClassList.split(" ");
@@ -28,13 +66,9 @@ function MainPage(props) {
     let newClassListString = baseClassList.join(" ") + " " + newClassToAdd;
     return newClassListString;
   };
-  const location = useLocation();
-
-  useEffect(() => {
-    console.log("location ", location.pathname);
-  });
 
   const setNewClass = (currCarClass, newCarClass, newCarNo, wait = 1000, classSetter) => {
+    console.log("set new class called");
     setanimationClassList("animate-rotate animate-bounceCustom z-1");
     if (currentCar > newCarNo) {
       // setcityScapeClassList(cityScapeClassList+" animate-moveBackgroundLinearToLeft")
@@ -57,14 +91,8 @@ function MainPage(props) {
     }
   };
 
-  useEffect(() => {
-    setNewClass("animate-ltr1", 0, currentCar, 0, setcarClassList);
-    setprevPage(window.currentPage)
-    window.currentPage = '/'
-  }, []);
-
   return (
-    <div className="bg-CorrectGrey overflow-hidden">
+    <div className="bg-CorrectGrey overflow-hidden" key="main">
       <div className="font-roboto bg-CorrectGrey h-screen">
         <div className=" min-h-screen z-[1] overflow-hidden">
           <img
@@ -75,13 +103,19 @@ function MainPage(props) {
             className={cityScapeClassList}
             key={currentCar + 10}
           />
-          <StickyNotificationAtTop />
+          <StickyNotificationAtTop bottomToTopAnimation=" animate-[bottomToTopMoreMainPage_1s_ease-in-out_1_reverse] " />
 
           <div className="px-8 ">
-            <Header />
-            <SearchBarAndOtherComponents />
+            <Header
+              scaleInAnimation=" animate-[scaleIn_1s_ease-in-out_1_reverse]  "
+              bottomToTopAnimation=" animate-[bottomToTopMoreMainPage_1s_ease-in-out_1_reverse] "
+            />
+            <SearchBarAndOtherComponents
+              searchBarAnimation=" animate-[bottomToTopMoreMainPage_1s_ease-in-out_1_reverse] "
+              animateSecondHeader={true}
+            />
           </div>
-          <div className="flex align-middle justify-center  w-screen">
+          <div className="flex align-middle justify-center  w-screen ">
             <Cars
               carDetails={configs?.carList[currentCar]}
               key={currentCar + 8}
@@ -120,7 +154,11 @@ function MainPage(props) {
           </div>
         </div>
       </div>
-      <Footer currentCar={currentCar} />
+      <Footer
+        currentCar={currentCar}
+        paymentAnimation={"animate-[bottomToTopFooter_1s_ease-in-out_1_reverse]"}
+        carListingNoAnimation={"animate-[bottomToTopFooter_1s_ease-in-out_1_reverse]"}
+      />
     </div>
   );
 }

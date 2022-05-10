@@ -1,6 +1,7 @@
 import React from "react";
 import { FiSearch } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
+// import DelayLink from 'react-delay-link';
 
 const SearchBar = () => {
   return (
@@ -18,15 +19,15 @@ const SearchBar = () => {
 };
 
 function SearchBarAndOtherComponents(props) {
-  const { bottomToTopAnimation, searchBarAnimation, setcurrPage } = props;
-  const searchBarClassList = "flex items-middle w-3/6 " + searchBarAnimation;
-  const navigate = useNavigate();
-  const handleNavigation = (path) => {
-    navigate(path);
-    setcurrPage(path);
-  };
+  const { bottomToTopAnimation, searchBarAnimation, setcurrPage, animateSecondHeader } = props;
+  const searchBarClassList = " flex items-middle w-3/6 " + searchBarAnimation;
+  let headerClassList = " flex items-middle justify-end  w-full pt-4 z-50";
+  if (animateSecondHeader) {
+    headerClassList += searchBarAnimation;
+  }
+
   return (
-    <div className=" flex items-middle justify-end  w-full pt-4 z-50">
+    <div className={headerClassList}>
       <div className="flex items-middle justify-between  w-4/6">
         <div className={searchBarClassList}>
           <SearchBar />
@@ -37,6 +38,7 @@ function SearchBarAndOtherComponents(props) {
           className="hover:cursor-pointer z-50"
         >
           <div className="pr-2 hover:cursor-pointer font-bold">
+            {/* <DelayLink to="/ThirdPage">WISH</DelayLink> */}
             <Link to="/ThirdPage">WISH</Link>
           </div>
           <div>

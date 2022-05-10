@@ -40,10 +40,15 @@ module.exports = {
         bottomToTop:"bottomToTop 2s 1 forwards",
         scaleIn:'scaleIn 0.9s 1 forwards',
         bottomToTopMore:"bottomToTopMore 1.5s 1 forwards",
+        bottomToTopMoreMainPage:"bottomToTopMoreMainPage 1.5s 1 forwards",
         bottomToTopFooter:'bottomToTopFooter 1.5s 1 forwards',
         onlyBounce :'maxBounce 1.5s linear 0.5s  1 forwards',
         onlyBounceReverse:'maxBounce 0.5s linear reverse 1 forwards',
-        secondPageToTop:'secondPageToTop 1s 1 forwards'
+        secondPageToTop:'secondPageToTop 1s 1 forwards',
+        bottomToTopFinished:"bottomToTop 0s 1 forwards",
+        scaleInFinished:'scaleIn 0s 1 forwards',
+        bottomToTopMoreFinished:"bottomToTopMore 0s 1 forwards",
+        bottomToTopFooterFinished:'bottomToTopFooter 0s 1 forwards',
       },
       keyframes: {
         rotate: {
@@ -84,10 +89,13 @@ module.exports = {
           "100%": { transform: "translateX(20%)" },
         },
         bottomToTop:{
-          "100%": { transform: "translateY(-10%)" },
+          "100%": { transform: "translateY(-15%)" },
         },
         bottomToTopMore:{
           "100%": { transform: "translateY(-120%)" },
+        },
+        bottomToTopMoreMainPage:{
+          "100%": { transform: "translateY(-60%)" },
         },
         bottomToTopFooter:{
           "100%": { transform: "translateY(-1450px)" },

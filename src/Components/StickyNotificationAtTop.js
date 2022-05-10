@@ -6,7 +6,7 @@ function StickyNotificationAtTop(props) {
     "flex justify-center sticky top-0 bg-CorrectYellow font-bold p-2 text-lg  w-screen " + bottomToTopAnimation;
   return (
     <div className={classList}>
-      <div className="flex justify-center  bg-CorrectYellow">
+      <div className="flex justify-center  bg-CorrectYellow" id='sticky'>
         <div className="bg-transparent pt-1 pr-5">
           <img src="/assets/tagIconHeaderNotification.png" className="h-6" alt="tag icon" />
         </div>

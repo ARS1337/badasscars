@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Animations from "../utils/Animations";
+import debounce from "../utils/debounce";
 import Footer from "./Footer";
 import Header from "./Header";
 import SearchBarAndOtherComponents from "./SearchBarAndOtherComponents";
@@ -52,7 +54,11 @@ const SecondContainer = () => {
         </div>
       </div>
       <div className="flex flex-col items-center justify-start  h-full w-1/2 ">
-        <div className=" font-extrabold text-9xl rotateText p-0 m-0  ">46.948</div>
+        <div className=" font-extrabold text-9xl rotateText p-0 m-0  flex-col">
+          <div id="value">948</div>
+          <div>46.</div>
+        </div>
+
         <div className="pb-8 font-bold">Satisfied Customers!</div>
       </div>
     </div>
@@ -66,24 +72,85 @@ function ThirdPage(props) {
     bottomToTopAnimation,
     currentCar,
     paymentAnimation,
-    carListingNoAnimation,
+    footerClasscarListingNoAnimation,
   } = props;
 
-  const [prevPage, setprevPage] = useState("");
+  const navigate = useNavigate();
+  let lastScrollTop = 0;
+
+  let handleScroll = debounce(() => {
+    console.log("scrolled");
+    var st = window.pageYOffset || document.documentElement.scrollTop;
+    if (st > lastScrollTop) {
+      console.log("scroll down");
+      navigate('/ThirdPage')
+    } else {
+      console.log("scroll up");
+      navigate('/')
+    }
+  });
+
+  // useEffect(() => {
+  //   // window.scrollTo(0,0)
+  //   window.addEventListener("scroll", handleScroll);
+  //   console.log("listener added");
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //     console.log("listener removed");
+  //   };
+  // }, []);
+
+  const prevPage = window.currentPage;
+
+  let headerClassList = "animate-scaleIn";
+  let searchBarClassList = "animate-bottomToTopMore";
+  let stickyNotificationClassList = "animate-bottomToTopMore";
+  let footerClass = "animate-bottomToTopFooter";
+  let collectiveHeaderClassList = "animate-bottomToTop";
+
+  console.log("prevpage : ", prevPage, " includes MainPage? : ", prevPage.includes("MainPage"));
+  if (!prevPage.includes("/")) {
+    headerClassList = "animate-scaleInFinished";
+    searchBarClassList = "animate-bottomToTopMoreFinished";
+    stickyNotificationClassList = "animate-bottomToTopMoreFinished";
+    footerClass = "animate-bottomToTopFooterFinished";
+    collectiveHeaderClassList = "animate-bottomToTopFinished";
+    console.log("added new finished classes");
+  }
+
+  function animateValue(start, end, duration) {
+    setTimeout(() => {
+      const obj = document.getElementById("value");
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        obj.innerHTML = Math.floor(progress * (end - start) + start);
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        }
+      };
+      window.requestAnimationFrame(step);
+    }, 800);
+  }
+
+  animateValue(958, 999, 1000);
 
   useEffect(() => {
-    console.log("second page loaded");
-    setprevPage(window.currentPage);
-    window.currentPage = "/ThirdPage";
+    console.log("third page rendered");
+    return () => (window.currentPage = "ThirdPage");
   }, []);
 
   return (
     <div>
-      <StickyNotificationAtTop bottomToTopAnimation={bottomToTopAnimation} />
-      <div className="px-8 animate-bottomToTop">
-        <Header scaleInAnimation={scaleInAnimation} />
-        <SearchBarAndOtherComponents searchBarAnimation={searchBarAnimation} />
+      <StickyNotificationAtTop bottomToTopAnimation={stickyNotificationClassList} />
+      <div className={collectiveHeaderClassList}>
+        <div className="px-8">
+          <Header scaleInAnimation={headerClassList} />
+          <SearchBarAndOtherComponents searchBarAnimation={searchBarClassList} />
+        </div>
       </div>
+
       <div
         className=" flex items-center justify-center h-full w-screen px-12 pt-16 animate-secondPageToTop"
         style={{ height: "70vh", width: "100%" }}
@@ -111,11 +178,7 @@ function ThirdPage(props) {
           animationClassList="animate-rotate animate-bounceCustom z-0"
         />
       </div>
-      <Footer
-        currentCar={currentCar}
-        paymentAnimation={paymentAnimation}
-        carListingNoAnimation={carListingNoAnimation}
-      />
+      <Footer currentCar={currentCar} paymentAnimation={footerClass} carListingNoAnimation={footerClass} />
     </div>
   );
 }

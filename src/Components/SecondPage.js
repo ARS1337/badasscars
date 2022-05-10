@@ -39,21 +39,74 @@ function SecondPage(props) {
     carListingNoAnimation,
   } = props;
 
-  const [prevPage,setprevPage] = useState('')
+  const navigate = useNavigate();
+  let lastScrollTop = 0;
+
+  let handleScroll = debounce(() => {
+    console.log("scrolled");
+    var st = window.pageYOffset || document.documentElement.scrollTop;
+    if (st > lastScrollTop) {
+      console.log("scroll down");
+      navigate('/ThirdPage')
+    } else {
+      console.log("scroll up");
+      navigate('/')
+    }
+  });
+
+  // useEffect(() => {
+  //   window.scrollTo(1,0)
+  //   window.addEventListener("scroll", handleScroll);
+  //   console.log("listener added");
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //     console.log("listener removed");
+  //   };
+  // }, []);
 
   useEffect(() => {
-    console.log("second page loaded");
-    setprevPage(window.currentPage)
-    window.currentPage = "/SecondPage";
-  }, []);
+    console.log('SecondPage mounted');
+    return () => console.log('SecondPage unmounting...');
+  }, [])
+
+  const prevPage = window.currentPage;
+
+  let headerClassList = "animate-scaleIn";
+  let searchBarClassList = "animate-bottomToTopMore";
+  let stickyNotificationClassList = "animate-bottomToTopMore";
+  let footerClass = "animate-bottomToTopFooter";
+  let collectiveHeaderClassList = "animate-bottomToTop";
+
+  console.log("prevpage : ", prevPage, " includes MainPage? : ", prevPage.includes("MainPage"));
+  if (!prevPage.includes("/")) {
+    headerClassList = "animate-scaleInFinished";
+    searchBarClassList = "animate-bottomToTopMoreFinished";
+    stickyNotificationClassList = "animate-bottomToTopMoreFinished";
+    footerClass = "animate-bottomToTopFooterFinished";
+    collectiveHeaderClassList = "animate-bottomToTopFinished";
+    console.log("added new finished classes");
+  }
+  // useEffect(() => {
+  //   return () => {
+  //     window.currentPage = "/SecondPage";
+  //   };
+  // }, []);
+
+  useEffect(()=>{
+    console.log('second page rendered')
+    return ()=> window.currentPage='SecondPage'
+  },[])
 
   return (
     <div>
-      <StickyNotificationAtTop bottomToTopAnimation={bottomToTopAnimation} />
-      <div className="px-8 animate-bottomToTop">
-        <Header scaleInAnimation={scaleInAnimation} />
-        <SearchBarAndOtherComponents searchBarAnimation={searchBarAnimation} />
+      <StickyNotificationAtTop bottomToTopAnimation={stickyNotificationClassList} />
+      <div className={collectiveHeaderClassList}>
+        <div className="px-8 ">
+          <Header scaleInAnimation={headerClassList} />
+          <SearchBarAndOtherComponents searchBarAnimation={searchBarClassList} />
+        </div>
       </div>
+
       <div
         className="p-12 relative font-roboto w-full h-full flex items-center justify-center flex-col "
         style={{ height: "65vh", width: "100vw" }}
@@ -97,11 +150,7 @@ function SecondPage(props) {
           animationClassList="animate-rotate animate-bounceCustom z-0"
         />
       </div>
-      <Footer
-        currentCar={currentCar}
-        paymentAnimation={paymentAnimation}
-        carListingNoAnimation={carListingNoAnimation}
-      />
+      <Footer currentCar={currentCar} paymentAnimation={footerClass} carListingNoAnimation={footerClass} />
     </div>
   );
 }

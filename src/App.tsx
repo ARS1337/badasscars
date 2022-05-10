@@ -22,9 +22,28 @@ function App() {
   const [footerAnimation, setfooterAnimation] = useState("animate-bottomToTopFooter");
   const [currPage, setcurrPage] = useState("/");
 
+  useEffect(() => {
+    console.log("app rendered");
+  }, []);
+
+
+  useEffect(() => {
+    console.log("app mounted");
+    return () => console.log("app unmounting...");
+  }, []);
+
   const headerClassList = "z-50 fixed w-full" + bottomToTopAnimation;
   return (
-    <div className="font-roboto bg-CorrectGrey  h-screen ">
+    <div
+      className="font-roboto bg-CorrectGrey  h-[300vh] "
+      key="app"
+      onScroll={() => {
+        console.log("scrolled");
+      }}
+      onClick={() => {
+        console.log("clicked");
+      }}
+    >
       <BrowserRouter>
         <div className="h-screen flex flex-col justify-between">
           <div className={headerClassList}>

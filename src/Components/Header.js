@@ -1,17 +1,15 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import configs from "../config";
+// import DelayLink from 'react-delay-link';
 
 function Header(props) {
-  const { scaleInAnimation, setcurrPage } = props;
+  const { scaleInAnimation, setcurrPage, bottomToTopAnimation } = props;
   const headerTitleClassList = "grid grid-cols-1 " + scaleInAnimation;
-  const navigate = useNavigate();
-  const handleNavigation = (path) => {
-    navigate(path);
-    setcurrPage(path);
-  };
+  const headerClassList = "flex items-middle justify-between  pt-4 z-50" + bottomToTopAnimation;
+
   return (
-    <div className="flex items-middle justify-between  pt-4 z-50">
+    <div className={headerClassList}>
       <div className="flex align-middle justify-center " style={{ alignItems: "center" }}>
         <select className=" bg-CorrectBlack px-8 text-white font-oswald shadow-lg p-2 z-50 hover:cursor-pointer">
           {configs?.listOfProducts.map((productName, key) => {
@@ -42,6 +40,8 @@ function Header(props) {
             }}
           >
             <Link to="/">B2B</Link>
+            {/* <DelayLink to="/">B2B</DelayLink> */}
+
           </div>
           <div
             className="flex align-middle justify-center hover:cursor-pointer z-50"
