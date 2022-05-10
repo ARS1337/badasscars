@@ -35,7 +35,7 @@ function App() {
   const headerClassList = "z-50 fixed w-full" + bottomToTopAnimation;
   return (
     <div
-      className="font-roboto bg-CorrectGrey  h-[300vh] "
+      className="font-roboto bg-CorrectGrey  h-screen"
       key="app"
       onScroll={() => {
         console.log("scrolled");
