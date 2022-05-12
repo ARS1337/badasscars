@@ -61,7 +61,7 @@ function Cars(props) {
             height={"20%"}
             width={"20%"}
             className={leftTyreAnimation}
-            key={carClassList}
+            key={carClassList+'left'}
           />
    
           <img
@@ -70,7 +70,7 @@ function Cars(props) {
             height={"20%"}
             width={"20%"}
             className={rightTyreAnimation}
-            key={carClassList}
+            key={carClassList+"right"}
           />
           <div className="absolute bg-gradient-to-r from-blue-500-to-grey top-full  bg-CorrectBlack opacity-10 shadow-sm rounded-[20000%] w-[110%] h-6 z-50"></div>
         </div>

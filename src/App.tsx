@@ -2,6 +2,7 @@ import React, { Suspense, useContext, useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import Footer from "./Components/Footer";
+import FourthPage from "./Components/FourthPage";
 import Header from "./Components/Header";
 import MainPage from "./Components/MainPage";
 import SearchBarAndOtherComponents from "./Components/SearchBarAndOtherComponents";
@@ -52,7 +53,7 @@ function App() {
   const [collectiveHeaderClassList, setcollectiveHeaderClassList] = useState(collectiveHeaderTopToBottom);
   const [secondPageAnimationDirection, setsecondPageAnimationDirection] = useState(secondPageBottomToTop);
 
-  const pageList = ["main-page", "second-page", "third-page"];
+  const pageList = ["main-page", "second-page", "third-page",'fourth-page'];
   let currPageNo = 0;
 
   const scrollToPage = (toPage: string) => {
@@ -66,7 +67,7 @@ function App() {
   const handleScroll = debounce((e: any) => {
     let prevPageNo = currPageNo;
     //scrolling
-    if (e.deltaY > 0 && currPageNo < 2) {
+    if (e.deltaY > 0 && currPageNo < 3) {
       currPageNo++;
     } else if (e.deltaY < 0 && currPageNo > 0) {
       currPageNo--;
@@ -143,7 +144,7 @@ function App() {
         /> */}
       {/* </div> */}
 
-      <div className={currPage.includes("main") ? " opacity-1" : "opacity-1"}>
+      {/* <div className={currPage.includes("main") ? " opacity-1" : "opacity-1"}>
         <MainPage currentCar={currentCar} setcurrentCar={setcurrentCar} />
       </div>
       <div className={currPage.includes("second") ? " opacity-1" : "opacity-0"}>
@@ -151,7 +152,8 @@ function App() {
       </div>
       <div className={currPage.includes("third") ? " opacity-1" : "opacity-1"}>
         <ThirdPage />
-      </div>s
+      </div> */}
+      <FourthPage/>
       <Footer currentCar={currentCar} paymentAnimation={footerClassList} carListingNoAnimation={footerClassList} />
     </div>
   );
