@@ -13,6 +13,18 @@
 .rotateText {
   writing-mode: vertical-rl;
   text-align: center;
-  transform:rotate(180deg);
-  height:100vh;
+  transform: rotate(180deg);
+  height: 100vh;
+}
+
+body{ scroll-behavior: smooth; }
+
+.shape {
+  stroke-dasharray: 140 540;
+  stroke-dashoffset: -474;
+  stroke-width: 8px;
+  fill: transparent;
+  stroke: #19f6e8;
+  border-bottom: 5px solid black;
+  transition: stroke-width 1s, stroke-dashoffset 1s, stroke-dasharray 1s;
 }

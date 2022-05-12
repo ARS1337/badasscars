@@ -3,10 +3,10 @@ import React from "react";
 function StickyNotificationAtTop(props) {
   const { bottomToTopAnimation } = props;
   const classList =
-    "flex justify-center sticky top-0 bg-CorrectYellow font-bold p-2 text-lg  w-screen " + bottomToTopAnimation;
+    "flex justify-center sticky top-0 bg-CorrectYellow font-bold p-2 text-lg  max-w-[100vw] " + bottomToTopAnimation;
   return (
     <div className={classList}>
-      <div className="flex justify-center  bg-CorrectYellow" id='sticky'>
+      <div className="flex justify-center  bg-CorrectYellow max-w-[100vw]" id='sticky'>
         <div className="bg-transparent pt-1 pr-5">
           <img src="/assets/tagIconHeaderNotification.png" className="h-6" alt="tag icon" />
         </div>

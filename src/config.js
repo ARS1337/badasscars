@@ -3,7 +3,7 @@ const configs = {
   carList: [
     {
       id: 1,
-      img: "/assets/car.png",
+      img: "/assets/newCar.png",
       header: "licensed car",
       name: "CAR 1",
       type: "Battery-powered Ride-on Car",
@@ -11,7 +11,7 @@ const configs = {
     },
     {
       id: 2,
-      img: "/assets/car.png",
+      img: "/assets/newCar.png",
       header: "unlicensed car",
       name: "CAR 2",
       type: "Battery-powered Ride-on Car",
@@ -19,7 +19,7 @@ const configs = {
     },
     {
       id: 3,
-      img: "/assets/car.png",
+      img: "/assets/newCar.png",
       header: "trilicensed car",
       name: "CAR 3",
       type: "Battery-powered Ride-on Car",
@@ -27,7 +27,7 @@ const configs = {
     },
     {
       id: 4,
-      img: "/assets/car.png",
+      img: "/assets/newCar.png",
       header: "trilicensed car",
       name: "CAR 4",
       type: "Battery-powered Ride-on Car",

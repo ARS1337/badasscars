@@ -12,7 +12,18 @@ const Arrows = (props) => {
 };
 
 function Cars(props) {
-  const { carClassList, setNewClass, carDetails, currentCar, noOfCars, setcarClassList,setbuyNowClassList,buyNowClassList } = props;
+  const {
+    carClassList,
+    setNewClass,
+    carDetails,
+    currentCar,
+    noOfCars,
+    setcarClassList,
+    setbuyNowClassList,
+    buyNowClassList,
+    leftTyreAnimation,
+    rightTyreAnimation,
+  } = props;
 
   const height = (window.innerHeight * 20) / 100;
   const width = (window.innerWidth * 50) / 100;
@@ -20,13 +31,11 @@ function Cars(props) {
   const handleArrowClick = (direction) => {
     if (direction == "left") {
       if (currentCar > 0) {
-        setNewClass("animate-rtl2", "animate-rtl1", currentCar - 1, 1000, setcarClassList);
-        // setNewClass("animate-onlyBounceReverse", "animate-onlyBounce", currentCar - 1, 1000, setbuyNowClassList);
+        setNewClass("animate-rtl2", "animate-rtl1", currentCar - 1, 1000, setcarClassList, "left");
       }
     } else if (direction == "right") {
       if (currentCar < noOfCars) {
-        setNewClass("animate-ltr2", "animate-ltr1", currentCar + 1, 1000, setcarClassList);
-        // setNewClass("animate-onlyBounceReverse", "animate-onlyBounce", currentCar + 1, 1000, setbuyNowClassList);
+        setNewClass("animate-ltr2", "animate-ltr1", currentCar + 1, 1000, setcarClassList, "right");
       }
     }
   };
@@ -41,14 +50,29 @@ function Cars(props) {
       >
         <div className={carClassList}>
           <img src={carDetails?.img} alt={carDetails?.name} height={height} width={width} className="z-20  " />
-          <div
-            className={buyNowClassList}
-          >
-            <div className="flex align-middle justify-center  pt-7 ">
-              <label className="">BUY NOW</label>
+          <div className={buyNowClassList}>
+            <div className="flex align-middle justify-center  pt-7 hover:cursor-pointer ">
+              <label className="hover:cursor-pointer ">BUY NOW</label>
             </div>
           </div>
-          <div className="absolute bg-gradient-to-r from-blue-500-to-grey top-full  bg-CorrectBlack opacity-10 shadow-sm rounded-[20000%] w-11/12 h-6"></div>
+          <img
+            src="/assets/tyre.png"
+            alt="car tyre"
+            height={"20%"}
+            width={"20%"}
+            className={leftTyreAnimation}
+            key={carClassList}
+          />
+   
+          <img
+            src="/assets/tyre.png"
+            alt="car tyre"
+            height={"20%"}
+            width={"20%"}
+            className={rightTyreAnimation}
+            key={carClassList}
+          />
+          <div className="absolute bg-gradient-to-r from-blue-500-to-grey top-full  bg-CorrectBlack opacity-10 shadow-sm rounded-[20000%] w-[110%] h-6 z-50"></div>
         </div>
         <div className="pt-12 text-base font-bold">{carDetails?.header?.toUpperCase()}</div>
         <div className="text-3xl font-bold">{carDetails?.name}</div>

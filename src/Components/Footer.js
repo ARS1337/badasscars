@@ -6,15 +6,15 @@ import { FaInstagram } from "react-icons/fa";
 function Footer(props) {
   const { currentCar, paymentAnimation, carListingNoAnimation } = props;
   const currentCarString = currentCar > 9 ? currentCar + 1 : `0${currentCar + 1}`;
-  const paymentClassListAnimation = paymentAnimation;
-  const carListingNoClassListAnimation = carListingNoAnimation + " font-oswald font-semibold ";
+  const paymentClassListAnimation = paymentAnimation +" z-40 font-bold text-sm";
+  const carListingNoClassListAnimation = carListingNoAnimation + " font-oswald font-semibold z-40";
 
   return (
     <div
-      className="px-8 font-oswald fixed bottom-4  w-full"
+      className="px-8 font-oswald fixed bottom-4  w-full  z-40"
       style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}
     >
-      <div className=" flex align-bottom flex-row justify-around w-36">
+      <div className=" flex align-bottom flex-row justify-around w-36 z-40">
         <div className="h-8 w-8 rounded-full border border-[#74787B] flex align-middle justify-center pt-2 hover:cursor-pointer hover:opacity-50">
           <TiSocialFacebook />
         </div>

@@ -6,7 +6,7 @@ import configs from "../config";
 function Header(props) {
   const { scaleInAnimation, setcurrPage, bottomToTopAnimation } = props;
   const headerTitleClassList = "grid grid-cols-1 " + scaleInAnimation;
-  const headerClassList = "flex items-middle justify-between  pt-4 z-50" + bottomToTopAnimation;
+  const headerClassList = "flex items-middle justify-between  pt-4 z-50 " + bottomToTopAnimation;
 
   return (
     <div className={headerClassList}>
@@ -39,7 +39,7 @@ function Header(props) {
               justifyContent: "center",
             }}
           >
-            <Link to="/">B2B</Link>
+            <div >B2B</div>
             {/* <DelayLink to="/">B2B</DelayLink> */}
 
           </div>
@@ -52,7 +52,7 @@ function Header(props) {
             }}
           >
             {/* <a href="" onClick={handleNavigation('/SecondPage')}>CLICK & CONNECT</a> */}
-            <Link to="/SecondPage">CLICK & CONNECT</Link>
+            <div>CLICK & CONNECT</div>
           </div>
           <div
             className=" grid grid-cols-2 hover:cursor-pointer z-50"

@@ -17,6 +17,7 @@ module.exports = {
       indigo: colors.indigo,
       yellow: colors.yellow,
       lightGrey: "#E6EBEF",
+      newGrey:'#E6EBEF'
     },
     fontFamily: {
       oswald: ["Oswald"],
@@ -24,7 +25,7 @@ module.exports = {
     },
     letterSpacing: {
       spacing: "1rem",
-      title:'0.3rem'
+      title: "0.3rem",
     },
     extend: {
       animation: {
@@ -34,21 +35,25 @@ module.exports = {
         ltr2: "ltr2 3s 1 forwards ",
         rtl1: "rtl1 3s 1 forwards ",
         rtl2: "rtl2 3s 1 forwards ",
-        bounceCustom: "bounceCustom 1.5s 1, rotate 60s 1.5s infinite linear ",
-        moveBackgroundLinearToLeft:"moveBackgroundLinearToLeft 2s 1 forwards",
-        moveBackgroundLinearToRight:"moveBackgroundLinearToRight 2s 1 forwards",
-        bottomToTop:"bottomToTop 2s 1 forwards",
-        scaleIn:'scaleIn 0.9s 1 forwards',
-        bottomToTopMore:"bottomToTopMore 1.5s 1 forwards",
-        bottomToTopMoreMainPage:"bottomToTopMoreMainPage 1.5s 1 forwards",
-        bottomToTopFooter:'bottomToTopFooter 1.5s 1 forwards',
-        onlyBounce :'maxBounce 1.5s linear 0.5s  1 forwards',
-        onlyBounceReverse:'maxBounce 0.5s linear reverse 1 forwards',
-        secondPageToTop:'secondPageToTop 1s 1 forwards',
-        bottomToTopFinished:"bottomToTop 0s 1 forwards",
-        scaleInFinished:'scaleIn 0s 1 forwards',
-        bottomToTopMoreFinished:"bottomToTopMore 0s 1 forwards",
-        bottomToTopFooterFinished:'bottomToTopFooter 0s 1 forwards',
+        bounceCustom: "bounceCustom 1.5s 0.7s 1, rotate 60s 1.5s infinite linear ",
+        moveBackgroundLinearToLeft: "moveBackgroundLinearToLeft 2s 1 forwards",
+        moveBackgroundLinearToRight: "moveBackgroundLinearToRight 2s 1 forwards",
+        bottomToTop: "bottomToTop 2s 1 forwards",
+        scaleIn: "scaleIn 0.9s 1 forwards",
+        bottomToTopMore: "bottomToTopMore 1.5s 1 forwards",
+        bottomToTopMoreMainPage: "bottomToTopMoreMainPage 1.5s 1 forwards",
+        bottomToTopFooter: "bottomToTopFooter 1.5s 1 forwards",
+        onlyBounce: "maxBounce 1.5s linear 0.5s  1 forwards",
+        onlyBounceReverse: "maxBounce 0.5s linear reverse 1 forwards",
+        secondPageBottomToTop: "secondPageBottomToTop 1s 1 forwards",
+        secondPageTopToBottom: "secondPageTopToBottom 1s 1 forwards",
+        bottomToTopFinished: "bottomToTop 0s 1 forwards",
+        scaleInFinished: "scaleIn 0s 1 forwards",
+        bottomToTopMoreFinished: "bottomToTopMore 0s 1 forwards",
+        bottomToTopFooterFinished: "bottomToTopFooter 0s 1 forwards",
+        bottomToTopCarDetails: "bottomToTopCarDetails 1.5s linear 0.5s  1 forwards",
+        wheel: "wheel 2s infinite cubic-bezier(0.1, 0.8, 0.6, 0.1) forwards",
+        increaseBorderLength:"increaseBorderLength 1s 1 forwards"
       },
       keyframes: {
         rotate: {
@@ -80,39 +85,68 @@ module.exports = {
           "50%": { transform: "scale(1.4)" },
           "100%": { transform: "scale(1)" },
         },
-        moveBackgroundLinearToLeft:{
+        moveBackgroundLinearToLeft: {
           "0% ": { transform: "translateX(0%) " },
           "100%": { transform: "translateX(-20%)" },
         },
-        moveBackgroundLinearToRight:{
+        moveBackgroundLinearToRight: {
           "0% ": { transform: "translateX(0%) " },
           "100%": { transform: "translateX(20%)" },
         },
-        bottomToTop:{
+        bottomToTop: {
           "100%": { transform: "translateY(-15%)" },
         },
-        bottomToTopMore:{
+        bottomToTopMore: {
           "100%": { transform: "translateY(-120%)" },
         },
-        bottomToTopMoreMainPage:{
+        bottomToTopMoreMainPage: {
           "100%": { transform: "translateY(-60%)" },
         },
-        bottomToTopFooter:{
+        bottomToTopFooter: {
           "100%": { transform: "translateY(-1450px)" },
         },
-        scaleIn:{
+        scaleIn: {
           "100%": { transform: "scale(0)" },
         },
-        maxBounce:{
+        maxBounce: {
           "0% ": { transform: "scale(0.0) " },
           "25%": { transform: "scale(0.7) " },
           "50%": { transform: "scale(1.2)" },
           "100%": { transform: "scale(1)" },
         },
-        secondPageToTop:{
-          "0%": { transform: "translateY(2000px)" },
-          "100%": { transform: "translateY(0%)" },
-        }
+        secondPageBottomToTop: {
+          "0%": { transform: "translateY(600%)", opacity: 0 },
+          "25%": { transform: "translateY(600%)", opacity: 0 },
+          "50%": { transform: "translateY(600%)", opacity: 0 },
+          "100%": { transform: "translateY(0%)", opacity: 1 },
+        },
+        secondPageTopToBottom: {
+          "0%": { transform: "translateY(-600%)", opacity: 0 },
+          "25%": { transform: "translateY(-600%)", opacity: 0 },
+          "50%": { transform: "translateY(-600%)", opacity: 0 },
+          "100%": { transform: "translateY(0%)", opacity: 1 },
+        },
+        bottomToTopCarDetails: {
+          "100%": { transform: "translateY(-5%)" },
+        },
+        wheel: {
+          "0%": {
+            transform: "rotate(0deg)",
+          },
+          "35%": {
+            transform: "rotate(-920deg)",
+          },
+          "56%": {
+            transform: "rotate(-920deg)",
+          },
+          "100%": {
+            transform: "rotate(-1440deg)",
+          },
+        },
+        // increaseBorderLength:{
+        //   "0%": { transform: "translateY(0%)" },
+        //   "100%": { transform: "translateY(100%)" },
+        // }
       },
       backgroundImage: {
         cityscape: 'url("..")',

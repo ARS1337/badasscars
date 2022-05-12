@@ -1,64 +1,25 @@
-import React, { Suspense, useContext, useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import Animations from "../utils/Animations";
-import Header from "./Header";
-import SearchBarAndOtherComponents from "./SearchBarAndOtherComponents";
-import StickyNotificationAtTop from "./StickyNotificationAtTop";
 import Cars from "./Cars";
 import configs from "../config";
-import Footer from "./Footer";
 import "../styles/App.css";
-import { useLocation, useNavigate } from "react-router-dom";
-import debounce from "../utils/debounce";
 
 function MainPage(props) {
-  const { currentCar, setcurrentCar, scaleInAnimation, searchBarAnimation, bottomToTopAnimation } = props;
+  const { currentCar, setcurrentCar } = props;
   const [carClassList, setcarClassList] = useState(
-    "flex align-middle justify-center flex-row  relative animate-none z-40"
+    "flex align-middle justify-center flex-row  relative animate-none z-40  pb-4"
   );
   const [animationClassList, setanimationClassList] = useState("animate-rotate animate-bounceCustom z-1");
-  const [cityScapeClassList, setcityScapeClassList] = useState("absolute z-0 pt-32");
+  const [cityScapeClassList, setcityScapeClassList] = useState("absolute z-0 pt-20 w-screen");
   const [buyNowClassList, setbuyNowClassList] = useState(
     " animate-onlyBounce absolute text-white rounded-full h-24 w-24 bg-[#292F33] z-50 border-8 border-[#EEFF00] top-[50%] left-[40%] font-oswald           border-opacity-50 font-bold hover:opacity-50 hover:cursor-pointer  "
   );
-  let lastScrollTop = 0;
 
-  const navigate = useNavigate();
+  const leftTyreBaseClasses = " absolute z-50 bottom-0 left-[12.1%] ";
+  const rightTyreBaseClasses = " absolute z-50 bottom-1 right-[10.5%] ";
 
-  let handleScroll = debounce(() => {
-    console.log("scrolled");
-    var st = window.pageYOffset || document.documentElement.scrollTop;
-    if (st > lastScrollTop) {
-      console.log("scroll down");
-      navigate('/SecondPage')
-    } else {
-      console.log("scroll up");
-      //dont navigate
-    }
-  });
-
-  // useEffect(() => {
-  //   window.scrollTo(0,0)
-  //   window.addEventListener("scroll", handleScroll);
-  //   console.log("listener added");
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //     console.log("listener removed");
-  //   };
-  // }, []);
-
-  const prevPage = window.currentPage;
-  console.log("MainPage loaded and prevpage was ", prevPage);
-  window.currentPage = "/MainPage";
-
-  useEffect(() => {
-    console.log("main page rendered");
-    return () => (window.currentPage = "/MainPage");
-  }, []);
-
-  useEffect(() => {
-    console.log("MainPage mounted");
-    return () => console.log("MainPage unmounting...");
-  }, []);
+  const [leftTyreAnimation, setleftTyreAnimation] = useState(leftTyreBaseClasses + " " + "animate-none");
+  const [rightTyreAnimation, setrightTyreAnimation] = useState(rightTyreBaseClasses + " " + "animate-none");
 
   const returnNewClassList = (currentClassList, newClassToAdd) => {
     let carClassListArray = currentClassList.split(" ");
@@ -67,20 +28,35 @@ function MainPage(props) {
     return newClassListString;
   };
 
-  const setNewClass = (currCarClass, newCarClass, newCarNo, wait = 1000, classSetter) => {
-    console.log("set new class called");
-    setanimationClassList("animate-rotate animate-bounceCustom z-1");
-    if (currentCar > newCarNo) {
-      // setcityScapeClassList(cityScapeClassList+" animate-moveBackgroundLinearToLeft")
-      // setcityScapeClassList(cityScapeClassList + " bg-left");
-    } else if (currentCar < newCarNo) {
-      // setcityScapeClassList(cityScapeClassList+" animate-moveBackgroundLinearToRight")
-      // setcityScapeClassList(cityScapeClassList + " bg-right");
+  const setNewClass = (currCarClass, newCarClass, newCarNo, wait = 1000, classSetter, direction) => {
+    //tyre animation
+    if (direction == "left") {
+      setleftTyreAnimation(leftTyreBaseClasses + " " + "animate-[wheel_4s_linear_infinite_forwards]");
+      setrightTyreAnimation(rightTyreBaseClasses + " " + "animate-[wheel_4s_linear_infinite_forwards]");
+    } else if (direction == "right") {
+      setleftTyreAnimation(leftTyreBaseClasses + " " + "animate-[wheel_4s_linear_infinite_reverse_forwards]");
+      setrightTyreAnimation(rightTyreBaseClasses + " " + "animate-[wheel_4s_linear_infinite_reverse_forwards]");
     }
+    setTimeout(() => {
+      setleftTyreAnimation(leftTyreBaseClasses + " " + "animate-[wheel_0s_linear_infinite_reverse_forwards]");
+      setrightTyreAnimation(rightTyreBaseClasses + " " + "animate-[wheel_0s_linear_infinite_reverse_forwards]");
+    }, 2250);
+    // yellow plus animation
+    setanimationClassList("animate-rotate animate-bounceCustom z-1");
+    //cityScape movement animation
+    if (currentCar > newCarNo) {
+      setcityScapeClassList(cityScapeClassList + " animate-moveBackgroundLinearToLeft");
+      setcityScapeClassList(cityScapeClassList + " bg-left");
+    } else if (currentCar < newCarNo) {
+      setcityScapeClassList(cityScapeClassList + " animate-moveBackgroundLinearToRight");
+      setcityScapeClassList(cityScapeClassList + " bg-right");
+    }
+    //setting car movement animation initial
     let newClassListString = returnNewClassList(carClassList, currCarClass);
     classSetter(newClassListString);
     setbuyNowClassList(buyNowClassList + "visible ");
     setcurrentCar(currentCar);
+    //if new car will be shown then the movement animation for that car
     if (newCarClass) {
       setTimeout(() => {
         let newClassListString = returnNewClassList(carClassList, newCarClass);
@@ -92,30 +68,21 @@ function MainPage(props) {
   };
 
   return (
-    <div className="bg-CorrectGrey overflow-hidden" key="main">
-      <div className="font-roboto bg-CorrectGrey h-screen">
-        <div className=" min-h-screen z-[1] overflow-hidden">
-          <img
-            src="/assets/cityscape.png"
+    <div
+      className="overflow-hidden main-page scroll-area z-50  pt-[20vh] mb-36 h-screen main-page animate-secondPageTopToBottom"
+      key="main"
+    >
+      <div className="font-roboto ">
+        <div className=" min-h-screen z-[1] overflow-hidden ">
+          {/* <img
+            src="/assets/cityscape.jpg"
             height="100%"
             width="100%"
             alt="cityscape"
             className={cityScapeClassList}
             key={currentCar + 10}
-          />
-          <StickyNotificationAtTop bottomToTopAnimation=" animate-[bottomToTopMoreMainPage_1s_ease-in-out_1_reverse] " />
-
-          <div className="px-8 ">
-            <Header
-              scaleInAnimation=" animate-[scaleIn_1s_ease-in-out_1_reverse]  "
-              bottomToTopAnimation=" animate-[bottomToTopMoreMainPage_1s_ease-in-out_1_reverse] "
-            />
-            <SearchBarAndOtherComponents
-              searchBarAnimation=" animate-[bottomToTopMoreMainPage_1s_ease-in-out_1_reverse] "
-              animateSecondHeader={true}
-            />
-          </div>
-          <div className="flex align-middle justify-center  w-screen ">
+          /> */}
+          <div className="flex items-center justify-center ">
             <Cars
               carDetails={configs?.carList[currentCar]}
               key={currentCar + 8}
@@ -126,6 +93,8 @@ function MainPage(props) {
               setcarClassList={setcarClassList}
               setbuyNowClassList={setbuyNowClassList}
               buyNowClassList={buyNowClassList}
+              leftTyreAnimation={leftTyreAnimation}
+              rightTyreAnimation={rightTyreAnimation}
             />
             <Animations
               key={currentCar + 2}
@@ -154,11 +123,6 @@ function MainPage(props) {
           </div>
         </div>
       </div>
-      <Footer
-        currentCar={currentCar}
-        paymentAnimation={"animate-[bottomToTopFooter_1s_ease-in-out_1_reverse]"}
-        carListingNoAnimation={"animate-[bottomToTopFooter_1s_ease-in-out_1_reverse]"}
-      />
     </div>
   );
 }

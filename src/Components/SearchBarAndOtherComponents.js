@@ -19,7 +19,7 @@ const SearchBar = () => {
 };
 
 function SearchBarAndOtherComponents(props) {
-  const { bottomToTopAnimation, searchBarAnimation, setcurrPage, animateSecondHeader } = props;
+  const { searchBarAnimation, animateSecondHeader } = props;
   const searchBarClassList = " flex items-middle w-3/6 " + searchBarAnimation;
   let headerClassList = " flex items-middle justify-end  w-full pt-4 z-50";
   if (animateSecondHeader) {
@@ -39,7 +39,7 @@ function SearchBarAndOtherComponents(props) {
         >
           <div className="pr-2 hover:cursor-pointer font-bold">
             {/* <DelayLink to="/ThirdPage">WISH</DelayLink> */}
-            <Link to="/ThirdPage">WISH</Link>
+            <div>WISH</div>
           </div>
           <div>
             <img src="/assets/heart.png" alt="heart" className="h-4 w-4 hover:cursor-pointer" />

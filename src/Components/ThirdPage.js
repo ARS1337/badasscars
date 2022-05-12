@@ -1,11 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import Animations from "../utils/Animations";
-import debounce from "../utils/debounce";
-import Footer from "./Footer";
-import Header from "./Header";
-import SearchBarAndOtherComponents from "./SearchBarAndOtherComponents";
-import StickyNotificationAtTop from "./StickyNotificationAtTop";
+
 
 const FirstContainer = () => {
   return (
@@ -33,12 +28,12 @@ const FirstContainer = () => {
 
 const SecondContainer = () => {
   return (
-    <div className="h-[60vh] flex flex-row min-h-full items-end justify-end w-full  relative">
-      <div className="h-[60vh]  border border-r-0 border-black p-8 w-1/2">
-        <div className="flex flex-col justify-between text-left w-full h-full">
-          <div className="flex items-stretch justify-between flex-col text-left  h-full">
-            <div className="pb-36 text-xl font-bold flex flex-row items-center text-left">
-              <img src="/assets/Bag.png" alt="bag" className="pr-3" />
+    <div className="h-[60vh] flex flex-row min-h-full items-end justify-end w-full z-50 relative">
+      <div className="h-[60vh]  border border-r-0 border-black p-8 w-1/2 z-50">
+        <div className="flex flex-col justify-between text-left w-full h-full z-50">
+          <div className="flex items-stretch justify-between flex-col text-left  h-full z-50">
+            <div className="pb-36 text-xl font-bold flex flex-row items-center text-left z-50 test">
+              <img src="/assets/Bag.png" alt="bag" className="pr-3 " />
               <label>BADASS CLUB</label>
             </div>
             <div className=" flex items-start justify-between flex-col text-left  h-full">
@@ -54,7 +49,7 @@ const SecondContainer = () => {
         </div>
       </div>
       <div className="flex flex-col items-center justify-start  h-full w-1/2 ">
-        <div className=" font-extrabold text-9xl rotateText p-0 m-0  flex-col">
+        <div className=" font-extrabold text-9xl rotateText p-0 m-0 flex flex-row-reverse">
           <div id="value">948</div>
           <div>46.</div>
         </div>
@@ -66,58 +61,6 @@ const SecondContainer = () => {
 };
 
 function ThirdPage(props) {
-  const {
-    scaleInAnimation,
-    searchBarAnimation,
-    bottomToTopAnimation,
-    currentCar,
-    paymentAnimation,
-    footerClasscarListingNoAnimation,
-  } = props;
-
-  const navigate = useNavigate();
-  let lastScrollTop = 0;
-
-  let handleScroll = debounce(() => {
-    console.log("scrolled");
-    var st = window.pageYOffset || document.documentElement.scrollTop;
-    if (st > lastScrollTop) {
-      console.log("scroll down");
-      navigate('/ThirdPage')
-    } else {
-      console.log("scroll up");
-      navigate('/')
-    }
-  });
-
-  // useEffect(() => {
-  //   // window.scrollTo(0,0)
-  //   window.addEventListener("scroll", handleScroll);
-  //   console.log("listener added");
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //     console.log("listener removed");
-  //   };
-  // }, []);
-
-  const prevPage = window.currentPage;
-
-  let headerClassList = "animate-scaleIn";
-  let searchBarClassList = "animate-bottomToTopMore";
-  let stickyNotificationClassList = "animate-bottomToTopMore";
-  let footerClass = "animate-bottomToTopFooter";
-  let collectiveHeaderClassList = "animate-bottomToTop";
-
-  console.log("prevpage : ", prevPage, " includes MainPage? : ", prevPage.includes("MainPage"));
-  if (!prevPage.includes("/")) {
-    headerClassList = "animate-scaleInFinished";
-    searchBarClassList = "animate-bottomToTopMoreFinished";
-    stickyNotificationClassList = "animate-bottomToTopMoreFinished";
-    footerClass = "animate-bottomToTopFooterFinished";
-    collectiveHeaderClassList = "animate-bottomToTopFinished";
-    console.log("added new finished classes");
-  }
-
   function animateValue(start, end, duration) {
     setTimeout(() => {
       const obj = document.getElementById("value");
@@ -136,23 +79,10 @@ function ThirdPage(props) {
 
   animateValue(958, 999, 1000);
 
-  useEffect(() => {
-    console.log("third page rendered");
-    return () => (window.currentPage = "ThirdPage");
-  }, []);
-
   return (
-    <div>
-      <StickyNotificationAtTop bottomToTopAnimation={stickyNotificationClassList} />
-      <div className={collectiveHeaderClassList}>
-        <div className="px-8">
-          <Header scaleInAnimation={headerClassList} />
-          <SearchBarAndOtherComponents searchBarAnimation={searchBarClassList} />
-        </div>
-      </div>
-
+    <div className="third-page scroll-area h-[100vh] flex flex-col items-end justify-end pb-24 bg-newGrey z-50 " style={{zIndex:999}} >
       <div
-        className=" flex items-center justify-center h-full w-screen px-12 pt-16 animate-secondPageToTop"
+        className=" flex items-center justify-center h-full w-screen px-12 pt-16 animate-secondPageBottomToTop"
         style={{ height: "70vh", width: "100%" }}
       >
         <div className=" w-1/2 flex items-center justify-center pr-4 z-10">
@@ -165,7 +95,7 @@ function ThirdPage(props) {
           key={34}
           height={350}
           width={350}
-          positionTop={"25vh"}
+          positionTop={"30vh"}
           positionLeft={"5%"}
           animationClassList="animate-rotate animate-bounceCustom z-0"
         />
@@ -174,11 +104,10 @@ function ThirdPage(props) {
           height={180}
           width={180}
           positionTop={"0vh"}
-          positionLeft={"80vw"}
+          positionLeft={"85vw"}
           animationClassList="animate-rotate animate-bounceCustom z-0"
         />
       </div>
-      <Footer currentCar={currentCar} paymentAnimation={footerClass} carListingNoAnimation={footerClass} />
     </div>
   );
 }
