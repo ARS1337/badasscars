@@ -3,8 +3,7 @@ import configs from "../config";
 import Animations from "../utils/Animations";
 
 const CarDetails = (props) => {
-  const detailsClassList =
-    `z-50 pt-8   flex align-middle justify-center flex-col  px-1 animate-bottomToTopCarDetails`;
+  const detailsClassList = `z-50 pt-8   flex align-middle justify-center flex-col  px-1 animate-bottomToTopCarDetails`;
   return (
     <div
       className={detailsClassList}
@@ -28,10 +27,9 @@ const CarDetails = (props) => {
 function SecondPage(props) {
   const { animationDirection } = props;
   const mainClassList =
-    "p-12 relative font-roboto w-full h-full flex items-center justify-center flex-col pt-36  mb-12 " +
-    animationDirection;
+    "p-12 relative font-roboto w-full h-full flex items-center justify-center   flex-col    " + animationDirection;
   return (
-    <div className="second-page scroll-area h-[80vh] z-40 bg-newGrey">
+    <div className="second-page scroll-area h-[100vh] z-40 bg-newGrey">
       <div className={mainClassList} style={{ height: "95vh", width: "100vw" }}>
         <div className={" flex items-center justify-center font-oswald font-extrabold tracking-title z-10  pt-16 "}>
           THE BEST FROM THE OFFER

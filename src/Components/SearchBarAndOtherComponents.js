@@ -9,7 +9,7 @@ const SearchBar = () => {
       <input
         type="text"
         placeholder="Search _"
-        className="rounded-full px-5 py-3 placeholder-slate-300 text-slate-600 relative bg-white text-sm border border-slate-300 outline-none focus:outline-none focus:ring w-full pr-10"
+        className="rounded-full px-5 py-3 placeholder-slate-300 text-slate-600 relative bg-white text-sm border border-slate-300 outline-none focus:outline-none  w-full pr-10"
       />
       <span className="align-middle flex z-10 h-full leading-snug font-normal absolute text-center text-slate-300  bg-transparent rounded text-base items-center justify-center w-8 right-4 pr-3 py-3">
         <FiSearch size={24} />

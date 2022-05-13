@@ -80,10 +80,9 @@ function ThirdPage(props) {
   animateValue(958, 999, 1000);
 
   return (
-    <div className="third-page scroll-area h-[100vh] flex flex-col items-end justify-end pb-24 bg-newGrey z-50 " style={{zIndex:999}} >
+    <div className="third-page scroll-area h-[100vh] flex flex-col items-end justify-end  bg-newGrey z-50 " style={{zIndex:999}} >
       <div
         className=" flex items-center justify-center h-full w-screen px-12 pt-16 animate-secondPageBottomToTop"
-        style={{ height: "70vh", width: "100%" }}
       >
         <div className=" w-1/2 flex items-center justify-center pr-4 z-10">
           <FirstContainer />

@@ -69,7 +69,7 @@ function MainPage(props) {
 
   return (
     <div
-      className="overflow-hidden main-page scroll-area z-50  pt-[20vh] mb-36 h-screen main-page animate-secondPageTopToBottom"
+      className="overflow-hidden main-page scroll-area z-40  pt-[20vh] mb-36 h-screen main-page animate-secondPageTopToBottom"
       key="main"
     >
       <div className="font-roboto ">
@@ -82,7 +82,7 @@ function MainPage(props) {
             className={cityScapeClassList}
             key={currentCar + 10}
           /> */}
-          <div className="flex items-center justify-center ">
+          <div className="flex items-center justify-center z-50">
             <Cars
               carDetails={configs?.carList[currentCar]}
               key={currentCar + 8}

@@ -1,12 +1,15 @@
 import React, { Suspense, useContext, useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import FifthPage from "./Components/FifthPage";
 import Footer from "./Components/Footer";
 import FourthPage from "./Components/FourthPage";
 import Header from "./Components/Header";
 import MainPage from "./Components/MainPage";
 import SearchBarAndOtherComponents from "./Components/SearchBarAndOtherComponents";
 import SecondPage from "./Components/SecondPage";
+import SeventhPage from "./Components/SeventhPage";
+import SixthPage from "./Components/SixthPage";
 import StickyNotificationAtTop from "./Components/StickyNotificationAtTop";
 import ThirdPage from "./Components/ThirdPage";
 import "./styles/App.css";
@@ -53,12 +56,20 @@ function App() {
   const [collectiveHeaderClassList, setcollectiveHeaderClassList] = useState(collectiveHeaderTopToBottom);
   const [secondPageAnimationDirection, setsecondPageAnimationDirection] = useState(secondPageBottomToTop);
 
-  const pageList = ["main-page", "second-page", "third-page",'fourth-page'];
+  const pageList = [
+    "main-page",
+    "second-page",
+    "third-page",
+    "fourth-page",
+    "fifth-page",
+    "sixth-page",
+    "seventh-page",
+  ];
   let currPageNo = 0;
 
   const scrollToPage = (toPage: string) => {
     try {
-      document.getElementsByClassName(toPage)[0].scrollIntoView();
+      document.getElementsByClassName(toPage)[0].scrollIntoView({ block: "center", inline: "center"});
     } catch (err) {
       console.log("err ", err);
     }
@@ -67,10 +78,13 @@ function App() {
   const handleScroll = debounce((e: any) => {
     let prevPageNo = currPageNo;
     //scrolling
-    if (e.deltaY > 0 && currPageNo < 3) {
+    if (e.deltaY > 0 && currPageNo < pageList.length - 1) {
       currPageNo++;
     } else if (e.deltaY < 0 && currPageNo > 0) {
       currPageNo--;
+    }
+    if (prevPageNo == currPageNo) {
+      return;
     }
     let newPage = pageList[currPageNo];
     //adding animation
@@ -125,16 +139,16 @@ function App() {
       style={{ overflow: "hidden", scrollBehavior: "smooth" }}
     >
       {/* <div className="bg-CorrectGrey pt-[5vh]"> */}
-        <div className="fixed top-0 w-screen h-[20vh] z-50">
-          <div className={collectiveHeaderClassList}>
-            <StickyNotificationAtTop bottomToTopAnimation={stickyNotificationClassList} />
-            <div className="px-8 ">
-              <Header scaleInAnimation={headerClassList} />
-              <SearchBarAndOtherComponents searchBarAnimation={searchBarClassList} animateSecondHeader={true} />
-            </div>
+      <div className="fixed top-0 w-screen h-[20vh] z-50">
+        <div className={collectiveHeaderClassList}>
+          <StickyNotificationAtTop bottomToTopAnimation={stickyNotificationClassList} />
+          <div className="px-8 ">
+            <Header scaleInAnimation={headerClassList} />
+            <SearchBarAndOtherComponents searchBarAnimation={searchBarClassList} animateSecondHeader={true} />
           </div>
         </div>
-        {/* <img
+      </div>
+      {/* <img
           src="/assets/cityscape.jpg"
           height="100%"
           width="100%"
@@ -142,18 +156,26 @@ function App() {
           className={"absolute z-0 pt-0 w-screen"}
           key={currentCar + 10}
         /> */}
-      {/* </div> */}
 
-      {/* <div className={currPage.includes("main") ? " opacity-1" : "opacity-1"}>
+      <div className={currPage.includes("main") ? " opacity-1" : "opacity-0"}>
         <MainPage currentCar={currentCar} setcurrentCar={setcurrentCar} />
       </div>
       <div className={currPage.includes("second") ? " opacity-1" : "opacity-0"}>
         <SecondPage animationDirection={secondPageAnimationDirection} />
       </div>
-      <div className={currPage.includes("third") ? " opacity-1" : "opacity-1"}>
+      <div className={currPage.includes("third") ? " opacity-1" : "opacity-0"}>
         <ThirdPage />
-      </div> */}
-      <FourthPage/>
+      </div>
+      <div className={currPage.includes("fourth") ? " opacity-1" : "opacity-0"}>
+        <FourthPage />
+      </div>
+      <div className={currPage.includes("fifth") ? " opacity-1" : "opacity-0"}>
+        <FifthPage />
+      </div>
+      <div className={currPage.includes("sixth") ? " opacity-1" : "opacity-0"}>
+        <SixthPage />
+      </div>
+      <SeventhPage />
       <Footer currentCar={currentCar} paymentAnimation={footerClassList} carListingNoAnimation={footerClassList} />
     </div>
   );

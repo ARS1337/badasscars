@@ -43,7 +43,7 @@ function Cars(props) {
   if (carDetails) {
     return (
       <div
-        className="flex justify-center align-middle w-full flex-col z-30 pt-14 "
+        className="flex justify-center align-middle w-full flex-col z-50 pt-14 "
         style={{
           alignItems: "center",
         }}

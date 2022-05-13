@@ -31,14 +31,15 @@ const DeviceDetails = (props) => {
       <div className="flex items-center justify-center flex-col">
         {hover ? (
           <div className="flex flex-row items-center justify-evenly pb-6 pt-8 min-w-full">
-            <div className="h-6 w-6 px-1">
+            <div className="h-6 w-6 pr-2">
               <img src="/assets/whiteBag.png" alt="whiteBag" />
             </div>
-            <div className="h-6 w-6 px-4">
-              <FiSearch size={22} color='black' />
+            <div className="h-6 w-6 pr-2">
+              <FiSearch size={18} color="black" />
             </div>
-            <div className="h-6 w-6 px-4">
-              <FiHeart size={22} color='black' />
+            <div className="h-6 w-6 pr-1">
+              <img src="/assets/ico_hart.png" alt="favorite" />
+              {/* <FiHeart size={22} color='black' /> */}
             </div>
           </div>
         ) : (
@@ -55,20 +56,22 @@ const DeviceDetails = (props) => {
 function FourthPage(props) {
   return (
     <div
-      className=" px-12 mt-[25vh] animate-secondPageBottomToTop fourth-page "
-      style={{ height: "75vh", width: "100%" }}
+      className=" px-12  animate-secondPageBottomToTop fourth-page  flex items-center justify-start flex-col"
+      style={{ height: "100vh", width: "100%" }}
     >
-      <div className="flex flex-row items-center justify-between">
-        <div className="font-bold text-lg">SPECIAL OFFER</div>
-        <div className="text-sm">KITCHEN &nbsp; |&nbsp; TOOLS&nbsp; |&nbsp; CHILDREN'S CORNER</div>
-      </div>
-      <div className="flex flex-row items-center justify-evenly pt-12 ">
-        {config.deviceList.map((devicedetails, key) => {
-          return <DeviceDetails details={devicedetails} />;
-        })}
-      </div>
-      <div className="font-medium flex items-center justify-center pt-8 hover:cursor-pointer">
-        REVIEW THE ENTIRE OFFER
+      <div className="mt-[10vh] ">
+        <div className="flex flex-row items-center justify-between">
+          <div className="font-bold text-lg">SPECIAL OFFER</div>
+          <div className="text-sm">KITCHEN &nbsp; |&nbsp; TOOLS&nbsp; |&nbsp; CHILDREN'S CORNER</div>
+        </div>
+        <div className="flex flex-row items-center justify-evenly pt-12 ">
+          {config.deviceList.map((devicedetails, key) => {
+            return <DeviceDetails details={devicedetails} />;
+          })}
+        </div>
+        <div className="font-medium flex items-center justify-center pt-8 hover:cursor-pointer">
+          <label className="bg-CorrectYellow">REVIEW THE ENTIRE OFFER </label>
+        </div>
       </div>
     </div>
   );

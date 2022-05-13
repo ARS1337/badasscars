@@ -26,6 +26,7 @@ module.exports = {
     letterSpacing: {
       spacing: "1rem",
       title: "0.3rem",
+      auctionSpacing: "6rem",
     },
     extend: {
       animation: {
