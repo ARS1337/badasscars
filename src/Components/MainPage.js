@@ -7,7 +7,7 @@ import "../styles/App.css";
 function MainPage(props) {
   const { currentCar, setcurrentCar } = props;
   const [carClassList, setcarClassList] = useState(
-    "flex align-middle justify-center flex-row  relative animate-none z-40  pb-4"
+    "flex items-center justify-center flex-row  relative animate-none z-40  pb-4"
   );
   const [animationClassList, setanimationClassList] = useState("animate-rotate animate-bounceCustom z-1");
   const [cityScapeClassList, setcityScapeClassList] = useState("absolute z-0 pt-20 w-screen");
@@ -15,8 +15,8 @@ function MainPage(props) {
     " animate-onlyBounce absolute text-white rounded-full h-24 w-24 bg-[#292F33] z-50 border-8 border-[#EEFF00] top-[50%] left-[40%] font-oswald           border-opacity-50 font-bold hover:opacity-50 hover:cursor-pointer  "
   );
 
-  const leftTyreBaseClasses = " absolute z-50 bottom-0 left-[12.1%] ";
-  const rightTyreBaseClasses = " absolute z-50 bottom-1 right-[10.5%] ";
+  const leftTyreBaseClasses = " absolute z-50  bottom-[12%] md:bottom-0 lg:bottom-0  left-[12.1%] ";
+  const rightTyreBaseClasses = " absolute z-50 bottom-[12%] md:bottom-1 lg:bottom-1 right-[10.5%] ";
 
   const [leftTyreAnimation, setleftTyreAnimation] = useState(leftTyreBaseClasses + " " + "animate-none");
   const [rightTyreAnimation, setrightTyreAnimation] = useState(rightTyreBaseClasses + " " + "animate-none");
@@ -74,14 +74,6 @@ function MainPage(props) {
     >
       <div className="font-roboto ">
         <div className=" min-h-screen z-[1] overflow-hidden ">
-          {/* <img
-            src="/assets/cityscape.jpg"
-            height="100%"
-            width="100%"
-            alt="cityscape"
-            className={cityScapeClassList}
-            key={currentCar + 10}
-          /> */}
           <div className="flex items-center justify-center z-50">
             <Cars
               carDetails={configs?.carList[currentCar]}
@@ -96,30 +88,61 @@ function MainPage(props) {
               leftTyreAnimation={leftTyreAnimation}
               rightTyreAnimation={rightTyreAnimation}
             />
-            <Animations
-              key={currentCar + 2}
-              height={150}
-              width={150}
-              positionTop={"50%"}
-              positionLeft={"78%"}
-              animationClassList={animationClassList}
-            />
-            <Animations
-              key={currentCar + 3}
-              height={50}
-              width={50}
-              positionTop={"30%"}
-              positionLeft={"60%"}
-              animationClassList={animationClassList}
-            />
-            <Animations
-              key={currentCar + 4}
-              height={350}
-              width={350}
-              positionTop={"25%"}
-              positionLeft={"12%"}
-              animationClassList={animationClassList}
-            />
+            <div>
+              <div className="hidden md:block lg:block">
+                <Animations
+                  key={currentCar + 2}
+                  height={0.15}
+                  width={0.15}
+                  positionTop={"45%"}
+                  positionLeft={"72%"}
+                  animationClassList={animationClassList}
+                />
+                <Animations
+                  key={currentCar + 3}
+                  height={0.02}
+                  width={0.02}
+                  positionTop={"30%"}
+                  positionLeft={"60%"}
+                  animationClassList={animationClassList}
+                />
+                <Animations
+                  key={currentCar + 4}
+                  height={0.3}
+                  width={0.3}
+                  positionTop={"25%"}
+                  positionLeft={"5%"}
+                  animationClassList={animationClassList}
+                />
+              </div>
+              <div className="block md:hidden lg:hidden">
+                <Animations
+                  key={currentCar + 2}
+                  height={0.15}
+                  width={0.15}
+                  positionTop={"40%"}
+                  positionLeft={"68%"}
+                  animationClassList={animationClassList}
+                />
+                <Animations
+                  key={currentCar + 3}
+                  height={0.08}
+                  width={0.08}
+                  positionTop={"35%"}
+                  positionLeft={"60%"}
+                  animationClassList={animationClassList}
+                />
+                <Animations
+                  key={currentCar + 4}
+                  height={0.3}
+                  width={0.3}
+                  positionTop={"35%"}
+                  positionLeft={"5%"}
+                  animationClassList={animationClassList}
+                />
+                
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -69,7 +69,7 @@ function App() {
 
   const scrollToPage = (toPage: string) => {
     try {
-      document.getElementsByClassName(toPage)[0].scrollIntoView({ block: "center", inline: "center"});
+      document.getElementsByClassName(toPage)[0].scrollIntoView({ block: "center", inline: "center" });
     } catch (err) {
       console.log("err ", err);
     }
@@ -105,7 +105,7 @@ function App() {
         setsecondPageAnimationDirection(secondPageTopToBottom);
       } else {
         //transition from first page to middle
-        setsearchBarClassList(searchBarBottomToTopMore);
+        setsearchBarClassList(`animate-scaleIn md:${searchBarBottomToTopMore} lg:${searchBarBottomToTopMore}`);
         setheaderClassList(headerClassListScaleIn);
         setstickyNotificationClassList(stickyNotificationBottomToTopMore);
         setfooterClassList(footerBottomToTop);
@@ -127,6 +127,7 @@ function App() {
 
   useEffect(() => {
     window.addEventListener("wheel", handleScroll);
+    window.addEventListener("touchstart",(e)=>{console.log("sddsf",e)})
     setcurrPage("main-page");
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -144,35 +145,27 @@ function App() {
           <StickyNotificationAtTop bottomToTopAnimation={stickyNotificationClassList} />
           <div className=" px-1 md:px-8 ">
             <Header scaleInAnimation={headerClassList} />
-            <SearchBarAndOtherComponents searchBarAnimation={searchBarClassList} animateSecondHeader={true} />
+            <SearchBarAndOtherComponents searchBarAnimation={searchBarClassList} animateSecondHeader={false} />
           </div>
         </div>
       </div>
-      {/* <img
-          src="/assets/cityscape.jpg"
-          height="100%"
-          width="100%"
-          alt="cityscape"
-          className={"absolute z-0 pt-0 w-screen"}
-          key={currentCar + 10}
-        /> */}
 
-      <div className={currPage.includes("main") ? " opacity-1" : "opacity-0"}>
+      <div className={currPage.includes("main") ? " opacity-1" : "opacity-1"}>
         <MainPage currentCar={currentCar} setcurrentCar={setcurrentCar} />
       </div>
-      <div className={currPage.includes("second") ? " opacity-1" : "opacity-0"}>
+      <div className={currPage.includes("second") ? " opacity-1" : "opacity-1"}>
         <SecondPage animationDirection={secondPageAnimationDirection} />
       </div>
-      <div className={currPage.includes("third") ? " opacity-1" : "opacity-0"}>
+      <div className={currPage.includes("third") ? " opacity-1" : "opacity-1"}>
         <ThirdPage />
       </div>
-      <div className={currPage.includes("fourth") ? " opacity-1" : "opacity-0"}>
+      <div className={currPage.includes("fourth") ? " opacity-1" : "opacity-1"}>
         <FourthPage />
       </div>
-      <div className={currPage.includes("fifth") ? " opacity-1" : "opacity-0"}>
+      <div className={currPage.includes("fifth") ? " opacity-1" : "opacity-1"}>
         <FifthPage />
       </div>
-      <div className={currPage.includes("sixth") ? " opacity-1" : "opacity-0"}>
+      <div className={currPage.includes("sixth") ? " opacity-1" : "opacity-1"}>
         <SixthPage />
       </div>
       <SeventhPage />

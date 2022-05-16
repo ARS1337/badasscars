@@ -6,29 +6,28 @@ import { FaInstagram } from "react-icons/fa";
 function Footer(props) {
   const { currentCar, paymentAnimation, carListingNoAnimation } = props;
   const currentCarString = currentCar > 9 ? currentCar + 1 : `0${currentCar + 1}`;
-  const paymentClassListAnimation = paymentAnimation +" z-40 font-bold text-sm";
-  const carListingNoClassListAnimation = carListingNoAnimation + " font-oswald font-semibold z-40";
+  const paymentClassListAnimation =
+    paymentAnimation + " z-40 font-normal md:font-bold lg:font-bold w-1/2   text-xs md:text-sm md:w-full md:flex md:justify-center text-center";
+  const carListingNoClassListAnimation =
+    carListingNoAnimation + " font-oswald font-semibold z-40 self-start flex items-center justify-end";
 
   return (
-    <div
-      className="px-8 font-oswald fixed bottom-4  w-full  z-40"
-      style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}
-    >
-      <div className=" flex align-bottom flex-row justify-around w-36 z-40">
-        <div className="h-8 w-8 rounded-full border border-[#74787B] flex align-middle justify-center pt-2 hover:cursor-pointer hover:opacity-50">
+    <div className="px-2 md:px-8 lg:px-8 font-oswald fixed bottom-4  w-full  z-40 flex items-end justify-between">
+      <div className=" flex align-bottom flex-row justify-around md:w-36 lg:w-36 z-40 ">
+        <div className="h-6 w-6 md:h-8 md:w-8 lg:h-8 lg:w-8 rounded-full mr-1 border border-[#74787B] flex items-center justify-center  hover:cursor-pointer hover:opacity-50">
           <TiSocialFacebook />
         </div>
-        <div className="h-8 w-8 rounded-full border border-[#74787B] flex align-middle justify-center pt-2 hover:cursor-pointer hover:opacity-50">
+        <div className="h-6 w-6 md:h-8 md:w-8 lg:h-8 lg:w-8 rounded-full mr-1 border border-[#74787B] flex items-center  justify-center  hover:cursor-pointer hover:opacity-50">
           <FaInstagram />
         </div>
-        <div className="h-auto w-8 rounded-full border border-[#74787B] flex align-middle justify-center pt-1 hover:cursor-pointer hover:opacity-50">
-          <img src="/assets/youtube.png" alt="youtube icon" className="h-5 w-5" />
+        <div className="h-auto w-7 md:h-auto md:w-8 lg:h-auto lg:w-8 mr-1 rounded-full border border-[#74787B] flex items-center justify-center  hover:cursor-pointer hover:opacity-50">
+          <img src="/assets/youtube.png" alt="youtube icon" className="h-4 w-4" />
         </div>
       </div>
       <div className={paymentClassListAnimation}>PAYMENT BY COD, INTERNET BANKING OR CARD</div>
       <div className={carListingNoClassListAnimation}>
-        <label className="text-9xl font-semibold text-CorrectBlack">{currentCarString}</label>
-        <sup className="absolute bottom-6 font-normal">/0{configs.carList.length}</sup>
+        <label className="text-4xl md:text-9xl lg:text-9xl font-semibold text-CorrectBlack pt-1">{currentCarString}</label>
+        <sup className="absolute  font-normal text-xs">/0{configs.carList.length}</sup>
       </div>
     </div>
   );
