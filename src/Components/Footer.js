@@ -7,7 +7,7 @@ function Footer(props) {
   const { currentCar, paymentAnimation, carListingNoAnimation } = props;
   const currentCarString = currentCar > 9 ? currentCar + 1 : `0${currentCar + 1}`;
   const paymentClassListAnimation =
-    paymentAnimation + " z-40 font-normal md:font-bold lg:font-bold w-1/2   text-xs md:text-sm md:w-full md:flex md:justify-center text-center";
+    paymentAnimation + " z-40 font-light md:font-bold lg:font-bold w-3/6   text-xs md:text-sm md:w-full md:flex md:justify-center text-center";
   const carListingNoClassListAnimation =
     carListingNoAnimation + " font-oswald font-semibold z-40 self-start flex items-center justify-end";
 

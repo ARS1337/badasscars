@@ -88,6 +88,13 @@ function App() {
     }
     let newPage = pageList[currPageNo];
     //adding animation
+    changeAnimation(prevPageNo, currPageNo);
+    //trigger off load animation for curr page by setting setcurrpage then scroll to the new page
+    setcurrPage(newPage);
+    scrollToPage(newPage);
+  }, 500);
+
+  const changeAnimation = (prevPageNo: number, currPageNo: number) => {
     if (currPageNo === 0) {
       setheaderClassList(headerClassListScaleInReverse);
       setsearchBarClassList(searchBarTopToBottom);
@@ -120,6 +127,69 @@ function App() {
       setfooterClassList(footerBottomToTopFinished);
       setcollectiveHeaderClassList(collectiveHeaderTopToBottomFinished);
     }
+  };
+
+  var xDown: number = 0;
+  var yDown: number = 0;
+
+  function getTouches(evt: any) {
+    return (
+      evt.touches || // browser API
+      evt.originalEvent.touches
+    ); // jQuery
+  }
+
+  const handleTouchStart = debounce((evt: TouchEvent) => {
+    evt.preventDefault();
+    const firstTouch = getTouches(evt)[0];
+    xDown = firstTouch.clientX;
+    yDown = firstTouch.clientY;
+  }, 500);
+
+  const handleTouchMove = debounce((evt: TouchEvent) => {
+    evt.preventDefault();
+    let prevPageNo = currPageNo;
+    //scrolling
+    if (prevPageNo == currPageNo) {
+      return;
+    }
+
+    if (!xDown || !yDown) {
+      return;
+    }
+
+    var xUp = evt.touches[0].clientX;
+    var yUp = evt.touches[0].clientY;
+
+    var xDiff = xDown - xUp;
+    var yDiff = yDown - yUp;
+
+    if (Math.abs(xDiff) > Math.abs(yDiff)) {
+      /*most significant*/
+      if (xDiff > 0) {
+        /* right swipe */
+      } else {
+        /* left swipe */
+      }
+    } else {
+      if (yDiff > 0 && currPageNo < pageList.length - 1) {
+        /* down swipe */
+        currPageNo++;
+        console.log("down");
+        alert("down");
+      } else if (yDiff < 0 && currPageNo > 0) {
+        /* up swipe */
+        currPageNo--;
+        console.log("up");
+        alert("up");
+      }
+    }
+    /* reset values */
+    xDown = 0;
+    yDown = 0;
+    let newPage = pageList[currPageNo];
+    //adding animation
+    changeAnimation(prevPageNo, currPageNo);
     //trigger off load animation for curr page by setting setcurrpage then scroll to the new page
     setcurrPage(newPage);
     scrollToPage(newPage);
@@ -127,7 +197,8 @@ function App() {
 
   useEffect(() => {
     window.addEventListener("wheel", handleScroll);
-    window.addEventListener("touchstart",(e)=>{console.log("sddsf",e)})
+    document.addEventListener("touchstart", handleTouchStart, false);
+    document.addEventListener("touchmove", handleTouchMove, false);
     setcurrPage("main-page");
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
