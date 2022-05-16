@@ -4,7 +4,7 @@ import configs from "../config";
 // import DelayLink from 'react-delay-link';
 
 function Header(props) {
-  const { scaleInAnimation, setcurrPage, bottomToTopAnimation } = props;
+  const { scaleInAnimation, bottomToTopAnimation } = props;
   const headerTitleClassList = "grid grid-cols-1 " + scaleInAnimation;
   const headerClassList = "flex items-middle justify-between  pt-4 z-50 " + bottomToTopAnimation;
 

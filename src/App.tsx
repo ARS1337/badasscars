@@ -142,7 +142,7 @@ function App() {
       <div className="fixed top-0 w-screen h-[20vh] z-50">
         <div className={collectiveHeaderClassList}>
           <StickyNotificationAtTop bottomToTopAnimation={stickyNotificationClassList} />
-          <div className="px-8 ">
+          <div className=" px-1 md:px-8 ">
             <Header scaleInAnimation={headerClassList} />
             <SearchBarAndOtherComponents searchBarAnimation={searchBarClassList} animateSecondHeader={true} />
           </div>

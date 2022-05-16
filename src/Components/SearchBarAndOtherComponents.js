@@ -28,7 +28,7 @@ function SearchBarAndOtherComponents(props) {
 
   return (
     <div className={headerClassList}>
-      <div className="flex items-middle justify-between  w-4/6">
+      <div className="flex items-middle justify-between  w-full md:w-4/6">
         <div className={searchBarClassList}>
           <SearchBar />
         </div>
@@ -44,9 +44,9 @@ function SearchBarAndOtherComponents(props) {
           <div>
             <img src="/assets/heart.png" alt="heart" className="h-4 w-4 hover:cursor-pointer" />
           </div>
-          <div className="px-4 hover:cursor-pointer">|</div>
-          <div className="px-4 hover:cursor-pointer  font-bold">0.0 KN</div>
-          <div className="px-4 hover:cursor-pointer">
+          <div className="px-1md:px-4 hover:cursor-pointer">|</div>
+          <div className="px-1md:px-4 hover:cursor-pointer  font-bold">0.0 KN</div>
+          <div className="px-1 md:px-4 hover:cursor-pointer">
             <img src="/assets/bag.png" alt="heart" className="h-4 w-4 " />
           </div>
         </div>
