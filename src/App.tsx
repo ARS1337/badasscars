@@ -59,7 +59,7 @@ function App() {
   let currPageNo = 0;
 
   const scrollToPage = (toPage: string) => {
-    console.log("scrolling to page ", toPage)
+    console.log("scrolling to page ", toPage);
     try {
       document.getElementsByClassName(toPage)[0].scrollIntoView({ block: "end", inline: "end" });
     } catch (err) {
@@ -79,19 +79,20 @@ function App() {
       return;
     }
     let newPage = pageList[currPageNo];
-    console.log('prevpage ',pageList[prevPageNo],' currpage ', pageList[currPageNo])
+    console.log("prevpage ", pageList[prevPageNo], " currpage ", pageList[currPageNo]);
     //adding animation
     changeAnimation(prevPageNo, currPageNo);
     //trigger off load animation for curr page by setting setcurrpage then scroll to the new page
     setcurrPage(newPage);
-    try{
+    try {
       scrollToPage(newPage);
-    }catch(err){
-      console.log('err ',err)
+    } catch (err) {
+      console.log("err ", err);
     }
   }, 500);
 
   const changeAnimation = (prevPageNo: number, currPageNo: number) => {
+    console.log('prevPageNo: ',prevPageNo," currPageNo: ",currPageNo)
     if (currPageNo === 0) {
       setheaderClassList(headerClassListScaleInReverse);
       setsearchBarClassList(searchBarTopToBottom);
@@ -116,6 +117,8 @@ function App() {
         setcollectiveHeaderClassList(collectiveHeaderBottomToTop);
         setsecondPageAnimationDirection(secondPageBottomToTop);
       }
+    } else if ((currPageNo === 6)) {
+      setfooterClassList(" invisible ");
     } else {
       //currPage no ===2
       setheaderClassList(headerClassListScaleInFinished);
@@ -137,7 +140,7 @@ function App() {
       className="font-roboto bg-newGrey w-screen scroll-container"
       key={"app" + currPage}
       style={{ overflow: "hidden", scrollBehavior: "smooth" }}
-      id='slider'
+      id="slider"
     >
       <div className="md:fixed top-0 w-screen md:h-[20vh] z-50 bg-newGrey md:bg-transparent">
         <div className={collectiveHeaderClassList}>
@@ -168,7 +171,10 @@ function App() {
         <SixthPage />
       </div>
       <SeventhPage />
-      <Footer currentCar={currentCar} paymentAnimation={footerClassList} carListingNoAnimation={footerClassList} />
+      <div className={currPage.includes('seventh')?' hidden ':' block '}>
+      <Footer key={currPage} currentCar={currentCar} paymentAnimation={footerClassList} carListingNoAnimation={footerClassList} />
+      </div>
+      
     </div>
   );
 }
