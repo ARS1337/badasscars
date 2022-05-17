@@ -1,6 +1,4 @@
-import React, { Suspense, useContext, useEffect, useState } from "react";
-import { BrowserRouter, Route, Routes, useLocation, useNavigate } from "react-router-dom";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import React, { useEffect, useState } from "react";
 import FifthPage from "./Components/FifthPage";
 import Footer from "./Components/Footer";
 import FourthPage from "./Components/FourthPage";
@@ -14,16 +12,9 @@ import StickyNotificationAtTop from "./Components/StickyNotificationAtTop";
 import ThirdPage from "./Components/ThirdPage";
 import "./styles/App.css";
 import debounce from "./utils/debounce";
-import ScrollContext from "./utils/ScrollContext";
 
 function App() {
   const [currentCar, setcurrentCar] = useState(0);
-  const [scrollPosition, setscrollPosition] = useState(1);
-  const [currentPage, setcurrentPage] = useState(1);
-  const [bottomToTopAnimation, setbottomToTopAnimation] = useState("animate-bottomToTopMore");
-  const [scaleInAnimation, setscaleInAnimation] = useState("animate-scaleIn");
-  const [searchBarAnimation, setsearchBarAnimation] = useState("animate-bottomToTopMore");
-  const [footerAnimation, setfooterAnimation] = useState("animate-bottomToTopFooter");
   const [currPage, setcurrPage] = useState("/");
   //animation class lists
   let headerClassListScaleIn = "md:animate-scaleIn";
