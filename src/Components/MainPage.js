@@ -69,12 +69,12 @@ function MainPage(props) {
 
   return (
     <div
-      className="overflow-hidden main-page scroll-area z-40  pt-[20vh] mb-36 h-screen main-page animate-secondPageTopToBottom"
+      className="overflow-hidden main-page scroll-area z-40  md:pt-[20vh] md:mb-36 md:h-screen main-page animate-secondPageTopToBottom "
       key="main"
     >
       <div className="font-roboto ">
-        <div className=" min-h-screen z-[1] overflow-hidden ">
-          <div className="flex items-center justify-center z-50">
+        <div className=" md:min-h-screen z-[1] overflow-hidden ">
+          <div className="flex items-center justify-center z-50" >
             <Cars
               carDetails={configs?.carList[currentCar]}
               key={currentCar + 8}
@@ -115,33 +115,7 @@ function MainPage(props) {
                   animationClassList={animationClassList}
                 />
               </div>
-              <div className="block md:hidden lg:hidden">
-                <Animations
-                  key={currentCar + 2}
-                  height={0.15}
-                  width={0.15}
-                  positionTop={"40%"}
-                  positionLeft={"68%"}
-                  animationClassList={animationClassList}
-                />
-                <Animations
-                  key={currentCar + 3}
-                  height={0.08}
-                  width={0.08}
-                  positionTop={"35%"}
-                  positionLeft={"60%"}
-                  animationClassList={animationClassList}
-                />
-                <Animations
-                  key={currentCar + 4}
-                  height={0.3}
-                  width={0.3}
-                  positionTop={"35%"}
-                  positionLeft={"5%"}
-                  animationClassList={animationClassList}
-                />
-                
-              </div>
+
             </div>
           </div>
         </div>

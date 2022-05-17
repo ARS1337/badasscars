@@ -11,7 +11,7 @@ function Header(props) {
     "flex items-middle justify-between  pt-4 z-50 flex-col md:flex-row lg:flex-row" + bottomToTopAnimation;
 
   return (
-    <div>
+    <div className="bg-newGrey md:bg-transparent z-50 md:z-10">
       <div className="hidden md:block lg:block">
         <div className={headerClassList}>
           {/* md and lg */}

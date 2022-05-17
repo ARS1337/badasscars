@@ -8,19 +8,17 @@ const DeviceDetails = (props) => {
   const { details } = props;
   return (
     <div
-      className="flex flex-col items-center justify-center border border-CorrectBlack mx-2 p-2 relative h-"
+      className="flex flex-col items-center justify-center border border-CorrectBlack mx-2 p-2 relative "
       key={"detailsDevice" + details.id}
       onMouseOver={debounce(() => {
-        console.log("mouse over");
         sethover(true);
       }, 100)}
       onMouseLeave={debounce(() => {
         sethover(false);
-        console.log("mouse leave");
       }, 100)}
     >
       {details.percentOff ? (
-        <div className=" bg-CorrectYellow absolute top-4 right-4 rounded-full h-12 w-12  font-bold flex items-center justify-center">
+        <div className=" bg-CorrectYellow absolute top-4 right-4 rounded-full h-12 w-12 font-bold flex items-center justify-center">
           {details.percentOff + "%"}
         </div>
       ) : (
@@ -28,9 +26,9 @@ const DeviceDetails = (props) => {
       )}
       <img src={details.img} alt={details.name} className="pb-4" />
       <label className="pb-2 font-bold text-lg">{details.name}</label>
-      <div className="flex items-center justify-center flex-col">
+      <div className="flex items-center justify-center flex-col w-[80vw] md:w-full lg:w-full over">
         {hover ? (
-          <div className="flex flex-row items-center justify-evenly pb-6 pt-8 min-w-full">
+          <div className="flex flex-row items-center justify-center pb-6 pt-8 min-w-full md:w-1/5">
             <div className="h-6 w-6 pr-2">
               <img src="/assets/whiteBag.png" alt="whiteBag" />
             </div>
@@ -39,7 +37,6 @@ const DeviceDetails = (props) => {
             </div>
             <div className="h-6 w-6 pr-1">
               <img src="/assets/ico_hart.png" alt="favorite" />
-              {/* <FiHeart size={22} color='black' /> */}
             </div>
           </div>
         ) : (
@@ -55,18 +52,19 @@ const DeviceDetails = (props) => {
 
 function FourthPage(props) {
   return (
-    <div
-      className=" px-12  animate-secondPageBottomToTop fourth-page  flex items-center justify-start flex-col"
-      style={{ height: "100vh", width: "100%" }}
-    >
-      <div className="mt-[10vh] ">
-        <div className="flex flex-row items-center justify-between">
+    <div className=" px-12 w-full h-full md:h-[120vh]  animate-secondPageBottomToTop fourth-page  flex items-center justify-start md:justify-end md:pb-24 flex-col ">
+      <div>
+        <div className="flex flex-col md:flex-row lg:flex-row items-center justify-between" key="fourthPageMain">
           <div className="font-bold text-lg">SPECIAL OFFER</div>
           <div className="text-sm">KITCHEN &nbsp; |&nbsp; TOOLS&nbsp; |&nbsp; CHILDREN'S CORNER</div>
         </div>
-        <div className="flex flex-row items-center justify-evenly pt-12 ">
+        <div className="container md:container-none lg:container-none w-[100vw] md:flex lg:flex md:items-center lg:items-center md:justify-center lg:justify-center md:flex-row lg:flex-row pt-12 ">
           {config.deviceList.map((devicedetails, key) => {
-            return <DeviceDetails details={devicedetails} />;
+            return (
+              <div key={key}>
+                <DeviceDetails details={devicedetails} />
+              </div>
+            );
           })}
         </div>
         <div className="font-medium flex items-center justify-center pt-8 hover:cursor-pointer">

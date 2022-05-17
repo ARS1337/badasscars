@@ -24,7 +24,7 @@ function Cars(props) {
   } = props;
 
   const height = (window.innerHeight * 20) / 100;
-  const width = (window.innerWidth * 70) / 100;
+  const width = (window.innerWidth * 60) / 100;
 
   const handleArrowClick = (direction) => {
     if (direction == "left") {
@@ -40,7 +40,7 @@ function Cars(props) {
 
   if (carDetails) {
     return (
-      <div className="flex justify-center items-center  h-[70vh]">
+      <div className="flex justify-center items-center h-[50vh]  md:h-[70vh] " key={carDetails?.id}>
         <div className="flex justify-center items-center w-full flex-col z-50   ">
           <div className={carClassList}>
             <img src={carDetails?.img} alt={carDetails?.name} height={height} width={width} className="z-20  " />
@@ -70,7 +70,7 @@ function Cars(props) {
           </div>
           <div className="pt-2 md:pt-12 lg:pt-12 text-sm font-bold pb-1 md:pb-2 lg:pb-2">{carDetails?.header?.toUpperCase()}</div>
           <div className="text-3xl font-bold pb-1 md:pb-1 lg:pb-1">{carDetails?.name}</div>
-          <div className="flex flex-row items-center justify-between w-[100vw] md:w-4/5 lg:w-4/5 px-2 pb-1 ">
+          <div className="flex flex-row items-center justify-between w-[100vw] md:w-4/5 lg:w-4/5 px-2 pb-1 " key={carDetails.id}>
             <div
               onClick={() => handleArrowClick("left")}
               className={currentCar == 0 ? "z-30 invisible px-2 " : "visible px-2"}

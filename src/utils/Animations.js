@@ -4,7 +4,6 @@ function Animations(props) {
   const { height, width, positionTop, positionLeft, animationClassList } = props;
   const windowHeight = window.innerHeight;
   const windowWidth = window.innerWidth;
-  console.log("height ", )
   return (
     <div
       style={{
@@ -14,7 +13,7 @@ function Animations(props) {
       }}
       className={animationClassList}
     >
-      <img src="/assets/yellowPlus.png" height={height*windowHeight} width={width*windowWidth} alt="yellowPlusAnimation" />
+      <img src="/assets/yellowPlus.png" height={height*windowHeight} width={width*windowWidth} alt="yellowPlusAnimation" className="hidden md:block"/>
     </div>
   );
 }

@@ -6,24 +6,23 @@ const windowHeight = window.innerHeight;
 function FifthPage(props) {
   return (
     <div
-      className="px-20  animate-secondPageBottomToTop fifth-page relative  "
-      style={{ height: "85vh", width: "100%" }}
+      className="px-20 h-[100vh] md:h-[85vh] w-full  animate-secondPageBottomToTop fifth-page pt-8 md:pt-24  lg:pt-0 flex items-start md:items-center justify-center "
     >
-      <div className="-mt-[10vh]">
-        <label className="absolute left-[15%] -top-[3%] flex items-center justify-center text-9xl w-[80vw] tracking-auctionSpacing z-10 text-CorrectGrey font-extrabold font-oswald">
+      <div className="relative  w-full ">
+        <label className="absolute top-[5%] left-[0%] tracking-spacing md:left-[15%] md:-top-[3%] flex items-center justify-center text-5xl md:text-9xl w-full md:w-[80vw] md:tracking-auctionSpacing z-10 text-CorrectGrey font-extrabold font-oswald">
           AUCTION
         </label>
         <div className="flex items-center justify-center font-bold text-2xl z-10">
           <label className="z-10">CHAIR HALLS</label>
         </div>
-        <div className="flex flex-row items-center justify-between pt-12">
+        <div className="flex flex-col md:flex-row items-center justify-between pt-12">
           <div>
-            <div className="border border-[#292F33] opa  h-0 w-24 z-10" />
+            <div className="border border-[#292F33] opa  h-0 w-24 z-10 hidden md:block" />
           </div>
           <div>
-            <img src="/assets/chairSmall.png" alt="chair" />
+            <img src="/assets/chairSmall.png" alt="chair" className="hidden md:block" />
           </div>
-          <div className="flex flex-col items-center">
+          <div className=" flex-col items-center hidden md:flex">
             <img src="/assets/clock.png" alt="time to auction" />
             <div className="font-bold text-md">TIMED AUCTION</div>
           </div>
@@ -31,29 +30,35 @@ function FifthPage(props) {
             <img src="/assets/chairBig.png" alt="chairBig" />
           </div>
           <div className="w-20 z-10">
-            <label className="z-10">4 DAYS 7 HOURS UNTIL</label>
+            <label className="z-10 ">4 DAYS 7 HOURS UNTIL</label>
           </div>
           <div className="z-10">
-            <img src="/assets/chairSmall.png" alt="chair" className="z-10" />
+            <img src="/assets/chairSmall.png" alt="chair" className="z-10 hidden md:block" />
           </div>
           <div className="z-10">
-            <div className="border border-[#292F33] opa  h-0 w-24 z-10" />
+            <div className="border border-[#292F33] opa  h-0 w-24 z-10 hidden md:block" />
           </div>
         </div>
         <div className="flex flex-col items-center justify-center">
           <div className="text-xs font-bold">Reserve price</div>
           <div className="font-bold text-lg py-2">1.390,00 USD</div>
           <div className="font-semibold text-sm bg-CorrectYellow mb-1">BID NOW</div>
-          <div className="text-xs">Register to bid!</div>
+          <button className="text-xs">Register to bid!</button>
         </div>
-        <Animations
-          key={12}
-          height={windowHeight * 0.45}
-          width={windowHeight * 0.45}
-          positionTop={"5vh"}
-          positionLeft={"70%"}
-          animationClassList="animate-rotate animate-bounceCustom z-0"
-        />
+        <div>
+          <div className="block md:hidden lg:hidden"></div>
+
+          <div className="hidden md:block lg:block">
+            <Animations
+              key={12}
+              height={0.3}
+              width={0.3}
+              positionTop={"-5vh"}
+              positionLeft={"70%"}
+              animationClassList="animate-rotate animate-bounceCustom z-0"
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

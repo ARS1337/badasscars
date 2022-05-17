@@ -26,28 +26,28 @@ function App() {
   const [footerAnimation, setfooterAnimation] = useState("animate-bottomToTopFooter");
   const [currPage, setcurrPage] = useState("/");
   //animation class lists
-  let headerClassListScaleIn = "animate-scaleIn";
-  let headerClassListScaleInReverse = " animate-[scaleIn_1s_ease-in-out_1_reverse]  ";
-  let headerClassListScaleInFinished = "animate-scaleInFinished";
+  let headerClassListScaleIn = "md:animate-scaleIn";
+  let headerClassListScaleInReverse = " md:animate-[scaleIn_1s_ease-in-out_1_reverse]  ";
+  let headerClassListScaleInFinished = "md:animate-scaleInFinished";
 
-  let searchBarTopToBottom = " animate-[bottomToTopMoreMainPage_1s_ease-in-out_1_reverse] ";
-  let searchBarBottomToTopMore = "animate-bottomToTopMore";
-  let searchBarBottomToTopMoreFinished = "animate-bottomToTopMoreFinished";
+  let searchBarTopToBottom = " md:animate-[bottomToTopMoreMainPage_1s_ease-in-out_1_reverse] ";
+  let searchBarBottomToTopMore = "md:animate-bottomToTopMore";
+  let searchBarBottomToTopMoreFinished = "md:animate-bottomToTopMoreFinished";
 
-  let stickyNotificationTopToBottom = " animate-[bottomToTopMoreMainPage_1s_ease-in-out_1_reverse] ";
-  let stickyNotificationBottomToTopMore = "animate-bottomToTopMore";
-  let stickyNotificationBottomToTopMoreFinished = "animate-bottomToTopMoreFinished";
+  let stickyNotificationTopToBottom = " md:animate-[bottomToTopMoreMainPage_1s_ease-in-out_1_reverse] ";
+  let stickyNotificationBottomToTopMore = "md:animate-bottomToTopMore";
+  let stickyNotificationBottomToTopMoreFinished = "md:animate-bottomToTopMoreFinished";
 
-  let collectiveHeaderBottomToTop = "animate-bottomToTop";
-  let collectiveHeaderTopToBottom = "animate-[bottomToTop_1s_ease-in-out_1_reverse] ";
-  let collectiveHeaderTopToBottomFinished = "animate-bottomToTopFinished";
+  let collectiveHeaderBottomToTop = "md:animate-bottomToTop";
+  let collectiveHeaderTopToBottom = "md:animate-[bottomToTop_1s_ease-in-out_1_reverse] ";
+  let collectiveHeaderTopToBottomFinished = "md:animate-bottomToTopFinished";
 
-  let footerBottomToTop = "animate-bottomToTopFooter";
-  let footerTopToBottom = " animate-[bottomToTopFooter_1s_ease-in-out_1_reverse] ";
-  let footerBottomToTopFinished = "animate-bottomToTopFooterFinished";
+  let footerBottomToTop = "md:animate-bottomToTopFooter";
+  let footerTopToBottom = " md:animate-[bottomToTopFooter_1s_ease-in-out_1_reverse] ";
+  let footerBottomToTopFinished = "md:animate-bottomToTopFooterFinished";
 
-  let secondPageBottomToTop = "animate-secondPageBottomToTop";
-  let secondPageTopToBottom = "animate-secondPageTopToBottom";
+  let secondPageBottomToTop = "md:animate-secondPageBottomToTop";
+  let secondPageTopToBottom = "md:animate-secondPageTopToBottom";
 
   const [headerClassList, setheaderClassList] = useState(headerClassListScaleInReverse);
   const [searchBarClassList, setsearchBarClassList] = useState(searchBarTopToBottom);
@@ -68,8 +68,9 @@ function App() {
   let currPageNo = 0;
 
   const scrollToPage = (toPage: string) => {
+    console.log("scrolling to page ", toPage)
     try {
-      document.getElementsByClassName(toPage)[0].scrollIntoView({ block: "center", inline: "center" });
+      document.getElementsByClassName(toPage)[0].scrollIntoView({ block: "end", inline: "end" });
     } catch (err) {
       console.log("err ", err);
     }
@@ -87,11 +88,16 @@ function App() {
       return;
     }
     let newPage = pageList[currPageNo];
+    console.log('prevpage ',pageList[prevPageNo],' currpage ', pageList[currPageNo])
     //adding animation
     changeAnimation(prevPageNo, currPageNo);
     //trigger off load animation for curr page by setting setcurrpage then scroll to the new page
     setcurrPage(newPage);
-    scrollToPage(newPage);
+    try{
+      scrollToPage(newPage);
+    }catch(err){
+      console.log('err ',err)
+    }
   }, 500);
 
   const changeAnimation = (prevPageNo: number, currPageNo: number) => {
@@ -112,7 +118,7 @@ function App() {
         setsecondPageAnimationDirection(secondPageTopToBottom);
       } else {
         //transition from first page to middle
-        setsearchBarClassList(`animate-scaleIn md:${searchBarBottomToTopMore} lg:${searchBarBottomToTopMore}`);
+        setsearchBarClassList(searchBarBottomToTopMore);
         setheaderClassList(headerClassListScaleIn);
         setstickyNotificationClassList(stickyNotificationBottomToTopMore);
         setfooterClassList(footerBottomToTop);
@@ -129,89 +135,20 @@ function App() {
     }
   };
 
-  var xDown: number = 0;
-  var yDown: number = 0;
-
-  function getTouches(evt: any) {
-    return (
-      evt.touches || // browser API
-      evt.originalEvent.touches
-    ); // jQuery
-  }
-
-  const handleTouchStart = debounce((evt: TouchEvent) => {
-    evt.preventDefault();
-    const firstTouch = getTouches(evt)[0];
-    xDown = firstTouch.clientX;
-    yDown = firstTouch.clientY;
-  }, 500);
-
-  const handleTouchMove = debounce((evt: TouchEvent) => {
-    evt.preventDefault();
-    let prevPageNo = currPageNo;
-    //scrolling
-    if (prevPageNo == currPageNo) {
-      return;
-    }
-
-    if (!xDown || !yDown) {
-      return;
-    }
-
-    var xUp = evt.touches[0].clientX;
-    var yUp = evt.touches[0].clientY;
-
-    var xDiff = xDown - xUp;
-    var yDiff = yDown - yUp;
-
-    if (Math.abs(xDiff) > Math.abs(yDiff)) {
-      /*most significant*/
-      if (xDiff > 0) {
-        /* right swipe */
-      } else {
-        /* left swipe */
-      }
-    } else {
-      if (yDiff > 0 && currPageNo < pageList.length - 1) {
-        /* down swipe */
-        currPageNo++;
-        console.log("down");
-        alert("down");
-      } else if (yDiff < 0 && currPageNo > 0) {
-        /* up swipe */
-        currPageNo--;
-        console.log("up");
-        alert("up");
-      }
-    }
-    /* reset values */
-    xDown = 0;
-    yDown = 0;
-    let newPage = pageList[currPageNo];
-    //adding animation
-    changeAnimation(prevPageNo, currPageNo);
-    //trigger off load animation for curr page by setting setcurrpage then scroll to the new page
-    setcurrPage(newPage);
-    scrollToPage(newPage);
-  }, 500);
-
   useEffect(() => {
     window.addEventListener("wheel", handleScroll);
-    document.addEventListener("touchstart", handleTouchStart, false);
-    document.addEventListener("touchmove", handleTouchMove, false);
     setcurrPage("main-page");
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  console.log("currpage", currPage);
 
   return (
     <div
       className="font-roboto bg-newGrey w-screen scroll-container"
       key={"app" + currPage}
       style={{ overflow: "hidden", scrollBehavior: "smooth" }}
+      id='slider'
     >
-      {/* <div className="bg-CorrectGrey pt-[5vh]"> */}
-      <div className="fixed top-0 w-screen h-[20vh] z-50">
+      <div className="md:fixed top-0 w-screen md:h-[20vh] z-50 bg-newGrey md:bg-transparent">
         <div className={collectiveHeaderClassList}>
           <StickyNotificationAtTop bottomToTopAnimation={stickyNotificationClassList} />
           <div className=" px-1 md:px-8 ">

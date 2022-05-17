@@ -3,7 +3,7 @@ import configs from "../config";
 import Animations from "../utils/Animations";
 
 const CarDetails = (props) => {
-  const detailsClassList = `z-50 w-[50vw] md:w-full lg:w-full pt-0 md:pt-8 lg:pt-8 m-4 md:m-0 lg:m-0  flex align-middle justify-center flex-col  animate-bottomToTopCarDetails`;
+  const detailsClassList = `z-50 w-[25vw] md:w-full lg:w-full pt-0 md:pt-8 lg:pt-8 m-4 md:m-0 lg:m-0  flex items-stretch justify-center flex-col  animate-bottomToTopCarDetails`;
   return (
     <li className={detailsClassList}>
       <div className="  border-CorrectBlack bg-newGrey">
@@ -25,31 +25,32 @@ const CarDetails = (props) => {
 function SecondPage(props) {
   const { animationDirection } = props;
   const mainClassList =
-    "p-12 relative font-roboto w-screen h-full flex items-center justify-center   flex-col    " + animationDirection;
+    "p-12 relative font-roboto w-screen h-full flex items-center justify-center flex-col md:h-[95vh] lg:h-[95vh] md:w-[100vw] lg:w-[100vw]" +
+    animationDirection;
   return (
-    <div className="second-page scroll-area h-[100vh] z-40 bg-newGrey w-screen">
-      <div className={mainClassList} style={{ height: "95vh", width: "100vw" }}>
+    <div className="second-page scroll-area h-full md:h-[100vh] lg:h-[100vh] z-40 bg-newGrey w-screen">
+      <div className={mainClassList}>
         <div
           className={
-            " flex items-center justify-center font-oswald font-extrabold tracking-title z-10 pt-0  md:pt-16 lg:pt-16 text-center"
+            " text-xs md:text-lg flex items-center justify-center font-oswald font-extrabold tracking-title z-10 pt-0  md:pt-16 lg:pt-16 text-center"
           }
         >
           THE BEST FROM THE OFFER
         </div>
         <div
           className={
-            " flex items-center justify-center flex-row px-0 md:px-24 lg:px-24 sm:flex-row w-screen md:w-5/6 lg:w-5/6  z-50 h-5/6 md:h-1/2 lg:h-1/2 overflow-scroll md:overflow-hidden lg:overflow-hidden"
+            "z-30 container md:container-none lg:container-none w-[100vw] md:flex lg:flex md:items-center lg:items-center md:justify-center lg:justify-center md:flex-row lg:flex-row px-0 md:px-24 lg:px-24 sm:flex-row  md:w-5/6 lg:w-5/6  z-50 h-5/6 md:h-1/2 lg:h-1/2 "
           }
         >
           {configs.carList.map((details) => (
-            <ul key={details.id} className="px-0 md:px-2 lg:px-2 z-10">
+            <ul key={details.id} className="py-0 px-0 md:px-2 lg:px-2 z-10">
               <CarDetails details={details} />
             </ul>
           ))}
         </div>
         <div
           className={
-            " flex items-center justify-center font-oswald font-bold tracking-title z-50 hover:cursor-pointer pt-8 hover:opacity-50 text-center"
+            "text-xs md:text-lg flex items-center justify-center font-oswald font-bold tracking-title z-30 hover:cursor-pointer pt-4 md:pt-8 lg:pt-8 hover:opacity-50 text-center"
           }
         >
           REVIEW THE ENTIRE OFFER

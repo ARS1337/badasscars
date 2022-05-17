@@ -3,7 +3,7 @@ import React from "react";
 function StickyNotificationAtTop(props) {
   const { bottomToTopAnimation } = props;
   const classList =
-    "flex justify-center sticky top-0 bg-CorrectYellow font-bold p-2 text-lg  max-w-[100vw] " + bottomToTopAnimation;
+    "flex justify-center md:sticky top-0 bg-CorrectYellow font-bold p-2 text-lg  max-w-[100vw] " + bottomToTopAnimation;
   return (
     <div className={classList}>
       <div className="flex justify-center  bg-CorrectYellow max-w-[100vw] px-1" id='sticky'>
