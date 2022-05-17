@@ -5,11 +5,10 @@ import { FaInstagram } from "react-icons/fa";
 
 function Footer(props) {
   const { currentCar, paymentAnimation, carListingNoAnimation, smAnimation } = props;
-  console.log('footer ',props)
   const currentCarString = currentCar > 9 ? currentCar + 1 : `0${currentCar + 1}`;
   const paymentClassListAnimation =
     paymentAnimation +
-    " z-40 font-light md:font-bold lg:font-bold w-3/6   text-xs md:text-sm md:w-full md:flex md:justify-center text-center";
+    " z-40 font-light md:font-normal lg:font-normal w-3/6   text-xs md:text-sm md:w-full md:flex md:justify-center text-center";
   const carListingNoClassListAnimation =
     carListingNoAnimation + " font-oswald font-semibold z-40 self-start flex items-center justify-end";
   const smAnimationClassList = " flex align-bottom flex-row justify-around md:w-36 lg:w-36 z-40 " + smAnimation;

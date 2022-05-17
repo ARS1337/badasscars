@@ -17,7 +17,8 @@ module.exports = {
       indigo: colors.indigo,
       yellow: colors.yellow,
       lightGrey: "#E6EBEF",
-      newGrey:'#E6EBEF'
+      newGrey: "#E6EBEF",
+      temp: "rgb(206 214 220/var(--tw-bg-opacity))",
     },
     fontFamily: {
       oswald: ["Oswald"],
@@ -36,6 +37,7 @@ module.exports = {
         ltr2: "ltr2 3s 1 forwards ",
         rtl1: "rtl1 3s 1 forwards ",
         rtl2: "rtl2 3s 1 forwards ",
+        buyNowAnimation: "bounceForBuyNow 2s 0s infinite alternate ",
         bounceCustom: "bounceCustom 1.5s 0.7s 1, rotate 60s 1.5s infinite linear ",
         moveBackgroundLinearToLeft: "moveBackgroundLinearToLeft 2s 1 forwards",
         moveBackgroundLinearToRight: "moveBackgroundLinearToRight 2s 1 forwards",
@@ -54,9 +56,23 @@ module.exports = {
         bottomToTopFooterFinished: "bottomToTopFooter 0s 1 forwards",
         bottomToTopCarDetails: "bottomToTopCarDetails 1.5s linear 0.5s  1 forwards",
         wheel: "wheel 2s infinite cubic-bezier(0.1, 0.8, 0.6, 0.1) forwards",
-        increaseBorderLength:"increaseBorderLength 1s 1 forwards"
+        increaseBorderLength: "increaseBorderLength 1s 1 forwards",
+        cityscape: "cityscape 1.5s 1 forwards",
+        cityscapeReverse: "cityscapeReverse 1.5s linear reverse 1 forwards",
       },
       keyframes: {
+        cityscape: {
+          "100%": { transform: " bg-right " },
+        },
+        cityscapeReverse: {
+          "100%": { transform: " bg-left " },
+        },
+        bounceForBuyNow: {
+          "0% ": { transform: "scale(0.9) " },
+          "25%": { transform: "scale(1) " },
+          "50%": { transform: "scale(1.1)" },
+          "100%": { transform: "scale(1)" },
+        },
         rotate: {
           "100%": { transform: "rotate(360deg)" },
         },

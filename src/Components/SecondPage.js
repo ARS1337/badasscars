@@ -28,7 +28,7 @@ function SecondPage(props) {
     "p-12 relative font-roboto w-screen h-full flex items-center justify-center flex-col md:h-[95vh] lg:h-[95vh] md:w-[100vw] lg:w-[100vw]" +
     animationDirection;
   return (
-    <div className="second-page scroll-area h-full md:h-[100vh] lg:h-[100vh] z-40 bg-newGrey w-screen">
+    <div className="second-page scroll-area h-full md:h-[100vh] lg:h-[100vh] z-40 bg-newGrey w-screen animate-bottomToTop">
       <div className={mainClassList}>
         <div
           className={
@@ -39,7 +39,7 @@ function SecondPage(props) {
         </div>
         <div
           className={
-            "z-30 container md:container-none lg:container-none w-[100vw] md:flex lg:flex md:items-center lg:items-center md:justify-center lg:justify-center md:flex-row lg:flex-row px-0 md:px-24 lg:px-24 sm:flex-row  md:w-5/6 lg:w-5/6  z-50 h-5/6 md:h-1/2 lg:h-1/2 "
+            "z-30 container md:container-none md:overflow-hidden lg:container-none w-[100vw] md:flex lg:flex md:items-center lg:items-center md:justify-center lg:justify-center md:flex-row lg:flex-row px-0 md:px-24 lg:px-24 sm:flex-row  md:w-5/6 lg:w-5/6  z-50 h-5/6 md:h-1/2 lg:h-1/2 "
           }
         >
           {configs.carList.map((details) => (

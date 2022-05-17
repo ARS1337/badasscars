@@ -142,7 +142,7 @@ function App() {
       style={{ overflow: "hidden", scrollBehavior: "smooth" }}
       id="slider"
     >
-      <div className="md:fixed top-0 w-screen md:h-[20vh] z-50 bg-newGrey md:bg-transparent">
+      <div className="md:fixed top-0 w-screen md:h-[20vh] z-50  md:bg-transparent">
         <div className={collectiveHeaderClassList}>
           <StickyNotificationAtTop bottomToTopAnimation={stickyNotificationClassList} />
           <div className=" px-1 md:px-8 ">

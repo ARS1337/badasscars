@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Animations from "../utils/Animations";
 import Cars from "./Cars";
 import configs from "../config";
@@ -9,12 +9,11 @@ function MainPage(props) {
   const [carClassList, setcarClassList] = useState(
     "flex items-center justify-center flex-row  relative animate-none z-40  pb-4"
   );
+  const [cityScapeClassList, setcityScapeClassList] = useState("animate-cityscape ");
   const [animationClassList, setanimationClassList] = useState("animate-rotate animate-bounceCustom z-1");
-  const [cityScapeClassList, setcityScapeClassList] = useState("absolute z-0 pt-20 w-screen");
   const [buyNowClassList, setbuyNowClassList] = useState(
-    " animate-onlyBounce absolute text-white rounded-full h-24 w-24 bg-[#292F33] z-50 border-8 border-[#EEFF00] top-[50%] left-[40%] font-oswald           border-opacity-50 font-bold hover:opacity-50 hover:cursor-pointer  "
+    " animate-buyNowAnimation absolute text-white rounded-full h-12 w-12 md:h-24 md:w-24 bg-[#292F33] z-50 border-2 top-[40%] md:top-[45%] md:border-8 border-[#EEFF00] flex items-center justify-center font-oswald           border-opacity-50 font-bold hover:opacity-50 hover:cursor-pointer  "
   );
-
   const leftTyreBaseClasses = " absolute z-50  bottom-[12%] md:bottom-0 lg:bottom-0  left-[12.1%] ";
   const rightTyreBaseClasses = " absolute z-50 bottom-[12%] md:bottom-1 lg:bottom-1 right-[10.5%] ";
 
@@ -30,10 +29,12 @@ function MainPage(props) {
 
   const setNewClass = (currCarClass, newCarClass, newCarNo, wait = 1000, classSetter, direction) => {
     //tyre animation
-    if (direction == "left") {
+    if (direction === "left") {
+      setcityScapeClassList("animate-cityscape");
       setleftTyreAnimation(leftTyreBaseClasses + " " + "animate-[wheel_4s_linear_infinite_forwards]");
       setrightTyreAnimation(rightTyreBaseClasses + " " + "animate-[wheel_4s_linear_infinite_forwards]");
-    } else if (direction == "right") {
+    } else if (direction === "right") {
+      setcityScapeClassList("animate-cityscapeReverse");
       setleftTyreAnimation(leftTyreBaseClasses + " " + "animate-[wheel_4s_linear_infinite_reverse_forwards]");
       setrightTyreAnimation(rightTyreBaseClasses + " " + "animate-[wheel_4s_linear_infinite_reverse_forwards]");
     }
@@ -43,14 +44,6 @@ function MainPage(props) {
     }, 2250);
     // yellow plus animation
     setanimationClassList("animate-rotate animate-bounceCustom z-1");
-    //cityScape movement animation
-    if (currentCar > newCarNo) {
-      setcityScapeClassList(cityScapeClassList + " animate-moveBackgroundLinearToLeft");
-      setcityScapeClassList(cityScapeClassList + " bg-left");
-    } else if (currentCar < newCarNo) {
-      setcityScapeClassList(cityScapeClassList + " animate-moveBackgroundLinearToRight");
-      setcityScapeClassList(cityScapeClassList + " bg-right");
-    }
     //setting car movement animation initial
     let newClassListString = returnNewClassList(carClassList, currCarClass);
     classSetter(newClassListString);
@@ -66,15 +59,19 @@ function MainPage(props) {
       }, [wait]);
     }
   };
+  useEffect(() => {
+    console.log("cityScapeClassList ", cityScapeClassList);
+  }, [cityScapeClassList]);
 
   return (
     <div
-      className="overflow-hidden main-page scroll-area z-40  md:pt-[20vh] md:mb-36 md:h-screen main-page animate-secondPageTopToBottom "
+      className="overflow-hidden main-page scroll-area z-40  md:pt-[20vh] md:mb-36 md:h-screen main-page animate-secondPageTopToBottom bg-[#CED6DC]"
       key="main"
     >
-      <div className="font-roboto ">
-        <div className=" md:min-h-screen z-[1] overflow-hidden ">
-          <div className="flex items-center justify-center z-50" >
+      <div className="font-roboto  " key={cityScapeClassList + currentCar + 99}>
+        <div id="sliding-background" className={cityScapeClassList} key={cityScapeClassList + currentCar + 99}></div>
+        <div className=" md:min-h-[80vh] z-[1] overflow-hidden bg-newGrey ">
+          <div className="flex items-center justify-center z-10">
             <Cars
               carDetails={configs?.carList[currentCar]}
               key={currentCar + 8}
@@ -115,7 +112,6 @@ function MainPage(props) {
                   animationClassList={animationClassList}
                 />
               </div>
-
             </div>
           </div>
         </div>

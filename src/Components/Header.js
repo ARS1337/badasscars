@@ -37,7 +37,7 @@ function Header(props) {
 
           {/* md and lg */}
           <div className={headerTitleClassList}>
-            <h6 className="text-4xl font-bold flex align-middle justify-center">BADASS</h6>
+            <h6 className="text-5xl font-bold flex align-middle justify-center">BADASS</h6>
             <h6 className="text-md font-bold tracking-spacing flex align-middle justify-center pl-3">SHOP</h6>
           </div>
 

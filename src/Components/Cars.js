@@ -21,10 +21,11 @@ function Cars(props) {
     setcarClassList,
     leftTyreAnimation,
     rightTyreAnimation,
+    buyNowClassList
   } = props;
 
-  const height = (window.innerHeight * 20) / 100;
-  const width = (window.innerWidth * 60) / 100;
+  const height = (window.innerHeight * 15) / 100;
+  const width = (window.innerWidth * 40) / 100;
 
   const handleArrowClick = (direction) => {
     if (direction == "left") {
@@ -40,15 +41,15 @@ function Cars(props) {
 
   if (carDetails) {
     return (
-      <div className="flex justify-center items-center h-[50vh]  md:h-[70vh] " key={carDetails?.id}>
+      <div className="flex justify-center items-center h-[50vh] bg-newGrey  md:h-[70vh] " key={carDetails?.id}>
         <div className="flex justify-center items-center w-full flex-col z-50   ">
           <div className={carClassList}>
             <img src={carDetails?.img} alt={carDetails?.name} height={height} width={width} className="z-20  " />
-            {/* <div className={buyNowClassList}>
-            <div className="flex items-center justify-center  pt-7 hover:cursor-pointer ">
-              <label className="hover:cursor-pointer ">BUY NOW</label>
+            <div className={buyNowClassList}>
+              <div className="flex items-center justify-center hover:cursor-pointer ">
+                <label className="hover:cursor-pointer text-xs md:text-base pl-3 md:pl-0">BUY NOW</label>
+              </div>
             </div>
-          </div> */}
             <img
               src="/assets/tyre.png"
               alt="car tyre"
@@ -68,9 +69,14 @@ function Cars(props) {
             />
             <div className="absolute bg-gradient-to-r from-blue-500-to-grey top-[90%] md:top-full lg:top-full   bg-CorrectBlack opacity-10 shadow-sm rounded-[20000%] w-[110%] md:w-[110%] lg:w-[110%] h-3 md:h-6 lg:h-6 z-50"></div>
           </div>
-          <div className="pt-2 md:pt-12 lg:pt-12 text-sm font-bold pb-1 md:pb-2 lg:pb-2">{carDetails?.header?.toUpperCase()}</div>
+          <div className="pt-2 md:pt-8 lg:pt-8 text-sm font-bold pb-1 md:pb-2 lg:pb-2">
+            {carDetails?.header?.toUpperCase()}
+          </div>
           <div className="text-3xl font-bold pb-1 md:pb-1 lg:pb-1">{carDetails?.name}</div>
-          <div className="flex flex-row items-center justify-between w-[100vw] md:w-4/5 lg:w-4/5 px-2 pb-1 " key={carDetails.id}>
+          <div
+            className="flex flex-row items-center justify-between w-[100vw] md:w-4/5 lg:w-4/5 px-2 pb-1 "
+            key={carDetails.id}
+          >
             <div
               onClick={() => handleArrowClick("left")}
               className={currentCar == 0 ? "z-30 invisible px-2 " : "visible px-2"}
