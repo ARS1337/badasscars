@@ -168,7 +168,7 @@ module.exports = {
         // }
       },
       backgroundImage: {
-        cityscape: 'url("..")',
+        cityscape: 'url("/public/assets/bg_footer.png")',
       },
     },
   },
