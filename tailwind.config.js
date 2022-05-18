@@ -58,16 +58,32 @@ module.exports = {
         wheel: "wheel 2s infinite cubic-bezier(0.1, 0.8, 0.6, 0.1) forwards",
         increaseBorderLength: "increaseBorderLength 1s 1 forwards",
         cityscape: "cityscape 1.5s 1 forwards",
-        cityscapeReverse: "cityscape 1.5s linear reverse 1 forwards",
+        cityscapeReverse: "cityscapeReverse 1.5s  1 forwards",
       },
       keyframes: {
         cityscape: {
           // "0%": { transform: "translateX(0%) " },
-          "100%": { transform: "translateX(50px) " },
+          "100%": { transform: "translateX(-150px) " },
+        },
+        cityscape2: {
+          // "0%": { transform: "translateX(0%) " },
+          "100%": { transform: "translateX(-100px) " },
+        },
+        cityscape3: {
+          // "0%": { transform: "translateX(0%) " },
+          "100%": { transform: "translateX(150px) " },
+        },
+        cityscape4: {
+          // "0%": { transform: "translateX(0%) " },
+          "100%": { transform: "translateX(200px) " },
         },
         cityscapeReverse: {
           // "0%": { transform: "translateX(50%) " },
-          "100%": { transform: "translateX(-50px) " },
+          "100%": { transform: "translateX(150px) " },
+        },
+        cityscapeReverse2: {
+          // "0%": { transform: "translateX(50%) " },
+          "100%": { transform: "translateX(100px) " },
         },
         bounceForBuyNow: {
           "0% ": { transform: "scale(0.9) " },

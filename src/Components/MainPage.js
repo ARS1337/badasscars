@@ -5,7 +5,7 @@ import configs from "../config";
 import "../styles/App.css";
 
 function MainPage(props) {
-  const { currentCar, setcurrentCar } = props;
+  const { currentCar, setcurrentCar, cityScapeCounter, cityScapeList } = props;
   const [carClassList, setcarClassList] = useState(
     "flex items-center justify-center flex-row  relative animate-none z-40  pb-4"
   );
@@ -26,6 +26,7 @@ function MainPage(props) {
     let newClassListString = baseClassList.join(" ") + " " + newClassToAdd;
     return newClassListString;
   };
+
   const setNewClass = (currCarClass, newCarClass, newCarNo, wait = 1000, classSetter, direction) => {
     //tyre animation
     if (direction === "left") {
@@ -46,17 +47,17 @@ function MainPage(props) {
     classSetter(newClassListString);
     setbuyNowClassList(buyNowClassList + "visible ");
     setcurrentCar(currentCar);
+    if (direction == "left") {
+      setcityScapeClassList("animate-cityscape");
+    } else {
+      setcityScapeClassList("animate-cityscapeReverse");
+    }
     //if new car will be shown then the movement animation for that car
     if (newCarClass) {
       setTimeout(() => {
         let newClassListString = returnNewClassList(carClassList, newCarClass);
         classSetter(newClassListString);
         setbuyNowClassList(buyNowClassList + "visible animate-onlyBounce z-50 ");
-        if (direction == "left") {
-          setcityScapeClassList("animate-cityscape");
-        } else {
-          setcityScapeClassList("animate-cityscapeReverse");
-        }
         setcurrentCar(newCarNo);
       }, [wait]);
     }

@@ -58,6 +58,9 @@ function App() {
   ];
   let currPageNo = 0;
 
+  const cityScapeList = ["animate-cityscape1", "animate-cityscape2", "animate-cityscape3", "animate-cityscape4"];
+  let cityScapeCounter = 0;
+
   const scrollToPage = (toPage: string) => {
     console.log("scrolling to page ", toPage);
     try {
@@ -153,7 +156,7 @@ function App() {
       </div>
 
       <div className={currPage.includes("main") ? " opacity-1" : "opacity-1"}>
-        <MainPage currentCar={currentCar} setcurrentCar={setcurrentCar} />
+        <MainPage currentCar={currentCar} cityScapeList={cityScapeList} cityScapeCounter={cityScapeCounter} setcurrentCar={setcurrentCar} />
       </div>
       <div className={currPage.includes("second") ? " opacity-1" : "opacity-1"}>
         <SecondPage animationDirection={secondPageAnimationDirection} />
