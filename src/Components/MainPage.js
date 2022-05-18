@@ -36,9 +36,19 @@ function MainPage(props) {
       setleftTyreAnimation(leftTyreBaseClasses + " " + "animate-[wheel_4s_linear_infinite_reverse_forwards]");
       setrightTyreAnimation(rightTyreBaseClasses + " " + "animate-[wheel_4s_linear_infinite_reverse_forwards]");
     }
+    if (direction == "left") {
+      setcityScapeClassList("animate-cityscape");
+    } else {
+      setcityScapeClassList("animate-cityscapeReverse");
+    }
     setTimeout(() => {
       setleftTyreAnimation(leftTyreBaseClasses + " " + "animate-[wheel_0s_linear_infinite_reverse_forwards]");
       setrightTyreAnimation(rightTyreBaseClasses + " " + "animate-[wheel_0s_linear_infinite_reverse_forwards]");
+      if (direction == "left") {
+        setcityScapeClassList("animate-[cityscape_0s_linear_1_forwards]");
+      } else {
+        setcityScapeClassList("animate-[cityscapeReverse_0s_linear_1_forwards]");
+      }
     }, 2250);
     // yellow plus animation
     setanimationClassList("animate-rotate animate-bounceCustom z-1");
@@ -46,12 +56,9 @@ function MainPage(props) {
     let newClassListString = returnNewClassList(carClassList, currCarClass);
     classSetter(newClassListString);
     setbuyNowClassList(buyNowClassList + "visible ");
+
     setcurrentCar(currentCar);
-    if (direction == "left") {
-      setcityScapeClassList("animate-cityscape");
-    } else {
-      setcityScapeClassList("animate-cityscapeReverse");
-    }
+
     //if new car will be shown then the movement animation for that car
     if (newCarClass) {
       setTimeout(() => {
@@ -62,9 +69,6 @@ function MainPage(props) {
       }, [wait]);
     }
   };
-  useEffect(() => {
-    console.log("cityScapeClassList ", cityScapeClassList);
-  }, [cityScapeClassList]);
 
   return (
     <div
@@ -86,6 +90,7 @@ function MainPage(props) {
               buyNowClassList={buyNowClassList}
               leftTyreAnimation={leftTyreAnimation}
               rightTyreAnimation={rightTyreAnimation}
+              key={currentCar}
             />
             <div>
               <div className="hidden md:block lg:block">

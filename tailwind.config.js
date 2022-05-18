@@ -59,10 +59,12 @@ module.exports = {
         increaseBorderLength: "increaseBorderLength 1s 1 forwards",
         cityscape: "cityscape 1.5s 1 forwards",
         cityscapeReverse: "cityscapeReverse 1.5s  1 forwards",
+        cityscapeFinished: "cityscape 0s 1 forwards",
+        cityscapeReverseFinished: "cityscapeReverse 0s  1 forwards",
       },
       keyframes: {
         cityscape: {
-          // "0%": { transform: "translateX(0%) " },
+          "0%": { transform: "translateX(0) " },
           "100%": { transform: "translateX(-150px) " },
         },
         cityscape2: {
@@ -78,7 +80,7 @@ module.exports = {
           "100%": { transform: "translateX(200px) " },
         },
         cityscapeReverse: {
-          // "0%": { transform: "translateX(50%) " },
+          "0%": { transform: "translateX(0) " },
           "100%": { transform: "translateX(150px) " },
         },
         cityscapeReverse2: {
