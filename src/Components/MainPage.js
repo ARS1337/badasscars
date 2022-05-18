@@ -3,6 +3,7 @@ import Animations from "../utils/Animations";
 import Cars from "./Cars";
 import configs from "../config";
 import "../styles/App.css";
+import StickyNotificationAtTop from "./StickyNotificationAtTop";
 
 function MainPage(props) {
   const { currentCar, setcurrentCar, cityScapeCounter, cityScapeList } = props;
@@ -71,59 +72,60 @@ function MainPage(props) {
   };
 
   return (
-    <div
-      className="overflow-hidden main-page scroll-area z-40  md:pt-[10vh] md:mb-36 md:h-screen main-page animate-secondPageTopToBottom bg-[#CED6DC]"
-      key="main"
-    >
-      <div className="font-roboto  ">
-        <div id="sliding-background" className={cityScapeClassList} key={cityScapeClassList + currentCar + 99}></div>
-        <div className=" md:min-h-[80vh] z-[1] overflow-hidden bg-newGrey ">
-          <div className="flex items-center justify-center z-10">
-            <Cars
-              carDetails={configs?.carList[currentCar]}
-              currentCar={currentCar}
-              carClassList={carClassList}
-              setNewClass={setNewClass}
-              noOfCars={configs?.carList?.length}
-              setcarClassList={setcarClassList}
-              setbuyNowClassList={setbuyNowClassList}
-              buyNowClassList={buyNowClassList}
-              leftTyreAnimation={leftTyreAnimation}
-              rightTyreAnimation={rightTyreAnimation}
-              key={currentCar}
-            />
-            <div>
-              <div className="hidden md:block lg:block">
-                <Animations
-                  key={currentCar + 2}
-                  height={0.15}
-                  width={0.15}
-                  positionTop={"45%"}
-                  positionLeft={"72%"}
-                  animationClassList={animationClassList}
-                />
-                <Animations
-                  key={currentCar + 3}
-                  height={0.02}
-                  width={0.02}
-                  positionTop={"30%"}
-                  positionLeft={"60%"}
-                  animationClassList={animationClassList}
-                />
-                <Animations
-                  key={currentCar + 4}
-                  height={0.3}
-                  width={0.3}
-                  positionTop={"25%"}
-                  positionLeft={"5%"}
-                  animationClassList={animationClassList}
-                />
+      <div
+        className="overflow-hidden main-page scroll-area z-40  md:h-screen main-page animate-secondPageTopToBottom bg-[#CED6DC]"
+        key="main"
+      >
+        <StickyNotificationAtTop/>
+        <div className="font-roboto md:mb-36  md:pt-[10vh] ">
+          <div id="sliding-background" className={cityScapeClassList} key={cityScapeClassList + currentCar + 99}></div>
+          <div className=" md:min-h-[80vh] z-[1] overflow-hidden bg-newGrey ">
+            <div className="flex items-center justify-center z-10">
+              <Cars
+                carDetails={configs?.carList[currentCar]}
+                currentCar={currentCar}
+                carClassList={carClassList}
+                setNewClass={setNewClass}
+                noOfCars={configs?.carList?.length}
+                setcarClassList={setcarClassList}
+                setbuyNowClassList={setbuyNowClassList}
+                buyNowClassList={buyNowClassList}
+                leftTyreAnimation={leftTyreAnimation}
+                rightTyreAnimation={rightTyreAnimation}
+                key={currentCar}
+              />
+              <div>
+                <div className="hidden md:block lg:block">
+                  <Animations
+                    key={currentCar + 2}
+                    height={0.15}
+                    width={0.15}
+                    positionTop={"45%"}
+                    positionLeft={"72%"}
+                    animationClassList={animationClassList}
+                  />
+                  <Animations
+                    key={currentCar + 3}
+                    height={0.02}
+                    width={0.02}
+                    positionTop={"30%"}
+                    positionLeft={"60%"}
+                    animationClassList={animationClassList}
+                  />
+                  <Animations
+                    key={currentCar + 4}
+                    height={0.3}
+                    width={0.3}
+                    positionTop={"25%"}
+                    positionLeft={"5%"}
+                    animationClassList={animationClassList}
+                  />
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
   );
 }
 

@@ -150,6 +150,8 @@ function App() {
     let notificationElem = document.getElementsByClassName("stickyNotification")[0];
     let searchBar = document.getElementsByClassName("searchBar")[0];
     let headerTitle = document.getElementsByClassName("headerTitle")[0];
+    let footersm = document.getElementsByClassName('footersm')[0];
+    let sixthPage = document.getElementsByClassName('sixth-page')[0];
 
     let scrollDirection = "";
     if (e.deltaY > 0) {
@@ -162,56 +164,36 @@ function App() {
       let isMainPageVisible = isVisible(mainPage);
       if (isMainPageVisible) {
         if (mainPage) {
-          if (searchBar) {
-            searchBar.style.animation = "bottomToTopMore 1s linear reverse 1 forwards";
-          }
-          let headerTitle = document.getElementsByClassName("headerTitle")[0];
-          if (headerTitle) {
-            headerTitle.style.animation = "scaleIn 0.9s 1 reverse forwards";
-          }
           let footerElem1 = document.getElementsByClassName("footer")[0];
           let footerElem2 = document.getElementsByClassName("footer")[1];
           footerElem1.style.animation = "bottomToTopFooter 1s linear 1 forwards";
           footerElem2.style.animation = "bottomToTopFooter 1s linear 1 forwards";
           notificationElem.style.animation="bottomToTopFooter 0s  1 forwards";
+          headerTitle.style.animation="scaleIn 1s 1 forwards"
+          searchBar.style.animation = "bottomToTopMore 1s linear  1 forwards";
         }
+      }
+      let isSixthPageVisible = isVisible(sixthPage)
+      if(isSixthPageVisible){
+        footersm.style.animation="bottomToTopFooter 0s  1 forwards"
       }
     } else if (scrollDirection === "up") {
       let pageVisible = isVisible(secondPage);
       if (pageVisible) {
-        if (secondPage) {
-          if (searchBar) {
-            searchBar.style.animation = "bottomToTopMore 1s linear  1 forwards";
-          }
-          let headerTitle = document.getElementsByClassName("headerTitle")[0];
-          if (headerTitle) {
-            headerTitle.style.animation = "scaleIn 0.9s 1 reverse forwards";
-          }
           let footerElem1 = document.getElementsByClassName("footer")[0];
           let footerElem2 = document.getElementsByClassName("footer")[1];
           footerElem1.style.animation = "bottomToTopFooter 1s linear 1 reverse forwards";
           footerElem2.style.animation = "bottomToTopFooter 1s linear 1 reverse forwards";
-          searchBar.style.animation = "bottomToTopMore 1.5s reverse 1 forwards";
-          notificationElem.style.animation="bottomToTopMore 1.5s 1 reverse forwards";
-        }
+          notificationElem.style.animation="bottomToTopFooter 0s 1 reverse forwards";
+          headerTitle.style.animation="scaleIn 1s 1 reverse forwards"
+          searchBar.style.animation = "bottomToTopMore 1s linear 1 reverse forwards";
+      }
+      let isSixthPageVisible = isVisible(sixthPage)
+      if(isSixthPageVisible){
+        footersm.style.animation="bottomToTopFooter 0s reverse 1 forwards"
       }
     }
 
-    if (searchBar) {
-      searchBar.style.animation = "bottomToTopMore 1.5s 1 forwards";
-    }
-    if (headerTitle) {
-      headerTitle.style.animation = "scaleIn 0.9s 1 forwards";
-    }
-
-    // let isSecondPageVisible = isVisible(secondPage);
-    // console.log("isSecondPageVisible ", isSecondPageVisible);
-    // if (secondPage && isSecondPageVisible) {
-    //   let footerElem1 = document.getElementsByClassName("footer")[0];
-    //   let footerElem2 = document.getElementsByClassName("footer")[1];
-    //   footerElem1.style.animation = "bottomToTopFooter 1s linear 1 forwards";
-    //   footerElem2.style.animation = "bottomToTopFooter 1s linear 1 forwards";
-    // }
   };
 
   function isVisible(elem) {
@@ -248,8 +230,7 @@ function App() {
     <div className="font-roboto bg-newGrey w-screen scroller" key={"app" + currPage} id="slider">
       <div className="md:fixed top-0 w-screen md:h-[15vh] z-50  md:bg-transparent">
         <div className={collectiveHeaderClassList}>
-          <StickyNotificationAtTop bottomToTopAnimation={stickyNotificationClassList} />
-          <div className=" px-1 md:px-8 ">
+          <div className=" px-1 md:px-8 md:pt-8">
             <Header scaleInAnimation={headerClassList} />
             <SearchBarAndOtherComponents searchBarAnimation={searchBarClassList} animateSecondHeader={false} />
           </div>
