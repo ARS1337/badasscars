@@ -44,11 +44,7 @@ function MainPage(props) {
     setTimeout(() => {
       setleftTyreAnimation(leftTyreBaseClasses + " " + "animate-[wheel_0s_linear_infinite_reverse_forwards]");
       setrightTyreAnimation(rightTyreBaseClasses + " " + "animate-[wheel_0s_linear_infinite_reverse_forwards]");
-      if (direction == "left") {
-        setcityScapeClassList("animate-[cityscape_0s_linear_1_forwards]");
-      } else {
-        setcityScapeClassList("animate-[cityscapeReverse_0s_linear_1_forwards]");
-      }
+
     }, 2250);
     // yellow plus animation
     setanimationClassList("animate-rotate animate-bounceCustom z-1");
@@ -65,6 +61,11 @@ function MainPage(props) {
         let newClassListString = returnNewClassList(carClassList, newCarClass);
         classSetter(newClassListString);
         setbuyNowClassList(buyNowClassList + "visible animate-onlyBounce z-50 ");
+        if (direction == "left") {
+          setcityScapeClassList("animate-cityscapeFinished");
+        } else {
+          setcityScapeClassList("animate-[cityscapeReverse_0s_linear_1_forwards]");
+        }
         setcurrentCar(newCarNo);
       }, [wait]);
     }
