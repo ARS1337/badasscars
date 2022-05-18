@@ -8,7 +8,7 @@ const DeviceDetails = (props) => {
   const { details } = props;
   return (
     <div
-      className="flex flex-col items-center justify-center border border-CorrectBlack mx-2 p-2 relative "
+      className="flex flex-col items-center justify-center border border-CorrectBlack mx-2 p-2 relative border-t-white"
       key={"detailsDevice" + details.id}
       onMouseOver={debounce(() => {
         sethover(true);
@@ -52,10 +52,10 @@ const DeviceDetails = (props) => {
 
 function FourthPage(props) {
   return (
-    <div className=" px-12 w-full h-full md:h-[120vh]  animate-secondPageBottomToTop fourth-page  flex items-center justify-start md:justify-end md:pb-24 flex-col ">
-      <div>
+    <div className=" px-12 w-full h-full md:h-[90vh]  animate-secondPageBottomToTop fourth-page font-oswald  flex items-center justify-center md:justify-end md:pb-24 flex-col ">
+      <div className="">
         <div className="flex flex-col md:flex-row lg:flex-row items-center justify-between" key="fourthPageMain">
-          <div className="font-bold text-lg">SPECIAL OFFER</div>
+          <div className="font-bold text-lg md:text-2xl">SPECIAL OFFER</div>
           <div className="text-sm">KITCHEN &nbsp; |&nbsp; TOOLS&nbsp; |&nbsp; CHILDREN'S CORNER</div>
         </div>
         <div className="container md:container-none lg:container-none w-[100vw] md:flex lg:flex md:items-center lg:items-center md:justify-center lg:justify-center md:flex-row lg:flex-row pt-12 ">

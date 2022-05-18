@@ -40,7 +40,7 @@ function Cars(props) {
   };
 
   return (
-    <div className="flex justify-center items-center h-[50vh] bg-newGrey  md:h-[70vh] " key={carDetails?.id}>
+    <div className="font-oswald font-normal flex justify-center items-center h-[50vh] bg-newGrey  md:h-[70vh] " key={carDetails?.id}>
       <div className="flex justify-center items-center w-full flex-col z-50   ">
         <div className={carClassList}>
           <img src={carDetails?.img} alt={carDetails?.name} height={height} width={width} className="z-20  " />
@@ -68,7 +68,7 @@ function Cars(props) {
           />
           <div className="absolute bg-gradient-to-r from-blue-500-to-grey top-[90%] md:top-full lg:top-full   bg-CorrectBlack opacity-10 shadow-sm rounded-[20000%] w-[110%] md:w-[110%] lg:w-[110%] h-3 md:h-6 lg:h-6 z-50"></div>
         </div>
-        <div className="pt-2 md:pt-8 lg:pt-8 text-sm font-bold pb-1 md:pb-2 lg:pb-2">
+        <div className="pt-2 md:pt-8 lg:pt-8 text-sm font-normal pb-1 md:pb-2 lg:pb-2">
           {carDetails?.header?.toUpperCase()}
         </div>
         <div className="text-3xl font-bold pb-1 md:pb-1 lg:pb-1">{carDetails?.name}</div>
@@ -84,7 +84,7 @@ function Cars(props) {
             <Arrows direction="left" />
           </div>
           <div>
-            <div className="w-full">{carDetails?.type}</div>
+            <div className="w-full font-normal">{carDetails?.type}</div>
           </div>
           <div
             onClick={() => handleArrowClick("right")}
@@ -94,12 +94,12 @@ function Cars(props) {
             <Arrows direction="right" />
           </div>
         </div>
-        <div className="text-xs md:text-sm font-semibold flex flex-col items-center justify-center md:flex-row pt-2">
+        <div className="text-xs md:text-sm font-normal flex flex-col items-center justify-center md:flex-row pt-2">
           {carDetails?.details.map((detail, key) => (
             <div key={key}>
               <div className="block md:hidden lg:hidden pb-0.5 md:pb-1 lg:pb-1 text-xs">{detail} </div>
-              <div className="hidden md:block lg:block pb-0.5 md:pb-1 lg:pb-1">
-                {key != 0 ? "| " + detail + "  " : " " + detail + "  "}
+              <div className="hidden md:block lg:block px-2 pb-0.5 md:pb-1 lg:pb-1">
+                {key != 0 ? " | " + detail + "    " : " " + detail + "  "}
               </div>
             </div>
           ))}

@@ -6,14 +6,14 @@ const windowHeight = window.innerHeight;
 function FifthPage(props) {
   return (
     <div
-      className="px-20 h-[100vh] md:h-[85vh] w-full  animate-secondPageBottomToTop fifth-page pt-8 md:pt-24  lg:pt-0 flex items-start md:items-center justify-center "
+      className=" px-20 h-full pb-8 md:pb-0 md:h-[100vh] w-full  font-oswald fifth-page pt-8 md:pt-24  lg:pt-0 flex items-start md:items-center justify-center "
     >
       <div className="relative  w-full ">
-        <label className="absolute top-[5%] left-[0%] tracking-spacing md:left-[15%] md:-top-[3%] flex items-center justify-center text-5xl md:text-9xl w-full md:w-[80vw] md:tracking-auctionSpacing z-10 text-CorrectGrey font-extrabold font-oswald">
+        <label className="absolute top-[5%] opacity-50 left-[0%] tracking-spacing md:left-[15%] md:-top-[5%] flex items-center justify-center text-5xl md:text-[12rem] w-full md:w-[80vw] md:tracking-auctionSpacing z-10 text-CorrectGrey font-extrabold font-oswald">
           AUCTION
         </label>
-        <div className="flex items-center justify-center font-bold text-2xl z-10">
-          <label className="z-10">CHAIR HALLS</label>
+        <div className="flex items-center justify-center font-semibold text-2xl z-10">
+          <label className="z-10 text-6xl">CHAIR HALLS</label>
         </div>
         <div className="flex flex-col md:flex-row items-center justify-between pt-12">
           <div>
@@ -40,10 +40,10 @@ function FifthPage(props) {
           </div>
         </div>
         <div className="flex flex-col items-center justify-center">
-          <div className="text-xs font-bold">Reserve price</div>
-          <div className="font-bold text-lg py-2">1.390,00 USD</div>
+          <div className="text-xs md:text-lg font-semibold">Reserve price</div>
+          <div className="font-bold text-lg md:text-xl py-2">1.390,00 USD</div>
           <div className="font-semibold text-sm bg-CorrectYellow mb-1">BID NOW</div>
-          <button className="text-xs">Register to bid!</button>
+          <button className="text-sm md:text-lg">Register to bid!</button>
         </div>
         <div>
           <div className="block md:hidden lg:hidden"></div>

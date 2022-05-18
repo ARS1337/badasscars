@@ -61,16 +61,16 @@ function App() {
   const cityScapeList = ["animate-cityscape1", "animate-cityscape2", "animate-cityscape3", "animate-cityscape4"];
   let cityScapeCounter = 0;
 
-  const scrollToPage = (toPage: string) => {
+  const scrollToPage = (toPage) => {
     console.log("scrolling to page ", toPage);
     try {
-      document.getElementsByClassName(toPage)[0].scrollIntoView({ block: "end", inline: "end" });
+      document.getElementsByClassName(toPage)[0].scrollIntoView({ block: "end", inline: "end", behavior: "smooth" });
     } catch (err) {
       console.log("err ", err);
     }
   };
 
-  const handleScroll = debounce((e: any) => {
+  const handleScroll = debounce((e) => {
     let prevPageNo = currPageNo;
     //scrolling
     if (e.deltaY > 0 && currPageNo < pageList.length - 1) {
@@ -88,14 +88,14 @@ function App() {
     //trigger off load animation for curr page by setting setcurrpage then scroll to the new page
     setcurrPage(newPage);
     try {
-      scrollToPage(newPage);
+      // scrollToPage(newPage);
     } catch (err) {
       console.log("err ", err);
     }
   }, 500);
 
-  const changeAnimation = (prevPageNo: number, currPageNo: number) => {
-    console.log('prevPageNo: ',prevPageNo," currPageNo: ",currPageNo)
+  const changeAnimation = (prevPageNo, currPageNo) => {
+    console.log("prevPageNo: ", prevPageNo, " currPageNo: ", currPageNo);
     if (currPageNo === 0) {
       setheaderClassList(headerClassListScaleInReverse);
       setsearchBarClassList(searchBarTopToBottom);
@@ -120,7 +120,7 @@ function App() {
         setcollectiveHeaderClassList(collectiveHeaderBottomToTop);
         setsecondPageAnimationDirection(secondPageBottomToTop);
       }
-    } else if ((currPageNo === 6)) {
+    } else if (currPageNo === 6) {
       setfooterClassList(" invisible ");
     } else {
       //currPage no ===2
@@ -133,19 +133,75 @@ function App() {
   };
 
   useEffect(() => {
-    window.addEventListener("wheel", handleScroll);
-    setcurrPage("main-page");
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("wheel", checkIfVisible);
   }, []);
+
+  const checkIfVisible = () => {
+    let notificationElem = document.getElementsByClassName("stickyNotification")[0];
+    if (notificationElem) {
+      notificationElem && notificationElem.remove();
+    }
+    let searchBar = document.getElementsByClassName("searchBar")[0];
+    if (searchBar) {
+      searchBar.style.animation = "bottomToTopMore 1.5s 1 forwards";
+    }
+    let headerTitle = document.getElementsByClassName("headerTitle")[0];
+    if (headerTitle) {
+      headerTitle.style.animation = "scaleIn 0.9s 1 forwards";
+    }
+    let mainPage = document.getElementsByClassName("main-page")[0];
+    let isMainPageVisible = isVisible(mainPage);
+    console.log('isMainPageVisible ',isMainPageVisible)
+    if (isMainPageVisible) {
+      if (mainPage) {
+        if (searchBar) {
+          searchBar.style.animation = "bottomToTopMore 1s linear reverse 1 forwards";
+        }
+        let headerTitle = document.getElementsByClassName("headerTitle")[0];
+        if (headerTitle) {
+          headerTitle.style.animation = "scaleIn 0.9s 1 reverse forwards";
+        }
+      }
+    }
+  };
+
+  function isVisible(elem) {
+    if (!(elem instanceof Element)) throw Error("DomUtil: elem is not an element.");
+    const style = getComputedStyle(elem);
+    if (style.display === "none") return false;
+    if (style.visibility !== "visible") return false;
+    if (style.opacity < 0.1) return false;
+    if (
+      elem.offsetWidth +
+        elem.offsetHeight +
+        elem.getBoundingClientRect().height +
+        elem.getBoundingClientRect().width ===
+      0
+    ) {
+      return false;
+    }
+    const elemCenter = {
+      x: elem.getBoundingClientRect().left + elem.offsetWidth / 2,
+      y: elem.getBoundingClientRect().top + elem.offsetHeight / 2,
+    };
+    if (elemCenter.x < 0) return false;
+    if (elemCenter.x > (document.documentElement.clientWidth || window.innerWidth)) return false;
+    if (elemCenter.y < 0) return false;
+    if (elemCenter.y > (document.documentElement.clientHeight || window.innerHeight)) return false;
+    let pointContainer = document.elementFromPoint(elemCenter.x, elemCenter.y);
+    do {
+      if (pointContainer === elem) return true;
+    } while ((pointContainer = pointContainer.parentNode));
+    return false;
+  }
 
   return (
     <div
-      className="font-roboto bg-newGrey w-screen scroll-container"
+      className="font-roboto bg-newGrey w-screen scroller"
       key={"app" + currPage}
-      style={{ overflow: "hidden", scrollBehavior: "smooth" }}
       id="slider"
     >
-      <div className="md:fixed top-0 w-screen md:h-[20vh] z-50  md:bg-transparent">
+      <div className="md:fixed top-0 w-screen md:h-[15vh] z-50  md:bg-transparent">
         <div className={collectiveHeaderClassList}>
           <StickyNotificationAtTop bottomToTopAnimation={stickyNotificationClassList} />
           <div className=" px-1 md:px-8 ">
@@ -155,29 +211,40 @@ function App() {
         </div>
       </div>
 
-      <div className={currPage.includes("main") ? " opacity-1" : "opacity-1"}>
-        <MainPage currentCar={currentCar} cityScapeList={cityScapeList} cityScapeCounter={cityScapeCounter} setcurrentCar={setcurrentCar} />
-      </div>
-      <div className={currPage.includes("second") ? " opacity-1" : "opacity-1"}>
+      <section className={" opacity-1 scroll-child "}>
+        <MainPage
+          currentCar={currentCar}
+          cityScapeList={cityScapeList}
+          cityScapeCounter={cityScapeCounter}
+          setcurrentCar={setcurrentCar}
+        />
+      </section>
+      <section className={" opacity-1 scroll-child"}>
         <SecondPage animationDirection={secondPageAnimationDirection} />
-      </div>
-      <div className={currPage.includes("third") ? " opacity-1" : "opacity-1"}>
+      </section>
+      <section className={" opacity-1 scroll-child"}>
         <ThirdPage />
-      </div>
-      <div className={currPage.includes("fourth") ? " opacity-1" : "opacity-1"}>
+      </section>
+      <section className={" opacity-1 scroll-child"}>
         <FourthPage />
-      </div>
-      <div className={currPage.includes("fifth") ? " opacity-1" : "opacity-1"}>
+      </section>
+      <section className={" opacity-1 scroll-child"}>
         <FifthPage />
-      </div>
-      <div className={currPage.includes("sixth") ? " opacity-1" : "opacity-1"}>
+      </section>
+      <section className={" opacity-1 scroll-child"}>
         <SixthPage />
+      </section>
+      <section className={" opacity-1 scroll-child"}>
+        <SeventhPage />
+      </section>
+      <div className={currPage.includes("seventh") ? " hidden " : " block "}>
+        <Footer
+          key={currPage}
+          currentCar={currentCar}
+          paymentAnimation={footerClassList}
+          carListingNoAnimation={footerClassList}
+        />
       </div>
-      <SeventhPage />
-      <div className={currPage.includes('seventh')?' hidden ':' block '}>
-      <Footer key={currPage} currentCar={currentCar} paymentAnimation={footerClassList} carListingNoAnimation={footerClassList} />
-      </div>
-      
     </div>
   );
 }

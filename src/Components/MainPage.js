@@ -44,7 +44,6 @@ function MainPage(props) {
     setTimeout(() => {
       setleftTyreAnimation(leftTyreBaseClasses + " " + "animate-[wheel_0s_linear_infinite_reverse_forwards]");
       setrightTyreAnimation(rightTyreBaseClasses + " " + "animate-[wheel_0s_linear_infinite_reverse_forwards]");
-
     }, 2250);
     // yellow plus animation
     setanimationClassList("animate-rotate animate-bounceCustom z-1");
@@ -73,7 +72,7 @@ function MainPage(props) {
 
   return (
     <div
-      className="overflow-hidden main-page scroll-area z-40  md:pt-[20vh] md:mb-36 md:h-screen main-page animate-secondPageTopToBottom bg-[#CED6DC]"
+      className="overflow-hidden main-page scroll-area z-40  md:pt-[10vh] md:mb-36 md:h-screen main-page animate-secondPageTopToBottom bg-[#CED6DC]"
       key="main"
     >
       <div className="font-roboto  ">

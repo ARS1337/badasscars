@@ -14,7 +14,7 @@ function Footer(props) {
   const smAnimationClassList = " flex align-bottom flex-row justify-around md:w-36 lg:w-36 z-40 " + smAnimation;
 
   return (
-    <div className="px-2 md:px-8 lg:px-8 font-oswald md:fixed md:bottom-0 pb-1  w-full  z-50 flex items-end justify-between">
+    <div className=" font-normal px-2 md:px-8 lg:px-8 font-oswald md:fixed md:bottom-0 pb-1  w-full  z-50 flex items-end justify-between">
       <div className={smAnimationClassList}>
         <div className="h-6 w-6 md:h-8 md:w-8 lg:h-8 lg:w-8 rounded-full mr-1 border border-[#74787B] flex items-center justify-center  hover:cursor-pointer hover:opacity-50">
           <TiSocialFacebook />

@@ -4,6 +4,7 @@ function Animations(props) {
   const { height, width, positionTop, positionLeft, animationClassList } = props;
   const windowHeight = window.innerHeight;
   const windowWidth = window.innerWidth;
+  return " "
   return (
     <div
       style={{
