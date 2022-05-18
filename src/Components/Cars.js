@@ -24,7 +24,7 @@ function Cars(props) {
     buyNowClassList
   } = props;
 
-  const height = (window.innerHeight * 15) / 100;
+  const height = (window.innerHeight * 25) / 100;
   const width = (window.innerWidth * 40) / 100;
 
   const handleArrowClick = (direction) => {
@@ -47,7 +47,7 @@ function Cars(props) {
             <img src={carDetails?.img} alt={carDetails?.name} height={height} width={width} className="z-20  " />
             <div className={buyNowClassList}>
               <div className="flex items-center justify-center hover:cursor-pointer ">
-                <label className="hover:cursor-pointer text-xs md:text-base pl-3 md:pl-0">BUY NOW</label>
+                <label className="hover:cursor-pointer text-[8px] md:text-base pl-2 md:pl-0">BUY NOW</label>
               </div>
             </div>
             <img

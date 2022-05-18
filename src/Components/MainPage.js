@@ -12,7 +12,7 @@ function MainPage(props) {
   const [cityScapeClassList, setcityScapeClassList] = useState("animate-cityscape ");
   const [animationClassList, setanimationClassList] = useState("animate-rotate animate-bounceCustom z-1");
   const [buyNowClassList, setbuyNowClassList] = useState(
-    " animate-buyNowAnimation absolute text-white rounded-full h-12 w-12 md:h-24 md:w-24 bg-[#292F33] z-50 border-2 top-[40%] md:top-[45%] md:border-8 border-[#EEFF00] flex items-center justify-center font-oswald           border-opacity-50 font-bold hover:opacity-50 hover:cursor-pointer  "
+    " animate-buyNowAnimation absolute text-white rounded-full h-8 w-8 text-[3px] md:text-base md:h-24 md:w-24 bg-[#292F33] z-50 border-2 top-[40%] md:top-[45%] md:border-8 border-[#EEFF00] flex items-center justify-center font-oswald           border-opacity-50 font-bold hover:opacity-50 hover:cursor-pointer  "
   );
   const leftTyreBaseClasses = " absolute z-50  bottom-[11%] md:bottom-0 lg:bottom-0  left-[12.1%] ";
   const rightTyreBaseClasses = " absolute z-50 bottom-[11%] md:bottom-1 lg:bottom-1 right-[10.5%] ";
