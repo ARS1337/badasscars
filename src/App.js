@@ -47,6 +47,14 @@ function App() {
   const [collectiveHeaderClassList, setcollectiveHeaderClassList] = useState(collectiveHeaderTopToBottom);
   const [secondPageAnimationDirection, setsecondPageAnimationDirection] = useState(secondPageBottomToTop);
 
+  // useEffect(() => {
+  //   let footerElem = document.getElementsByClassName("footer")[0];
+  //   if (footerElem) {
+  //     footerElem.classList.remove("hidden");
+  //     footerElem.classList.add("block");
+  //   }
+  // }, []);
+
   const pageList = [
     "main-page",
     "second-page",
@@ -136,33 +144,74 @@ function App() {
     window.addEventListener("wheel", checkIfVisible);
   }, []);
 
-  const checkIfVisible = () => {
-    let notificationElem = document.getElementsByClassName("stickyNotification")[0];
-    if (notificationElem) {
-      notificationElem && notificationElem.remove();
-    }
-    let searchBar = document.getElementsByClassName("searchBar")[0];
-    if (searchBar) {
-      searchBar.style.animation = "bottomToTopMore 1.5s 1 forwards";
-    }
-    let headerTitle = document.getElementsByClassName("headerTitle")[0];
-    if (headerTitle) {
-      headerTitle.style.animation = "scaleIn 0.9s 1 forwards";
-    }
+  const checkIfVisible = (e) => {
+    let secondPage = document.getElementsByClassName("second-page")[0];
     let mainPage = document.getElementsByClassName("main-page")[0];
-    let isMainPageVisible = isVisible(mainPage);
-    console.log('isMainPageVisible ',isMainPageVisible)
-    if (isMainPageVisible) {
-      if (mainPage) {
-        if (searchBar) {
-          searchBar.style.animation = "bottomToTopMore 1s linear reverse 1 forwards";
+    let notificationElem = document.getElementsByClassName("stickyNotification")[0];
+    let searchBar = document.getElementsByClassName("searchBar")[0];
+    let headerTitle = document.getElementsByClassName("headerTitle")[0];
+
+    let scrollDirection = "";
+    if (e.deltaY > 0) {
+      scrollDirection = "down";
+    } else if (e.deltaY < 0) {
+      scrollDirection = "up";
+    }
+
+    if (scrollDirection === "down") {
+      let isMainPageVisible = isVisible(mainPage);
+      if (isMainPageVisible) {
+        if (mainPage) {
+          if (searchBar) {
+            searchBar.style.animation = "bottomToTopMore 1s linear reverse 1 forwards";
+          }
+          let headerTitle = document.getElementsByClassName("headerTitle")[0];
+          if (headerTitle) {
+            headerTitle.style.animation = "scaleIn 0.9s 1 reverse forwards";
+          }
+          let footerElem1 = document.getElementsByClassName("footer")[0];
+          let footerElem2 = document.getElementsByClassName("footer")[1];
+          footerElem1.style.animation = "bottomToTopFooter 1s linear 1 forwards";
+          footerElem2.style.animation = "bottomToTopFooter 1s linear 1 forwards";
+          notificationElem.style.animation="bottomToTopFooter 0s  1 forwards";
         }
-        let headerTitle = document.getElementsByClassName("headerTitle")[0];
-        if (headerTitle) {
-          headerTitle.style.animation = "scaleIn 0.9s 1 reverse forwards";
+      }
+    } else if (scrollDirection === "up") {
+      let pageVisible = isVisible(secondPage);
+      if (pageVisible) {
+        if (secondPage) {
+          if (searchBar) {
+            searchBar.style.animation = "bottomToTopMore 1s linear  1 forwards";
+          }
+          let headerTitle = document.getElementsByClassName("headerTitle")[0];
+          if (headerTitle) {
+            headerTitle.style.animation = "scaleIn 0.9s 1 reverse forwards";
+          }
+          let footerElem1 = document.getElementsByClassName("footer")[0];
+          let footerElem2 = document.getElementsByClassName("footer")[1];
+          footerElem1.style.animation = "bottomToTopFooter 1s linear 1 reverse forwards";
+          footerElem2.style.animation = "bottomToTopFooter 1s linear 1 reverse forwards";
+          searchBar.style.animation = "bottomToTopMore 1.5s reverse 1 forwards";
+          notificationElem.style.animation="bottomToTopMore 1.5s 1 reverse forwards";
         }
       }
     }
+
+    if (searchBar) {
+      searchBar.style.animation = "bottomToTopMore 1.5s 1 forwards";
+    }
+    if (headerTitle) {
+      headerTitle.style.animation = "scaleIn 0.9s 1 forwards";
+    }
+
+    // let isSecondPageVisible = isVisible(secondPage);
+    // console.log("isSecondPageVisible ", isSecondPageVisible);
+    // if (secondPage && isSecondPageVisible) {
+    //   let footerElem1 = document.getElementsByClassName("footer")[0];
+    //   let footerElem2 = document.getElementsByClassName("footer")[1];
+    //   footerElem1.style.animation = "bottomToTopFooter 1s linear 1 forwards";
+    //   footerElem2.style.animation = "bottomToTopFooter 1s linear 1 forwards";
+    // }
   };
 
   function isVisible(elem) {
@@ -196,11 +245,7 @@ function App() {
   }
 
   return (
-    <div
-      className="font-roboto bg-newGrey w-screen scroller"
-      key={"app" + currPage}
-      id="slider"
-    >
+    <div className="font-roboto bg-newGrey w-screen scroller" key={"app" + currPage} id="slider">
       <div className="md:fixed top-0 w-screen md:h-[15vh] z-50  md:bg-transparent">
         <div className={collectiveHeaderClassList}>
           <StickyNotificationAtTop bottomToTopAnimation={stickyNotificationClassList} />

@@ -84,7 +84,7 @@ function Cars(props) {
             <Arrows direction="left" />
           </div>
           <div>
-            <div className="w-full font-normal">{carDetails?.type}</div>
+            <div className="w-full font-normal text-lg">{carDetails?.type}</div>
           </div>
           <div
             onClick={() => handleArrowClick("right")}

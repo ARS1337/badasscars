@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Animations from "../utils/Animations";
 
 function SixthPage(props) {
+  useEffect(() => {
+    let footerElem = document.getElementsByClassName("footer")[0];
+    if (footerElem) {
+      console.log('footer element found')
+      footerElem.style.animation = "bottomToTopFooterFinished 1s linear 1 reverse forwards";
+    }
+  }, []);
+
   return (
-    <div
-      className="px-1 md:px-12 font-oswald  relative flex items-start md:items-center justify-center  sixth-page h-[120vh] md:h-[95vh] "
-    >
+    <div className="px-1 md:px-12 font-oswald  relative flex items-start md:items-center justify-center  sixth-page h-[120vh] md:h-[95vh] ">
       <div className="relative text-center md:text-left">
         <label className="font-bold text-xl ">FROM THE BLOG</label>
         <div className="flex flex-col md:flex-row mt-4 md:mt-8 z-50 ">
@@ -37,7 +43,7 @@ function SixthPage(props) {
                 </label>
                 <label className="text-md md:text-base lg:text-lg text-left ">
                   Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
-                  labore et dolore 
+                  labore et dolore
                 </label>
               </div>
             </div>

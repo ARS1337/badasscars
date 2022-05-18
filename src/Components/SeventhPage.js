@@ -54,7 +54,9 @@ function SeventhPage(props) {
               <div className=" w-full md:w-[90vw] h-full ">
                 <div className="flex flex-col items-center  md:items-end">
                   <div className="p-4 pr-12 flex items-center flex-col">
-                    <h6 className="text-7xl font-bold flex align-middle font-oswald justify-center tracking-title">BADASS</h6>
+                    <h6 className="text-7xl font-bold flex align-middle font-oswald justify-center tracking-title">
+                      BADASS
+                    </h6>
                     <h6 className="text-3xl font-bold tracking-spacing flex align-middle justify-center pl-3 ">SHOP</h6>
                     <div className="md:pt-8 md:pb-12 flex align-bottom flex-row justify-around w-36 z-40 mt-2 mb-4 md:mt-1 md:mb-2">
                       <div className="h-8 w-8 rounded-full border border-[#74787B] flex align-middle justify-center pt-2 hover:cursor-pointer hover:opacity-50">
@@ -129,28 +131,19 @@ function SeventhPage(props) {
                           </button>
                         </div>
                       </div>
-
-                     
                     </div>
-                    
                   </div>
                   <div className="flex items-center justify-end bg-CorrectBlack text-CorrectWhite  flex-col w-full  md:w-1/3 p-4">
-                        <label className="text-left">Copyright 2019. All Rights Reserved</label>
-                        <label className="text-left">Crafted with love by EA93</label>
-                      </div>
+                    <label className="text-left">Copyright 2019. All Rights Reserved</label>
+                    <label className="text-left">Crafted with love by EA93</label>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div className="hidden md:hidden lg:block">
-          <Animations
-            key={13}
-            height={0.5}
-            width={0.5}
-            positionTop={"10vh"}
-            positionLeft={"-8%"}
-          />
+          <Animations key={13} height={0.5} width={0.5} positionTop={"10vh"} positionLeft={"-8%"} />
           <Animations
             key={12}
             height={windowHeight * 0.25}
