@@ -20,8 +20,8 @@ const windowHeight = window.innerHeight;
 
 function SeventhPage(props) {
   return (
-    <div className="z-50 relative mb-36 min-h-[140vh] px-1 md:px-12 md:pb-12 animate-secondPageBottomToTop seventh-page  h-[200vh] md:h-[100vh] flex items-start md:block bg-newGrey">
-      <div className=" bg-cityscape bg-no-repeat  absolute -bottom-[10%] h-1/2 -left-10 w-screen hidden md:block"></div>
+    <div className="z-50 relative mb-36 min-h-[140vh] px-1 md:px-12 md:pb-12 animate-secondPageBottomToTop seventh-page  h-[200vh] md:h-[160vh] flex items-start md:block bg-newGrey">
+      <div className=" bg-cityscape bg-repeat-x md:-ml-[10%] absolute bottom-[20%] h-1/2 -left-10 w-[150vw] hidden md:block"></div>
 
       <div className=" ">
         <div className=" z-50 mt-[15vh]  flex flex-col h-[80vh] md:h-[100vh]  justify-between relative">
