@@ -20,23 +20,20 @@ const windowHeight = window.innerHeight;
 
 function SeventhPage(props) {
   return (
-    <div className="z-50 relative mb-24 min-h-[100] px-1 md:px-12 md:pb-12 animate-secondPageBottomToTop seventh-page  h-[235vh] md:h-[100vh] flex items-start md:block bg-newGrey">
-      <div className=" bg-cityscape bg-no-repeat  absolute -bottom-[10%] h-1/2 -left-10 w-screen"></div>
+    <div className="z-50 relative mb-36 min-h-[140vh] px-1 md:px-12 md:pb-12 animate-secondPageBottomToTop seventh-page  h-[200vh] md:h-[100vh] flex items-start md:block bg-newGrey">
+      <div className=" bg-cityscape bg-no-repeat  absolute -bottom-[10%] h-1/2 -left-10 w-screen hidden md:block"></div>
 
       <div className=" ">
         <div className=" z-50 mt-[15vh]  flex flex-col h-[80vh] md:h-[100vh]  justify-between relative">
-          <div className="z-50">
+          {/* left container */}
+          <div className="md:absolute z-50 md:top-0 border w-full lg:h-[52vh] border-black md:border-0 mb-6 md:mb-0 font-oswald flex flex-row">
+            <div className="absolute border-0 md:border border-black h-1/2 md:h-full w-full md:w-7/12 md:border-r-0 z-40 " />
+            <div className="flex flex-col w-full sm:w-full md:w-3/4 lg:w-5/6 p-2 lg:p-12 relative ">
             <img
               src="/assets/women.png"
               alt="women"
-              className="absolute right-[0%] -top-[25%] md:block  w-full md:w-auto md:-top-36 z-50 md:right-[45%] h-auto "
+              className=" w-auto h-52 absolute right-0 top-0 sm:right-36 sm:h-full  md:right-0 lg:right-1/3"
             />
-          </div>
-
-          {/* left container */}
-          <div className="md:absolute z-40 md:top-0 border lg:h-[52vh] border-black md:border-0 mb-6 md:mb-0 font-oswald ">
-            <div className="absolute border-0 md:border border-black h-1/2 md:h-full w-full md:w-7/12 md:border-r-0 z-40 " />
-            <div className="flex flex-col w-full md:w-full lg:w-1/2 p-2 lg:p-12 ">
               <label className="font-semibold md:text-4xl pb-2 md:pb-4 ">Send a gift certificate</label>
               <label className="text-2xl md:text-9xl font-normal pb-2 md:pb-8 whitespace-nowrap">to a friend</label>
               <label className="text-md break-words pb-2 md:pb-8 w-1/2">
@@ -48,24 +45,24 @@ function SeventhPage(props) {
           </div>
 
           {/* right container */}
-          <div className="z-40 font-oswald md:h-[120vh]">
+          <div className="z-40 md:absolute bottom-0 right-0 font-oswald min-h-[150vh]  md:h-[120vh] -mb-36">
             <div className="md:absolute   flex items-end z-40 bottom-0  right-0 pt-4 md:pt-0 border border-black md:border-0  ">
               <div className="absolute border-0 md:border bottom-0 border-black h-[100%] w-7/12 md:border-l-0 right-0 z-10 " />
               <div className=" w-full md:w-[90vw] h-full ">
                 <div className="flex flex-col items-center  md:items-end">
-                  <div className="p-4 pr-12 flex items-center flex-col">
-                    <h6 className="text-7xl font-bold flex align-middle font-oswald justify-center tracking-title">
+                  <div className="p-4 pr-12 flex items-center flex-col ">
+                    <h6 className="text-7xl font-bold flex items-center font-oswald justify-center tracking-title">
                       BADASS
                     </h6>
-                    <h6 className="text-3xl font-bold tracking-spacing flex align-middle justify-center pl-3 ">SHOP</h6>
-                    <div className="md:pt-8 md:pb-12 flex align-bottom flex-row justify-around w-36 z-40 mt-2 mb-4 md:mt-1 md:mb-2">
-                      <div className="h-8 w-8 rounded-full border border-[#74787B] flex align-middle justify-center pt-2 hover:cursor-pointer hover:opacity-50">
+                    <h6 className="text-3xl font-bold tracking-spacing flex items-center justify-center pl-3 ">SHOP</h6>
+                    <div className=" lg:pt-8 lg:pb-10 md:pt-4 md:pb-8 flex  flex-row justify-around w-36 z-40 mt-2 mb-4 md:mt-1 md:mb-2">
+                      <div className="h-8 w-8 rounded-full border border-[#74787B] flex items-center justify-center  hover:cursor-pointer hover:opacity-50">
                         <TiSocialFacebook />
                       </div>
-                      <div className="h-8 w-8 rounded-full border border-[#74787B] flex align-middle justify-center pt-2 hover:cursor-pointer hover:opacity-50">
+                      <div className="h-8 w-8 rounded-full border border-[#74787B] flex items-center justify-center  hover:cursor-pointer hover:opacity-50">
                         <FaInstagram />
                       </div>
-                      <div className="h-auto w-8 rounded-full border border-[#74787B] flex align-middle justify-center pt-1 hover:cursor-pointer hover:opacity-50">
+                      <div className="h-auto w-8 rounded-full border border-[#74787B] flex items-center justify-center  hover:cursor-pointer hover:opacity-50">
                         <img src="/assets/youtube.png" alt="youtube icon" className="h-5 w-5" />
                       </div>
                     </div>
@@ -88,7 +85,7 @@ function SeventhPage(props) {
                         {" "}
                         YOU WANT EXTRA DISCOUNTS?
                       </label>
-                      <label className="text-xs pb-6">
+                      <label className="text-xs pb-6 text-center md:text-left">
                         Read more about the processing of your personal data on the{" "}
                         <a href="" className="font-bold">
                           PRIVACY POLICY
@@ -96,7 +93,7 @@ function SeventhPage(props) {
                         page.
                       </label>
                       <EmailInput />
-                      <div className="flex flex-row items-center justify-start">
+                      <div className="flex flex-row items-center justify-center md:justify-start">
                         <div className=" bg-[#292F33] h-16 w-16 rounded-full flex items-center justify-center text-CorrectWhite mr-4">
                           10<sup>USD</sup>
                         </div>
@@ -105,7 +102,7 @@ function SeventhPage(props) {
                         </label>
                       </div>
                     </div>
-                    <div className="flex flex-col  h-full   w-full md:w-4/12 items-">
+                    <div className="flex flex-col  h-full   w-full md:w-4/12 items-center">
                       <div className="flex items-center flex-col p-12">
                         <div className="flex flex-col items-start pl-4  font-oswald">
                           <button className="pb-1 md:pb-4 md:w-full text-xs md:text-sm tracking-[0.1rem] font-semibold text-left ">

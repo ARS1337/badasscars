@@ -12,6 +12,8 @@ import StickyNotificationAtTop from "./Components/StickyNotificationAtTop";
 import ThirdPage from "./Components/ThirdPage";
 import "./styles/App.css";
 import debounce from "./utils/debounce";
+import isVisible from './utils/checkVisibility'
+import animateValue from './utils/animateValues'
 
 function App() {
   const [currentCar, setcurrentCar] = useState(0);
@@ -47,13 +49,6 @@ function App() {
   const [collectiveHeaderClassList, setcollectiveHeaderClassList] = useState(collectiveHeaderTopToBottom);
   const [secondPageAnimationDirection, setsecondPageAnimationDirection] = useState(secondPageBottomToTop);
 
-  // useEffect(() => {
-  //   let footerElem = document.getElementsByClassName("footer")[0];
-  //   if (footerElem) {
-  //     footerElem.classList.remove("hidden");
-  //     footerElem.classList.add("block");
-  //   }
-  // }, []);
 
   const pageList = [
     "main-page",
@@ -64,81 +59,17 @@ function App() {
     "sixth-page",
     "seventh-page",
   ];
-  let currPageNo = 0;
-
+  let numberAnimation = () => {
+    let secondPage = document.getElementsByClassName("second-page")[0];
+    let fourthPage = document.getElementsByClassName("fourth-page")[0];
+    let pageVisibleSecond = isVisible(secondPage);
+    let pageVisibleFourth = isVisible(fourthPage);
+    if (pageVisibleSecond || pageVisibleFourth) {
+      animateValue(908, 999, 1000);
+    }
+  };
   const cityScapeList = ["animate-cityscape1", "animate-cityscape2", "animate-cityscape3", "animate-cityscape4"];
   let cityScapeCounter = 0;
-
-  const scrollToPage = (toPage) => {
-    console.log("scrolling to page ", toPage);
-    try {
-      document.getElementsByClassName(toPage)[0].scrollIntoView({ block: "end", inline: "end", behavior: "smooth" });
-    } catch (err) {
-      console.log("err ", err);
-    }
-  };
-
-  const handleScroll = debounce((e) => {
-    let prevPageNo = currPageNo;
-    //scrolling
-    if (e.deltaY > 0 && currPageNo < pageList.length - 1) {
-      currPageNo++;
-    } else if (e.deltaY < 0 && currPageNo > 0) {
-      currPageNo--;
-    }
-    if (prevPageNo == currPageNo) {
-      return;
-    }
-    let newPage = pageList[currPageNo];
-    console.log("prevpage ", pageList[prevPageNo], " currpage ", pageList[currPageNo]);
-    //adding animation
-    changeAnimation(prevPageNo, currPageNo);
-    //trigger off load animation for curr page by setting setcurrpage then scroll to the new page
-    setcurrPage(newPage);
-    try {
-      // scrollToPage(newPage);
-    } catch (err) {
-      console.log("err ", err);
-    }
-  }, 500);
-
-  const changeAnimation = (prevPageNo, currPageNo) => {
-    console.log("prevPageNo: ", prevPageNo, " currPageNo: ", currPageNo);
-    if (currPageNo === 0) {
-      setheaderClassList(headerClassListScaleInReverse);
-      setsearchBarClassList(searchBarTopToBottom);
-      setstickyNotificationClassList(stickyNotificationTopToBottom);
-      setfooterClassList(footerTopToBottom);
-      setcollectiveHeaderClassList(collectiveHeaderTopToBottom);
-    } else if (currPageNo === 1) {
-      if (prevPageNo === 2) {
-        //transition from last page to middle
-        setsearchBarClassList(searchBarBottomToTopMoreFinished);
-        setheaderClassList(headerClassListScaleInFinished);
-        setstickyNotificationClassList(stickyNotificationBottomToTopMoreFinished);
-        setfooterClassList(footerBottomToTopFinished);
-        setcollectiveHeaderClassList(collectiveHeaderTopToBottomFinished);
-        setsecondPageAnimationDirection(secondPageTopToBottom);
-      } else {
-        //transition from first page to middle
-        setsearchBarClassList(searchBarBottomToTopMore);
-        setheaderClassList(headerClassListScaleIn);
-        setstickyNotificationClassList(stickyNotificationBottomToTopMore);
-        setfooterClassList(footerBottomToTop);
-        setcollectiveHeaderClassList(collectiveHeaderBottomToTop);
-        setsecondPageAnimationDirection(secondPageBottomToTop);
-      }
-    } else if (currPageNo === 6) {
-      setfooterClassList(" invisible ");
-    } else {
-      //currPage no ===2
-      setheaderClassList(headerClassListScaleInFinished);
-      setsearchBarClassList(searchBarBottomToTopMoreFinished);
-      setstickyNotificationClassList(stickyNotificationBottomToTopMoreFinished);
-      setfooterClassList(footerBottomToTopFinished);
-      setcollectiveHeaderClassList(collectiveHeaderTopToBottomFinished);
-    }
-  };
 
   useEffect(() => {
     window.addEventListener("wheel", checkIfVisible);
@@ -152,6 +83,8 @@ function App() {
     let headerTitle = document.getElementsByClassName("headerTitle")[0];
     let footersm = document.getElementsByClassName('footersm')[0];
     let sixthPage = document.getElementsByClassName('sixth-page')[0];
+    let fourthPage = document.getElementsByClassName('fourth-page')[0];
+    let allHeaderElem = document.getElementsByClassName('allHeader')[0];
 
     let scrollDirection = "";
     if (e.deltaY > 0) {
@@ -171,11 +104,16 @@ function App() {
           notificationElem.style.animation="bottomToTopFooter 0s  1 forwards";
           headerTitle.style.animation="scaleIn 1s 1 forwards"
           searchBar.style.animation = "bottomToTopMore 1s linear  1 forwards";
+          allHeaderElem.style.animation = 'bottomToTop 1s linear  1 forwards'
         }
       }
       let isSixthPageVisible = isVisible(sixthPage)
       if(isSixthPageVisible){
         footersm.style.animation="bottomToTopFooter 0s  1 forwards"
+      }
+      let isSecondPageVisible = isVisible(secondPage)
+      if(isSecondPageVisible){
+        numberAnimation()
       }
     } else if (scrollDirection === "up") {
       let pageVisible = isVisible(secondPage);
@@ -187,48 +125,25 @@ function App() {
           notificationElem.style.animation="bottomToTopFooter 0s 1 reverse forwards";
           headerTitle.style.animation="scaleIn 1s 1 reverse forwards"
           searchBar.style.animation = "bottomToTopMore 1s linear 1 reverse forwards";
+          allHeaderElem.style.animation = 'bottomToTop 1s linear 1 reverse forwards'
       }
       let isSixthPageVisible = isVisible(sixthPage)
       if(isSixthPageVisible){
         footersm.style.animation="bottomToTopFooter 0s reverse 1 forwards"
       }
+      let isFourthPageVisible = isVisible(fourthPage)
+      if(isFourthPageVisible){
+        numberAnimation()
+      }
     }
 
   };
 
-  function isVisible(elem) {
-    if (!(elem instanceof Element)) throw Error("DomUtil: elem is not an element.");
-    const style = getComputedStyle(elem);
-    if (style.display === "none") return false;
-    if (style.visibility !== "visible") return false;
-    if (style.opacity < 0.1) return false;
-    if (
-      elem.offsetWidth +
-        elem.offsetHeight +
-        elem.getBoundingClientRect().height +
-        elem.getBoundingClientRect().width ===
-      0
-    ) {
-      return false;
-    }
-    const elemCenter = {
-      x: elem.getBoundingClientRect().left + elem.offsetWidth / 2,
-      y: elem.getBoundingClientRect().top + elem.offsetHeight / 2,
-    };
-    if (elemCenter.x < 0) return false;
-    if (elemCenter.x > (document.documentElement.clientWidth || window.innerWidth)) return false;
-    if (elemCenter.y < 0) return false;
-    if (elemCenter.y > (document.documentElement.clientHeight || window.innerHeight)) return false;
-    let pointContainer = document.elementFromPoint(elemCenter.x, elemCenter.y);
-    do {
-      if (pointContainer === elem) return true;
-    } while ((pointContainer = pointContainer.parentNode));
-    return false;
-  }
+
 
   return (
-    <div className="font-roboto bg-newGrey w-screen scroller" key={"app" + currPage} id="slider">
-      <div className="md:fixed top-0 w-screen md:h-[15vh] z-50  md:bg-transparent">
+    <div className="font-roboto bg-newGrey w-screen snap-none overflow-hidden md:snap-y md:overflow-y-scroll  md:h-[100vh] md:snap-start md:snap-mandatory" key={"app" + currPage} id="slider">
+      <div className="md:fixed top-0 w-screen md:h-[15vh] z-50  md:bg-transparent allHeader">
         <div className={collectiveHeaderClassList}>
           <div className=" px-1 md:px-8 md:pt-8">
             <Header scaleInAnimation={headerClassList} />
@@ -237,7 +152,7 @@ function App() {
         </div>
       </div>
 
-      <section className={" opacity-1 scroll-child "}>
+      <section className={" snap-start "}>
         <MainPage
           currentCar={currentCar}
           cityScapeList={cityScapeList}
@@ -245,22 +160,22 @@ function App() {
           setcurrentCar={setcurrentCar}
         />
       </section>
-      <section className={" opacity-1 scroll-child"}>
+      <section className={" snap-start"}>
         <SecondPage animationDirection={secondPageAnimationDirection} />
       </section>
-      <section className={" opacity-1 scroll-child"}>
+      <section className={" snap-start"}>
         <ThirdPage />
       </section>
-      <section className={" opacity-1 scroll-child"}>
+      <section className={" snap-start"}>
         <FourthPage />
       </section>
-      <section className={" opacity-1 scroll-child"}>
+      <section className={" snap-start"}>
         <FifthPage />
       </section>
-      <section className={" opacity-1 scroll-child"}>
+      <section className={" snap-start"}>
         <SixthPage />
       </section>
-      <section className={" opacity-1 scroll-child"}>
+      <section className={" snap-start"}>
         <SeventhPage />
       </section>
       <div className={currPage.includes("seventh") ? " hidden " : " block "}>

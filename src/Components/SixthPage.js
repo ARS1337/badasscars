@@ -5,15 +5,14 @@ function SixthPage(props) {
   useEffect(() => {
     let footerElem = document.getElementsByClassName("footer")[0];
     if (footerElem) {
-      console.log('footer element found')
       footerElem.style.animation = "bottomToTopFooterFinished 1s linear 1 reverse forwards";
     }
   }, []);
 
   return (
-    <div className="px-1 md:px-12 font-oswald  relative flex items-start md:items-center justify-center  sixth-page h-[120vh] md:h-[95vh] ">
+    <div className=" px-1 md:px-12 font-oswald  relative flex items-start md:items-center justify-center  sixth-page h-[120vh] md:h-[100vh] ">
       <div className="relative text-center md:text-left">
-        <label className="font-bold text-xl ">FROM THE BLOG</label>
+        <label className="font-bold text-xl lg:text-2xl ">FROM THE BLOG</label>
         <div className="flex flex-col md:flex-row mt-4 md:mt-8 z-50 ">
           <div className="flex flex-row border border-CorrectBlack border-r-white w-full md:w-7/12 md:pr-8 md:mr-4  justify-between items-stretch  z-50">
             <img

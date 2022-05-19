@@ -3,7 +3,7 @@ import configs from "../config";
 import Animations from "../utils/Animations";
 
 const CarDetails = (props) => {
-  const detailsClassList = `shadow-xl z-50 w-[25vw] md:w-full lg:w-full pt-0 md:pt-8 lg:pt-8 m-4 md:m-0 lg:m-0  flex items-stretch justify-center flex-col  `;
+  const detailsClassList = `shadow-xl z-50 w-[80vw] md:w-full lg:w-full pt-0 md:pt-8 lg:pt-8 m-4 md:m-0 lg:m-0  flex items-stretch justify-center flex-col  `;
   return (
     <li className={detailsClassList}>
       <div className="  border-CorrectBlack bg-newGrey">
@@ -38,7 +38,7 @@ function SecondPage(props) {
         </div>
         <div
           className={
-            " container md:container-none md:overflow-hidden lg:container-none w-[100vw] md:flex lg:flex md:items-center lg:items-center md:justify-center lg:justify-center md:flex-row lg:flex-row px-0 md:px-24 lg:px-24 sm:flex-row  md:w-5/6 lg:w-5/6  z-50 h-5/6 md:h-2/3 lg:h-2/3 "
+            "  container md:container-none md:overflow-hidden lg:container-none w-[100vw] md:flex lg:flex md:items-center lg:items-center md:justify-center lg:justify-center md:flex-row lg:flex-row px-0 md:px-24 lg:px-24 sm:flex-row  md:w-5/6 lg:w-5/6  z-50 h-min md:h-2/3 lg:h-2/3 "
           }
         >
           {configs.carList.map((details) => (

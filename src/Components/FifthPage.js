@@ -13,16 +13,16 @@ function FifthPage(props) {
           AUCTION
         </label>
         <div className="flex items-center justify-center font-semibold text-2xl z-10">
-          <label className="z-10 text-6xl">CHAIR HALLS</label>
+          <label className="z-10 text-4xl md:text-6xl">CHAIR HALLS</label>
         </div>
         <div className="flex flex-col md:flex-row items-center justify-between pt-12">
           <div>
-            <div className="border border-[#292F33] opa  h-0 w-24 z-10 hidden md:block" />
+            <div className="border border-[#292F33] opa  h-0 w-24 z-10 " />
           </div>
           <div>
-            <img src="/assets/chairSmall.png" alt="chair" className="hidden md:block" />
+            <img src="/assets/chairSmall.png" alt="chair" className="" />
           </div>
-          <div className=" flex-col items-center hidden md:flex">
+          <div className=" flex-col items-center flex">
             <img src="/assets/clock.png" alt="time to auction" />
             <div className="font-bold text-md">TIMED AUCTION</div>
           </div>
@@ -30,25 +30,25 @@ function FifthPage(props) {
             <img src="/assets/chairBig.png" alt="chairBig" />
           </div>
           <div className="w-20 z-10">
-            <label className="z-10 ">4 DAYS 7 HOURS UNTIL</label>
+            <label className="z-10 ">4 DAYS 7 HOURS UNTIL BIDDING</label>
           </div>
           <div className="z-10">
-            <img src="/assets/chairSmall.png" alt="chair" className="z-10 hidden md:block" />
+            <img src="/assets/chairSmall.png" alt="chair" className="z-10 " />
           </div>
           <div className="z-10">
-            <div className="border border-[#292F33] opa  h-0 w-24 z-10 hidden md:block" />
+            <div className="border border-[#292F33] opa  h-0 w-24 z-10 " />
           </div>
         </div>
         <div className="flex flex-col items-center justify-center">
-          <div className="text-xs md:text-lg font-semibold">Reserve price</div>
-          <div className="font-bold text-lg md:text-xl py-2">1.390,00 USD</div>
-          <div className="font-semibold text-sm bg-CorrectYellow mb-1">BID NOW</div>
-          <button className="text-sm md:text-lg">Register to bid!</button>
+          <div className="text-md md:text-lg font-normal">Reserve price</div>
+          <div className="font-semibold text-2xl md:text-xl py-2">1.390,00 USD</div>
+          <div className="font-semibold text-md bg-CorrectYellow mb-1">BID NOW</div>
+          <button className="text-md md:text-lg">Register to bid!</button>
         </div>
         <div>
           <div className="block md:hidden lg:hidden"></div>
 
-          <div className="hidden md:block lg:block">
+          <div className=" lg:block">
             <Animations
               key={12}
               height={0.3}
