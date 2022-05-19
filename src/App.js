@@ -12,8 +12,8 @@ import StickyNotificationAtTop from "./Components/StickyNotificationAtTop";
 import ThirdPage from "./Components/ThirdPage";
 import "./styles/App.css";
 import debounce from "./utils/debounce";
-import isVisible from './utils/checkVisibility'
-import animateValue from './utils/animateValues'
+import isVisible from "./utils/checkVisibility";
+import animateValue from "./utils/animateValues";
 
 function App() {
   const [currentCar, setcurrentCar] = useState(0);
@@ -49,7 +49,6 @@ function App() {
   const [collectiveHeaderClassList, setcollectiveHeaderClassList] = useState(collectiveHeaderTopToBottom);
   const [secondPageAnimationDirection, setsecondPageAnimationDirection] = useState(secondPageBottomToTop);
 
-
   const pageList = [
     "main-page",
     "second-page",
@@ -81,10 +80,10 @@ function App() {
     let notificationElem = document.getElementsByClassName("stickyNotification")[0];
     let searchBar = document.getElementsByClassName("searchBar")[0];
     let headerTitle = document.getElementsByClassName("headerTitle")[0];
-    let footersm = document.getElementsByClassName('footersm')[0];
-    let sixthPage = document.getElementsByClassName('sixth-page')[0];
-    let fourthPage = document.getElementsByClassName('fourth-page')[0];
-    let allHeaderElem = document.getElementsByClassName('allHeader')[0];
+    let footersm = document.getElementsByClassName("footersm")[0];
+    let sixthPage = document.getElementsByClassName("sixth-page")[0];
+    let fourthPage = document.getElementsByClassName("fourth-page")[0];
+    let allHeaderElem = document.getElementsByClassName("allHeader")[0];
 
     let scrollDirection = "";
     if (e.deltaY > 0) {
@@ -101,48 +100,49 @@ function App() {
           let footerElem2 = document.getElementsByClassName("footer")[1];
           footerElem1.style.animation = "bottomToTopFooter 1s linear 1 forwards";
           footerElem2.style.animation = "bottomToTopFooter 1s linear 1 forwards";
-          notificationElem.style.animation="bottomToTopFooter 0s  1 forwards";
-          headerTitle.style.animation="scaleIn 1s 1 forwards"
+          notificationElem.style.animation = "bottomToTopFooter 0s  1 forwards";
+          headerTitle.style.animation = "scaleIn 1s 1 forwards";
           searchBar.style.animation = "bottomToTopMore 1s linear  1 forwards";
-          allHeaderElem.style.animation = 'bottomToTop 1s linear  1 forwards'
+          allHeaderElem.style.animation = "bottomToTop 1s linear  1 forwards";
         }
       }
-      let isSixthPageVisible = isVisible(sixthPage)
-      if(isSixthPageVisible){
-        footersm.style.animation="bottomToTopFooter 0s  1 forwards"
+      let isSixthPageVisible = isVisible(sixthPage);
+      if (isSixthPageVisible) {
+        footersm.style.animation = "bottomToTopFooter 0s  1 forwards";
       }
-      let isSecondPageVisible = isVisible(secondPage)
-      if(isSecondPageVisible){
-        numberAnimation()
+      let isSecondPageVisible = isVisible(secondPage);
+      if (isSecondPageVisible) {
+        numberAnimation();
       }
     } else if (scrollDirection === "up") {
       let pageVisible = isVisible(secondPage);
       if (pageVisible) {
-          let footerElem1 = document.getElementsByClassName("footer")[0];
-          let footerElem2 = document.getElementsByClassName("footer")[1];
-          footerElem1.style.animation = "bottomToTopFooter 1s linear 1 reverse forwards";
-          footerElem2.style.animation = "bottomToTopFooter 1s linear 1 reverse forwards";
-          notificationElem.style.animation="bottomToTopFooter 0s 1 reverse forwards";
-          headerTitle.style.animation="scaleIn 1s 1 reverse forwards"
-          searchBar.style.animation = "bottomToTopMore 1s linear 1 reverse forwards";
-          allHeaderElem.style.animation = 'bottomToTop 1s linear 1 reverse forwards'
+        let footerElem1 = document.getElementsByClassName("footer")[0];
+        let footerElem2 = document.getElementsByClassName("footer")[1];
+        footerElem1.style.animation = "bottomToTopFooter 1s linear 1 reverse forwards";
+        footerElem2.style.animation = "bottomToTopFooter 1s linear 1 reverse forwards";
+        notificationElem.style.animation = "bottomToTopFooter 0s 1 reverse forwards";
+        headerTitle.style.animation = "scaleIn 1s 1 reverse forwards";
+        searchBar.style.animation = "bottomToTopMore 1s linear 1 reverse forwards";
+        allHeaderElem.style.animation = "bottomToTop 1s linear 1 reverse forwards";
       }
-      let isSixthPageVisible = isVisible(sixthPage)
-      if(isSixthPageVisible){
-        footersm.style.animation="bottomToTopFooter 0s reverse 1 forwards"
+      let isSixthPageVisible = isVisible(sixthPage);
+      if (isSixthPageVisible) {
+        footersm.style.animation = "bottomToTopFooter 0s reverse 1 forwards";
       }
-      let isFourthPageVisible = isVisible(fourthPage)
-      if(isFourthPageVisible){
-        numberAnimation()
+      let isFourthPageVisible = isVisible(fourthPage);
+      if (isFourthPageVisible) {
+        numberAnimation();
       }
     }
-
   };
 
-
-
   return (
-    <div className="font-roboto bg-newGrey w-screen snap-none overflow-hidden md:snap-y md:overflow-y-scroll  md:h-[100vh] md:snap-start md:snap-mandatory" key={"app" + currPage} id="slider">
+    <div
+      className="font-roboto bg-newGrey w-screen snap-none overflow-hidden md:snap-y md:overflow-y-scroll  md:h-[100vh] md:snap-start md:snap-mandatory"
+      key={"app" + currPage}
+      id="slider"
+    >
       <div className="md:fixed top-0 w-screen md:h-[15vh] z-50  md:bg-transparent allHeader">
         <div className={collectiveHeaderClassList}>
           <div className=" px-1 md:px-8 md:pt-8">
@@ -152,7 +152,7 @@ function App() {
         </div>
       </div>
 
-      <section className={" snap-start "}>
+      <section className={" z-50 snap-start notFooterDiv"}>
         <MainPage
           currentCar={currentCar}
           cityScapeList={cityScapeList}
@@ -178,7 +178,7 @@ function App() {
       <section className={" snap-start"}>
         <SeventhPage />
       </section>
-      <div className={currPage.includes("seventh") ? " hidden " : " block "}>
+      <div className="z-50 footerDiv">
         <Footer
           key={currPage}
           currentCar={currentCar}

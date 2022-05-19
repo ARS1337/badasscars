@@ -8,12 +8,12 @@ import StickyNotificationAtTop from "./StickyNotificationAtTop";
 function MainPage(props) {
   const { currentCar, setcurrentCar, cityScapeCounter, cityScapeList } = props;
   const [carClassList, setcarClassList] = useState(
-    "flex items-center justify-center flex-row  relative animate-none z-40  pb-4"
+    "flex items-center justify-center flex-row  relative animate-none z-50  pb-4"
   );
   const [cityScapeClassList, setcityScapeClassList] = useState("animate-cityscape ");
   const [animationClassList, setanimationClassList] = useState("animate-rotate animate-bounceCustom z-1");
   const [buyNowClassList, setbuyNowClassList] = useState(
-    " animate-buyNowAnimation absolute text-white rounded-full h-8 w-8 text-[3px] md:text-base md:h-24 md:w-24 bg-[#292F33] z-50 border-2 top-[40%] md:top-[45%] md:border-8 border-[#EEFF00] flex items-center justify-center font-oswald           border-opacity-50 font-bold hover:opacity-50 hover:cursor-pointer  "
+    " animate-buyNowAnimation absolute text-white rounded-full h-8 w-8 text-[3px] md:text-base md:h-24 md:w-24 bg-[#292F33]  border-2 top-[40%] md:top-[45%] md:border-8 border-[#EEFF00] flex items-center justify-center font-oswald           border-opacity-50 font-bold hover:opacity-50 hover:cursor-pointer  "
   );
   const leftTyreBaseClasses = " absolute z-50  bottom-[11%] md:bottom-0 lg:bottom-0  left-[12.1%] ";
   const rightTyreBaseClasses = " absolute z-50 bottom-[11%] md:bottom-1 lg:bottom-1 right-[10.5%] ";
@@ -60,7 +60,7 @@ function MainPage(props) {
       setTimeout(() => {
         let newClassListString = returnNewClassList(carClassList, newCarClass);
         classSetter(newClassListString);
-        setbuyNowClassList(buyNowClassList + "visible animate-onlyBounce z-50 ");
+        setbuyNowClassList(buyNowClassList + "visible animate-onlyBounce  ");
         if (direction == "left") {
           setcityScapeClassList("animate-cityscapeFinished");
         } else {
@@ -73,14 +73,14 @@ function MainPage(props) {
 
   return (
       <div
-        className="overflow-hidden main-page scroll-area z-40  md:h-screen main-page animate-secondPageTopToBottom bg-[#CED6DC]"
+        className="overflow-hidden main-page scroll-area z-0  md:h-screen main-page animate-secondPageTopToBottom bg-[#CED6DC]"
         key="main"
       >
         <StickyNotificationAtTop/>
-        <div className="font-roboto md:mb-36  md:pt-[10vh] ">
+        <div className="font-roboto md:mb-36  md:pt-[10vh]  ">
           <div id="sliding-background" className={cityScapeClassList} key={cityScapeClassList + currentCar + 99}></div>
-          <div className=" md:min-h-[80vh] z-[1] overflow-hidden bg-newGrey ">
-            <div className="flex items-center justify-center z-10">
+          <div className=" md:min-h-[70vh]  overflow-hidden bg-newGrey ">
+            <div className="flex items-center justify-center ">
               <Cars
                 carDetails={configs?.carList[currentCar]}
                 currentCar={currentCar}
